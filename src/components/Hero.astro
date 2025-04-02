@@ -1,21 +1,23 @@
 ---
 // Reverted Hero section to standard light theme - Keeping only the first frontmatter block
 // Removed unused Image import
-const heroImageUrl = '/images/hero-background.jpg'; // Define image URL
+// Koristimo URL konstruktor za sigurnije formiranje putanje sa base URL-om
+const heroImageUrl = new URL('/images/hero-background.jpg', import.meta.env.BASE_URL).pathname; 
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImageUrl}");`; // Vraćena definicija stila
 ---
 
 {/* Restored background image and overlay (50% dark) */}
 <section 
   class="relative py-20 md:py-32 bg-cover bg-center text-white" 
-  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImageUrl}');`}
+  style={sectionStyle} 
 >
   {/* Content Container */}
   <div class="relative z-10 container mx-auto px-6 text-center"> {/* Added relative z-10 */}
     {/* Text color is white (inherited), removed inline styles */}
     {/* Replaced inline styles with Tailwind classes where possible */}
     <h1 
-      class="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold mb-8 text-shadow-sm" /* Replaced inline text-shadow with custom class */
-      // style="text-shadow: 0 1px 3px rgba(0,0,0,0.4);" /* Removed inline style */
+      class="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold mb-8 text-shadow-sm" 
+      
     > 
       Transformišemo Vaše ideje u dela
     </h1>

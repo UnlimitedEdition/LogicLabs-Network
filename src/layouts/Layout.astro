@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import 'aos/dist/aos.css'; // Import AOS CSS
-import AOS from 'aos'; // Import AOS JS
+// AOS JS se sada importuje dinamički u klijentskom script tagu
 
 // Define props for the layout
 interface Props {
@@ -20,7 +20,8 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" /> {/* Vraćeno na originalnu putanju */}
+		{/* Ispravljena putanja za favicon */}
+		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/favicon.svg`} /> 
 		<meta name="generator" content={Astro.generator} />
 
 		{/* --- SEO Meta Tags (using props) --- */}
@@ -48,12 +49,17 @@ const {
 	<body> {/* Removed background styling from body */}
 		<slot />
 
-		{/* AOS JS is now imported in the script section. Initialization below: */}
-		<script is:inline>
-		  AOS.init({
-		    duration: 800, // Animation duration in ms
-		    once: true, // Whether animation should happen only once - while scrolling down
-		  });
+		{/* Dinamički import i inicijalizacija AOS-a */}
+		<script>
+			// Ensure AOS is initialized after the DOM is ready
+			document.addEventListener('DOMContentLoaded', async () => {
+				// Dinamički importujemo AOS modul
+				const AOS = (await import('aos')).default; 
+				AOS.init({ // Koristimo importovani AOS objekat
+					duration: 800, // Animation duration in ms
+					once: true, // Whether animation should happen only once - while scrolling down
+				});
+			});
 		</script>
 		{/* Removed Theme Toggle Script */}
 	</body>
