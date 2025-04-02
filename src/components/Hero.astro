@@ -1,32 +1,22 @@
 ---
-// Reverted Hero section to standard light theme - Keeping only the first frontmatter block
-// Removed unused Image import
-const heroImageUrl = '/images/hero-background.jpg'; // Define image URL
+const heroImageUrl = '/images/hero-background.jpg';
 ---
 
-{/* Restored background image and overlay (50% dark) */}
 <section 
   class="relative py-20 md:py-32 bg-cover bg-center text-white" 
   style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImageUrl}');`}
 >
-  {/* Content Container */}
-  <div class="relative z-10 container mx-auto px-6 text-center"> {/* Added relative z-10 */}
-    {/* Text color is white (inherited), removed inline styles */}
-    {/* Replaced inline styles with Tailwind classes where possible */}
+  <div class="relative z-10 container mx-auto px-6 text-center">
     <h1 
-      class="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold mb-8 text-shadow-sm" /* Replaced inline text-shadow with custom class */
-      // style="text-shadow: 0 1px 3px rgba(0,0,0,0.4);" /* Removed inline style */
+      class="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold mb-8 text-shadow-sm"
     > 
       Transformišemo Vaše ideje u dela
     </h1>
     <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
       Transformišemo Vaše ideje u moćna digitalna rešenja. Specijalizovani smo za izradu modernih, brzih i sigurnih web sajtova i aplikacija koje privlače posetioce i ostvaruju rezultate. Od vizuelnog identiteta do kompleksnog programiranja, tu smo da Vaš projekat podignemo na viši nivo.
     </p>
-    {/* Button style adjusted for dark background */}
     <a href="/usluge" class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors duration-300">
       Pogledajte Naše Usluge
     </a>
   </div>
 </section>
-
-<!-- Script removed -->

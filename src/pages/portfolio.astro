@@ -15,7 +15,7 @@ const displayTitle = "Naš Portfolio";
   <PageTitle title={displayTitle} subtitle="Pogledajte neke od naših uspešno realizovanih projekata." />
   
   {/* Main content area with the portfolio grid */}
-  <main class="relative bg-cover bg-center bg-fixed text-gray-800" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+  <main class="relative bg-cover bg-center bg-fixed text-gray-800" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/hero-background.jpg');`}>
     {/* Portfolio component already has padding, so no extra padding needed here */}
     <PortfolioGrid /> {/* Use renamed component */}
   </main>

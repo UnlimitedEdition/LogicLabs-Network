@@ -20,7 +20,7 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" /> {/* Vraćeno na originalnu putanju */}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
 		{/* --- SEO Meta Tags (using props) --- */}
@@ -45,17 +45,15 @@ const {
 		{/* AOS CSS is now imported in the script section */}
 	</head>
 	
-	<body> {/* Removed background styling from body */}
+	<body>
 		<slot />
 
-		{/* AOS JS is now imported in the script section. Initialization below: */}
 		<script is:inline>
 		  AOS.init({
 		    duration: 800, // Animation duration in ms
 		    once: true, // Whether animation should happen only once - while scrolling down
 		  });
 		</script>
-		{/* Removed Theme Toggle Script */}
 	</body>
 </html>
 
