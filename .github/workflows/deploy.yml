@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Pokreće se kada se push-uje na 'main' granu
+  push:
+    branches:
+      - main
+  # Omogućava ručno pokretanje iz Actions taba na GitHub-u
+  workflow_dispatch:
+
+# Dozvole za GITHUB_TOKEN za postavljanje na GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Dozvoljava samo jedno istovremeno postavljanje, otkazuje prethodna pokretanja
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Koristi Node.js verziju 20 (ili drugu ako je potrebno)
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build with Astro
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # environment: # Uklonjeno - akcija će sama zaključiti
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
