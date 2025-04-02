@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Platforma za Upravljanje Događajima',
+  imageUrl: '/images/images (1).jpeg', // Corrected image path
+  tech: ['PHP (Laravel)', 'Vue.js', 'MySQL'],
+  description: `
+    <p class="mb-4">Primer web platforme koja omogućava organizatorima da lako kreiraju, promovišu i upravljaju događajima (konferencije, radionice, webinari). Uključuje funkcionalnosti za registraciju učesnika, prodaju karata (opciono) i komunikaciju.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Funkcionalnosti:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Kreiranje i uređivanje detalja događaja (opis, vreme, lokacija, predavači).</li>
+      <li>Online registracija učesnika sa prilagodljivim formama.</li>
+      <li>Mogućnost integracije sistema za online plaćanje kotizacija.</li>
+      <li>Pregled liste učesnika i izvoz podataka.</li>
+      <li>Slanje email obaveštenja učesnicima.</li>
+      <li>Frontend prikaz liste događaja sa pretragom i filtriranjem.</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Primer Koda (Laravel - Backend):</h3>
+    <p class="text-sm mb-2">Ovaj isečak prikazuje deo Laravel kontrolera za obradu registracije učesnika.</p>
+    <pre class="bg-gray-800 text-white p-4 rounded-md text-sm overflow-x-auto"><code>
+// App\\Http\\Controllers\\EventRegistrationController.php
+
+namespace App\\Http\\Controllers;
+
+use App\\Models\\Event;
+use App\\Models\\Registration;
+use Illuminate\\Http\\Request;
+use App\\Http\\Requests\\StoreRegistrationRequest; // Custom request validation
+use Illuminate\\Support\\Facades\\Mail;
+use App\\Mail\\RegistrationConfirmation;
+
+class EventRegistrationController extends Controller
+{
+    /**
+     * Store a newly created registration in storage.
+     */
+    public function store(StoreRegistrationRequest $request, Event $event)
+    {
+        // Validacija je već izvršena kroz StoreRegistrationRequest
+
+        // Kreiranje nove registracije
+        $registration = Registration::create([
+            'event_id' => $event->id,
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            // ... ostala polja iz forme
+        ]);
+
+        // TODO: Implementirati logiku za plaćanje ako je potrebno
+
+        // Slanje email potvrde učesniku
+        Mail::to($registration->email)->send(new RegistrationConfirmation($event, $registration));
+
+        // Preusmeravanje na stranicu zahvalnosti sa porukom
+        return redirect()->route('events.show', $event)
+                         ->with('success', 'Uspešno ste se registrovali! Proverite email za potvrdu.');
+    }
+
+    // ... ostale metode kontrolera
+}
+    </code></pre>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

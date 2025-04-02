@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+
+const service = {
+  title: 'WordPress web sajt – napredni paket',
+  description: 'Izrada naprednog CMS WordPress web sajta sa prilagođenim dizajnom, administracijom i dodatnim funkcionalnostima.'
+};
+
+const pageTitleSeo = `Dinamički Web Sajt (Pro) | Usluge | LogicLabs Network`; // Updated Site Name
+const pageDescription = service.description;
+const displayTitle = service.title; // Use service title for display
+const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; // Define text shadow
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Use PageTitle component */}
+  <PageTitle title={displayTitle} subtitle={service.description} />
+  {/* Apply background to main, ensure inner div is transparent */}
+  <main 
+    class="relative bg-cover bg-center bg-fixed text-white" /* Changed default text color */
+    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} /* Dark overlay (60%) */
+  >
+    <div class="container mx-auto px-6 py-12 bg-transparent"> {/* Ensure bg-transparent */}
+      {/* Removed original h1 */}
+      {/* Removed content container with white background, applied styles directly */}
+      <div class="max-w-3xl mx-auto space-y-6"> {/* Removed bg-white, p-8, rounded, shadow, text-gray-700 */}
+      <p class="mb-4 text-gray-200" style={textShadow} data-aos="fade-up" data-aos-delay="100"> {/* Light gray text + shadow */}
+        U slučaju kada želite da obezbedite Vaše prisustvo na Internetu sa potrebom da imate web sajt koji će imati neke od naprednih mogućnosti, LogicLabs Network Vam može ponuditi izradu dinamičkog CMS WordPress web sajta po ceni počev već od <strong class="text-blue-400 font-semibold">30.000 dinara</strong>. {/* Changed primary to blue-400 */}
+      </p>
+      <p class="mb-4 text-gray-200" style={textShadow} data-aos="fade-up" data-aos-delay="200"> {/* Light gray text + shadow */}
+          U ovom paketu spada izrada kompletnog web sajta do 20 stranica (broj stranica zavisi od kompleksnosti sadržaja i elemenata na stranici) sa dizajnom na osnovu Vaših želja i potreba i sa osnovnom SEO optimizacijom. Uz ovaj paket dobijate i dodatne elemente na web sajtu kao što su: galerija fotografija, slideshow, carousel, kontakt forma uz kreiranje potrebnih novih kategorija i polja. Na ovaj način u potpunosti vršimo prilagođavanje web sajta (administracija i frontend) Vašim potrebama. Ovakav tip web sajta Vam omogućuje da samostalno vršite izmenu ili dodavanje sadržaja (tekst i slike) u osnovnom i naprednom editoru (Visual Page Builder) bez ikakvog poznavanja programiranja i naprednih Web tehnika.
+        </p>
+         <p class="mb-6 text-gray-200" style={textShadow} data-aos="fade-up" data-aos-delay="300"> {/* Light gray text + shadow */}
+          Za izradu web sajtova u ovom paketu koristimo namenski (custom) pravljenje WP teme zasnovane na Unyson i Redux framework-u i u skladu sa namenom web sajta, a što je veoma bitan faktor jer na taj način mi web sajt prilagođavamo Vama i Vašim posetiocima, a ne da se Vi i Vaši posetioci prilagođavaju web sajtu. Prednost izrade namenskih WordPress tema, u odnosu na korišćenje gotovih tema, znači da uvek možemo da izvršimo eventualnu doradu, izmenu ili da proširimo mogućnosti web sajta u skladu sa zahtevima i željama korisnika.
+        </p>
+
+        <div data-aos="fade-up" data-aos-delay="400"> 
+          <h2 class="text-2xl font-semibold text-white mb-4" style={textShadow}>Dodatne opcije:</h2> {/* White text + shadow */}
+          <ul class="list-disc list-inside space-y-2 mb-6 text-gray-200" style={textShadow}> {/* Light gray text + shadow */}
+            <li>Napredna SEO optimizacija – od 100 Eura.</li>
+            <li>Dodatna zaštita web sajta – 50 Eura.</li>
+            <li>Kreiranje novih kategorija (Vesti, Akcije, Proizvodi…) u administrativnom panelu (backend) i njihovo prikazivanje na web sajtu (frontend) – 30 Eura.</li>
+            <li>Kreiranje namenskih administratorskih stranica i polja za brži i olakšani unos sadržaja – od 20 Eura.</li>
+            <li>Dodatni jezik (uz korišćenje komercijalnog WPML plugin-a) – 50% od vrednosti web sajta.</li>
+            <li>Izrada grafičkog rešenja (izgleda) na osnovu zahteva korisnika – od 50 Eura.</li>
+            <li>Izrada HTML/CSS/JS web sajta na osnovu postojećeg grafičkog rešenja (.psd fajl) – od 100 Eura.</li>
+            <li>Registracija Internet domena (.com, .net, .rs, .co.rs …).</li>
+          </ul>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="600"> 
+          <h3 class="text-xl font-semibold text-white mb-2" style={textShadow}>Napomena:</h3> {/* White text + shadow */}
+          <p class="mb-4 text-sm text-gray-300" style={textShadow}> {/* Lighter gray text + shadow */}
+            Cene za dodatne opcije su navedene okvirno i mogu varirati u zavisnosti od zahteva korisnika, kompleksnosti web sajta, kao i vremena potrebnog za izradu. Konačnu cenu Vam možemo dati nakon razgovora sa Vama i nakon detaljnijeg sagledavanja svih opcija koje Vi kao korisnik želite da imate na web sajtu.
+          </p>
+          <p class="text-sm text-gray-300" style={textShadow}> {/* Lighter gray text + shadow */}
+            U slučaju da imate potrebu za našim dodatnim angažovanjem, molimo Vas da pogledate <a href="/usluge/cenovnik" class="text-blue-400 hover:underline">cenovnik naših usluga</a>. {/* Changed link color */}
+          </p>
+        </div>
+
+       <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="700"> 
+         {/* Button style is already suitable */}
+        <a href="/kontakt?usluga=dinamicki-pro" class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 font-semibold">
+            Kontaktirajte Nas za Napredni Dinamički Sajt
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

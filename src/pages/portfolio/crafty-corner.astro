@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'E-commerce Platforma "Crafty Corner"',
+  imageUrl: '/images/portfolio-project-2.jpg', // Placeholder slika
+  tech: ['React', 'Node.js', 'Stripe API', 'MongoDB'],
+  description: `
+    <p class="mb-4">"Crafty Corner" je primer fiktivne e-commerce platforme namenjene prodaji unikatnih, ručno rađenih proizvoda. Projekat demonstrira mogućnosti izrade kompletnog rešenja za online prodaju, od pregleda proizvoda do sigurnog plaćanja.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Faze Razvoja (Primer):</h3>
+    <ol class="list-decimal list-inside space-y-2 mb-4">
+      <li><strong>Definisanje Zahteva:</strong> Analiza potreba online prodavnice (kategorije proizvoda, atributi, proces naručivanja, načini plaćanja, upravljanje zalihama).</li>
+      <li><strong>Dizajn UI/UX:</strong> Kreiranje intuitivnog korisničkog interfejsa za pregled proizvoda, korpu i proces plaćanja, kao i dizajn administrativnog panela.</li>
+      <li><strong>Frontend Razvoj (React):</strong> Izrada dinamičkog korisničkog interfejsa koristeći React, omogućavajući interaktivno pretraživanje, filtriranje proizvoda i upravljanje korpom.</li>
+      <li><strong>Backend Razvoj (Node.js & MongoDB):</strong> Razvoj RESTful API-ja za upravljanje proizvodima, korisnicima, narudžbinama i zalihama. Korišćenje MongoDB baze podataka za fleksibilno skladištenje podataka.</li>
+      <li><strong>Integracija Plaćanja (Stripe API):</strong> Implementacija sigurnog procesa plaćanja putem Stripe API-ja.</li>
+      <li><strong>Administrativni Panel:</strong> Izrada panela za vlasnika prodavnice za dodavanje/ažuriranje proizvoda, praćenje narudžbina i upravljanje korisnicima.</li>
+      <li><strong>Testiranje i Optimizacija:</strong> Testiranje celokupnog procesa kupovine, sigurnosti, performansi i responzivnosti.</li>
+    </ol>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Karakteristike:</h3>
+    <ul class="list-disc list-inside space-y-1">
+      <li>Pregled i pretraga proizvoda po kategorijama.</li>
+      <li>Funkcionalna korpa za kupovinu.</li>
+      <li>Sigurno online plaćanje (integracija sa Stripe).</li>
+      <li>Korisnički nalozi i istorija narudžbina.</li>
+      <li>Administrativni panel za upravljanje prodavnicom.</li>
+      <li>Responzivan dizajn za kupovinu putem mobilnih uređaja.</li>
+    </ul>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} breadcrumbs={[{ label: 'Portfolio', href: '/portfolio' }, { label: project.title }]} />
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

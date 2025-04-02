@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Prilagođeni WordPress Plugin',
+  imageUrl: '/images/images (4).jpeg', // Corrected image path
+  tech: ['PHP', 'WordPress API', 'JavaScript'],
+  description: `
+    <p class="mb-4">Ovaj projekat ilustruje razvoj prilagođenog WordPress plugina za klijenta koji je želeo specifičnu funkcionalnost na svom sajtu - dinamički kalkulator cena za njihove usluge. Plugin omogućava administratorima da lako unesu parametre za kalkulaciju, a posetiocima da dobiju procenu cene u realnom vremenu.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Funkcionalnosti:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Administrativni interfejs za unos parametara i formula za kalkulaciju.</li>
+      <li>Frontend shortcode za lako postavljanje kalkulatora na bilo koju stranicu.</li>
+      <li>Interaktivni frontend interfejs (JavaScript) za unos podataka od strane korisnika.</li>
+      <li>Prikaz procenjene cene u realnom vremenu.</li>
+      <li>Pridržavanje WordPress standarda za kodiranje i sigurnost.</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Primer Koda (PHP - Enqueue & Localize Script):</h3>
+    <p class="text-sm mb-2">Ovaj isečak prikazuje standardni način za dodavanje JavaScript fajla i prosleđivanje PHP podataka u njega unutar WordPress plugina.</p>
+    <pre class="bg-gray-800 text-white p-4 rounded-md text-sm overflow-x-auto"><code>
+<?php
+/**
+ * Plugin Name: Custom Price Calculator
+ * Description: Adds a price calculator via shortcode.
+ * Version: 1.0
+ * Author: Your Name/Company
+ */
+
+// Izbegavanje direktnog pristupa fajlu
+if (!defined('ABSPATH')) {
+    exit; 
+}
+
+// Funkcija za dodavanje skripti i stilova samo kada je shortcode prisutan
+function custom_calculator_enqueue_scripts() {
+    // Proveravamo da li trenutni post/stranica sadrži naš shortcode
+    global $post;
+    if (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'price_calculator')) {
+        
+        // Registrovanje i dodavanje JavaScript fajla
+        wp_enqueue_script(
+            'custom-calculator-js', // Jedinstveni handle za skriptu
+            plugin_dir_url(__FILE__) . 'js/calculator.js', // Putanja do JS fajla
+            array('jquery'), // Zavisnosti (npr. jQuery)
+            '1.0', // Verzija fajla
+            true // Učitati u futeru
+        );
+
+        // Priprema podataka za prosleđivanje u JavaScript
+        $calculator_settings = array(
+            'base_price' => get_option('calculator_base_price', 1000), // Primer podešavanja iz WP opcija
+            'factor'     => get_option('calculator_factor', 1.5),
+            'currency'   => get_option('calculator_currency', 'RSD'),
+            // Možemo proslediti i AJAX URL za složenije kalkulacije na serveru
+            'ajax_url'   => admin_url('admin-ajax.php') 
+        );
+
+        // Prosleđivanje podataka u JavaScript pod objektom 'calculatorData'
+        wp_localize_script('custom-calculator-js', 'calculatorData', $calculator_settings);
+
+        // Opciono: Dodavanje CSS fajla za kalkulator
+        // wp_enqueue_style(
+        //     'custom-calculator-css',
+        //     plugin_dir_url(__FILE__) . 'css/calculator.css',
+        //     array(),
+        //     '1.0'
+        // );
+    }
+}
+// Kačenje funkcije na odgovarajući WordPress hook
+add_action('wp_enqueue_scripts', 'custom_calculator_enqueue_scripts');
+
+
+// Funkcija koja generiše SAMO HTML za kalkulator (bez inline JS)
+function custom_price_calculator_shortcode_handler($atts) {
+    $param1_label = get_option('calculator_param1_label', 'Parametar 1');
+    // ... dohvati ostala podešavanja
+
+    ob_start();
+    ?>
+    <div class="custom-calculator-wrapper" id="price-calculator-<?php echo esc_attr(uniqid()); ?>"> {/* Dodajemo jedinstveni ID */}
+        <h4 class="calculator-title">Kalkulator Cene</h4>
+        <form class="calculator-form"> {/* Uklonjen ID forme, oslanjamo se na wrapper ID */}
+            <div class="form-group">
+                <label for="param1-<?php echo esc_attr(uniqid()); ?>"><?php echo esc_html($param1_label); ?>:</label>
+                <input type="number" id="param1-<?php echo esc_attr(uniqid()); ?>" class="calc-param" data-param="param1" required>
+            </div>
+            
+            <!-- Dodati ostala polja forme sa klasom 'calc-param' i data-param atributom -->
+
+            <div class="result-area">
+                Procenjena cena: <span class="calculated-price">Unesite parametre</span>
+            </div>
+        </form>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+// Registrovanje shortcode-a [price_calculator]
+add_shortcode('price_calculator', 'custom_price_calculator_shortcode_handler');
+
+
+// TODO: Dodati kod za administrativnu stranicu za podešavanja plugina
+// add_action('admin_menu', 'calculator_admin_menu');
+// function calculator_admin_menu() { ... }
+
+?>
+    </code></pre>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

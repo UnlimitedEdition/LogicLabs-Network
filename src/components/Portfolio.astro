@@ -1,0 +1,107 @@
+---
+// Generički primeri projekata (privremeno rešenje)
+const projects = [
+  {
+    id: 'inovatech-solutions',
+    title: 'Korporativni Sajt "Inovatech Solutions"',
+    description: 'Moderan, responzivan sajt za fiktivnu tehnološku kompaniju, fokusiran na predstavljanje usluga i generisanje upita.',
+    imageUrl: '/images/portfolio-project-1.jpg', // Slika 1
+    tech: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
+    liveUrl: '/portfolio/inovatech-solutions', // Link ka stranici sa detaljima
+  },
+  {
+    id: 'crafty-corner',
+    title: 'E-commerce Platforma "Crafty Corner"',
+    description: 'Fiktivna online prodavnica za ručno rađene proizvode, sa korpom, procesom plaćanja i osnovnom administracijom.',
+    imageUrl: '/images/portfolio-project-2.jpg', // Slika 2
+    tech: ['React', 'Node.js', 'Stripe API'],
+    liveUrl: '/portfolio/crafty-corner', // Link ka stranici sa detaljima
+  },
+  {
+    id: 'bookitnow',
+    title: 'Web Aplikacija za Rezervacije "BookItNow"',
+    description: 'Fiktivni sistem za online zakazivanje termina, prilagođen različitim uslužnim delatnostima.',
+    imageUrl: '/images/portfolio-project-3.jpg', // Slika 3
+    tech: ['Vue.js', 'Firebase'],
+    liveUrl: '/portfolio/bookitnow', // Link ka stranici sa detaljima
+  },
+  // Dodatnih 6 fiktivnih projekata
+  {
+    id: 'data-dashboard',
+    title: 'Analitička Kontrolna Tabla',
+    description: 'Interaktivna tabla za vizualizaciju poslovnih podataka u realnom vremenu.',
+    imageUrl: '/images/generic-image-1.jpg', // Slika 4
+    tech: ['Python (Flask)', 'Chart.js', 'PostgreSQL'],
+    liveUrl: '/portfolio/data-dashboard', 
+  },
+  {
+    id: 'event-platform',
+    title: 'Platforma za Upravljanje Događajima',
+    description: 'Sistem za kreiranje, promociju i upravljanje registracijama za događaje.',
+    imageUrl: '/images/images (1).jpeg', // Slika 5
+    tech: ['PHP (Laravel)', 'Vue.js', 'MySQL'],
+    liveUrl: '/portfolio/event-platform', 
+  },
+  {
+    id: 'cms-plugin',
+    title: 'Prilagođeni WordPress Plugin',
+    description: 'Plugin za dodavanje specifične funkcionalnosti (npr. kalkulator cena) na WP sajt.',
+    imageUrl: '/images/images (4).jpeg', // Zamenjena slika (bila Slika 6, sada Slika 9)
+    tech: ['PHP', 'WordPress API', 'JavaScript'],
+    liveUrl: '/portfolio/cms-plugin', 
+  },
+  {
+    id: 'streamer-overlay',
+    title: 'Interaktivni Overlay za Strimere',
+    description: 'Prilagođeni web overlay sa notifikacijama, ciljevima i interakcijama za Twitch/YouTube strimere.',
+    imageUrl: '/images/images (3).jpeg', // Slika 7
+    tech: ['Node.js', 'Socket.IO', 'HTML/CSS/JS'],
+    liveUrl: '/portfolio/streamer-overlay', 
+  },
+  {
+    id: 'calculation-app',
+    title: 'Web Aplikacija za Tehničke Proračune',
+    description: 'Online alat za specifične inženjerske ili naučne proračune sa unosom parametara i prikazom rezultata.',
+    imageUrl: '/images/programmer-wallpaper-preview.jpg', // Slika 8
+    tech: ['React', 'JavaScript', 'MathJax'],
+    liveUrl: '/portfolio/calculation-app', 
+  },
+  {
+    id: 'api-integration-sms',
+    title: 'Integracija sa SMS Gateway API-jem',
+    description: 'Povezivanje postojeće CRM platforme sa SMS servisom za slanje obaveštenja klijentima.',
+    imageUrl: '/images/images (2).jpeg', // Zamenjena slika (bila Slika 9, sada Slika 6)
+    tech: ['Python (Django)', 'REST API', 'Twilio'],
+    liveUrl: '/portfolio/api-integration-sms', 
+  },
+];
+---
+
+{/* Removed bg-gray-100 from section */}
+<section id="portfolio" class="py-16 transition-colors duration-300">
+  <div class="container mx-auto px-6">
+    {/* Removed h2 title as it's now handled by PageTitle component */}
+    {/* Removed filter buttons */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        // Wrap the entire card content in an anchor tag
+        <a href={project.liveUrl} class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 no-underline group" data-aos="fade-up" data-aos-delay={index * 100}>
+          <img src={project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3> {/* Change color on group hover */}
+            <p class="text-gray-600 mb-4">{project.description}</p>
+            <div class="mb-4">
+              {project.tech.map(t => (
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{t}</span>
+              ))}
+            </div>
+            {/* Keep the text, but the link is now the whole card */}
+            <span class="text-primary font-medium group-hover:underline">
+              Saznaj više &rarr;
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Korporativni Sajt "Inovatech Solutions"',
+  imageUrl: '/images/portfolio-project-1.jpg', // Placeholder slika
+  tech: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
+  description: `
+    <p class="mb-4">"Inovatech Solutions", fiktivna kompanija u oblasti softverskih rešenja, zahtevala je moderan i profesionalan web sajt koji bi služio kao centralna tačka za predstavljanje njihovih usluga, ekspertize i korporativne kulture. Primarni cilj bio je generisanje kvalitetnih poslovnih upita (leads) i jačanje brenda na tržištu.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Izazovi:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Kreirati dizajn koji odražava inovativnost i profesionalizam kompanije.</li>
+      <li>Osigurati izuzetno brzo učitavanje stranica radi boljeg korisničkog iskustva i SEO-a.</li>
+      <li>Strukturirati sadržaj na jasan i logičan način kako bi posetioci lako pronašli informacije o uslugama.</li>
+      <li>Implementirati jednostavan, ali efikasan način za prikupljanje upita putem kontakt forme.</li>
+      <li>Osigurati potpunu responzivnost sajta na svim uređajima.</li>
+    </ul>
+     <h3 class="text-xl font-semibold mb-2 mt-6">Rešenje:</h3>
+    <p class="mb-4">Odlučili smo se za Astro framework zbog njegovih izvanrednih performansi i mogućnosti slanja minimalnog JavaScript-a klijentu. Tailwind CSS je korišćen za brzo i konzistentno stilizovanje, omogućavajući kreiranje modernog i čistog dizajna. Ključni elementi rešenja uključuju:</p>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li><strong>Arhitektura bazirana na komponentama:</strong> Omogućila je laku ponovnu upotrebu elemenata i održavanje koda.</li>
+      <li><strong>Optimizacija slika:</strong> Korišćenje modernih formata slika i tehnika lenjog učitavanja (lazy loading).</li>
+      <li><strong>Statičko generisanje (SSG):</strong> Većina stranica je generisana statički za maksimalnu brzinu.</li>
+      <li><strong>Netlify Forms:</strong> Integrisana je Netlify platforma za jednostavno upravljanje formama bez potrebe za backend serverom.</li>
+      <li><strong>SEO Osnove:</strong> Implementirani su osnovni SEO principi (meta tagovi, semantički HTML, sitemap).</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Faze Razvoja (Primer):</h3>
+    <ol class="list-decimal list-inside space-y-2 mb-4">
+      <li><strong>Planiranje i Dizajn:</strong> Definisanje ciljne publike, strukture sajta (sitemap), ključnih funkcionalnosti i kreiranje wireframe-ova i vizuelnog dizajna u skladu sa brendingom klijenta.</li>
+      <li><strong>Frontend Razvoj (Astro & Tailwind):</strong> Implementacija dizajna koristeći Astro framework za optimalne performanse i Tailwind CSS za brzo stilizovanje. Fokus na čistom kodu, semantičkom HTML-u i responzivnosti na svim uređajima.</li>
+      <li><strong>Integracija Formi (Netlify Forms):</strong> Podešavanje kontakt forme i drugih formi za prikupljanje upita koristeći Netlify Forms za jednostavnu integraciju bez potrebe za backend serverom.</li>
+      <li><strong>Optimizacija i Testiranje:</strong> Optimizacija slika, performansi (Lighthouse skor) i SEO osnova. Testiranje funkcionalnosti, prikaza na različitim pretraživačima i uređajima.</li>
+      <li><strong>Postavljanje (Deployment):</strong> Postavljanje sajta na Netlify platformu, konfiguracija domena i SSL sertifikata.</li>
+    </ol>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Karakteristike:</h3>
+    <ul class="list-disc list-inside space-y-1">
+      <li>Izuzetno brze performanse zahvaljujući Astro arhitekturi.</li>
+      <li>Potpuno responzivan dizajn.</li>
+      <li>Optimizovan za SEO.</li>
+      <li>Laka integracija sa Netlify CMS-om (opciono) za upravljanje sadržajem.</li>
+      <li>Jednostavna kontakt forma.</li>
+    </ul>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} breadcrumbs={[{ label: 'Portfolio', href: '/portfolio' }, { label: project.title }]} />
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

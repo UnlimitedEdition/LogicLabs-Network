@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+
+const service = {
+  title: 'Web Dizajn',
+  description: 'Dizajniramo vizuelno privlačna i korisnički orijentisana rešenja. Naš fokus je na kreiranju intuitivnih interfejsa koji poboljšavaju korisničko iskustvo.'
+};
+
+const pageTitleSeo = `${service.title} | Usluge | LogicLabs Network`; // Updated Site Name
+const pageDescription = service.description;
+const displayTitle = service.title; // Use service title for display
+
+// Import icon components
+import IconImpression from '../../components/icons/IconImpression.astro'; // Assuming you create these
+import IconUx from '../../components/icons/IconUx.astro';
+import IconUi from '../../components/icons/IconUi.astro';
+import IconBranding from '../../components/icons/IconBranding.astro';
+import IconConversion from '../../components/icons/IconConversion.astro';
+import IconResponsive from '../../components/icons/IconResponsive.astro';
+// Removed benefitIcons object
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Use PageTitle component - Removed breadcrumbs */}
+  <PageTitle title={displayTitle} subtitle={service.description} />
+  {/* Apply background to main, ensure inner div is transparent */}
+  <main 
+    class="relative bg-cover bg-center bg-fixed text-white" 
+    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} 
+  >
+    <div class="container mx-auto px-6 py-12 bg-transparent"> 
+      <div class="max-w-4xl mx-auto space-y-12"> 
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Šta je Web Dizajn?</h2> 
+          <p class="text-gray-200 text-shadow-sm"> 
+            Web dizajn je mnogo više od pukog estetskog izgleda sajta. To je umetnost i nauka kreiranja vizuelno privlačnih, funkcionalnih i korisnički orijentisanih digitalnih interfejsa. Dobar web dizajn kombinuje principe grafičkog dizajna, korisničkog iskustva (UX), korisničkog interfejsa (UI) i pristupačnosti kako bi se stvorio sajt koji ne samo da izgleda dobro, već je i lak i intuitivan za korišćenje, efikasno komunicira poruku brenda i pomaže u ostvarivanju poslovnih ciljeva.
+          </p>
+        </div>
+
+        {/* Updated Benefits Section with Icons */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h2 class="text-2xl font-semibold text-white mb-4 text-shadow-sm">Zašto je kvalitetan Web Dizajn ključan?</h2> 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"> 
+            <div class="flex items-start">
+              <IconImpression /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Prvi utisak</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Profesionalan dizajn gradi poverenje i kredibilitet.</p>
+              </div>
+            </div>
+             <div class="flex items-start">
+              <IconUx /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Korisničko iskustvo (UX)</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Intuitivna navigacija i laka upotreba povećavaju zadovoljstvo.</p>
+              </div>
+            </div>
+             <div class="flex items-start">
+              <IconUi /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Korisnički interfejs (UI)</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Dosledan i prijatan vizuelni stil olakšava interakciju.</p>
+              </div>
+            </div>
+             <div class="flex items-start">
+              <IconBranding /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Brendiranje</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Dizajn odražava identitet Vašeg brenda i stvara prepoznatljivost.</p>
+              </div>
+            </div>
+             <div class="flex items-start">
+              <IconConversion /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Konverzije</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Optimizovan dizajn vodi korisnike ka željenim akcijama.</p>
+              </div>
+            </div>
+             <div class="flex items-start">
+              <IconResponsive /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Prilagodljivost</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Dizajn optimizovan za sve uređaje (desktop, tablet, mobilni).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Naš Proces Web Dizajna:</h2> 
+          {/* Using the same timeline style as on the static site page */}
+          <ol class="relative border-l border-gray-600 space-y-6 pl-6 text-shadow-sm">                  
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">1. Istraživanje i Planiranje</h3>
+              <p class="text-sm text-gray-300">Razumevanje ciljeva, publike i zahteva. Definisanje strukture i korisničkih tokova.</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">2. Wireframing</h3>
+              <p class="text-sm text-gray-300">Kreiranje osnovnih skica rasporeda elemenata.</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">3. UI Dizajn</h3>
+              <p class="text-sm text-gray-300">Razvoj vizuelnog stila i detaljnih dizajna (mockups).</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">4. Prototipiranje (Opciono)</h3>
+              <p class="text-sm text-gray-300">Izrada interaktivnog prototipa za testiranje korisničkog iskustva.</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">5. Predaja Razvoju</h3>
+              <p class="text-sm text-gray-300">Priprema svih grafičkih elemenata i specifikacija za programere.</p>
+            </li>
+          </ol>
+        </div>
+
+         <div data-aos="fade-up" data-aos-delay="400">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Kako se naplaćuje Web Dizajn?</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm"> 
+            Cena web dizajna zavisi od obima projekta, kompleksnosti, broja jedinstvenih stranica/template-a, potrebe za prototipiranjem ili dizajn sistemom. Okvirne cene:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mb-4 text-gray-200 text-shadow-sm"> 
+             <li><strong class="font-medium text-white">Dizajn za Manje Sajtove:</strong> <span class="text-blue-400">od 200-400 Eura.</span></li> 
+             <li><strong class="font-medium text-white">Dizajn za Standardne Poslovne Sajtove/CMS:</strong> <span class="text-blue-400">od 400-800 Eura.</span></li> 
+             <li><strong class="font-medium text-white">Dizajn za Kompleksne Aplikacije/Prodavnice:</strong> <span class="text-blue-400">od 800 Eura pa naviše.</span></li> 
+             <li><strong class="font-medium text-white">Redizajn Postojećeg Sajta:</strong> Cena zavisi od obima izmena.</li>
+          </ul>
+           <p class="text-sm italic text-gray-300 text-shadow-sm">Za preciznu ponudu prilagođenu vašim potrebama, molimo vas da nas kontaktirate.</p> 
+        </div>
+
+       <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="500">
+         {/* Button style is already suitable */}
+        <a href="/kontakt?usluga=web-dizajn" class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 text-lg font-semibold">
+            Zatražite Ponudu za Dizajn
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

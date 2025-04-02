@@ -1,0 +1,104 @@
+---
+// Podaci o timu - Hijerarhijski organizovani
+const teamHierarchy = [
+  // Nivo 1: Osnivač
+  [
+    { 
+      name: 'Milan Tošić', 
+      role: 'Osnivač & CEO', 
+      imageUrl: '/images/team-member-1.jpg', // Placeholder
+      bio: 'Vizionar sa dubokim tehničkim znanjem, Milan vodi tim ka inovacijama i izvrsnosti. Njegova strast leži u rešavanju kompleksnih izazova i kreiranju digitalnih proizvoda koji ne samo da ispunjavaju, već i premašuju očekivanja klijenata.' 
+    }
+  ],
+  // Nivo 2: Menadžment/Lead
+  [
+    { 
+      name: 'Ana Petrović', 
+      role: 'Projekt Menadžer', 
+      imageUrl: '/images/team-member-2.jpg', // Placeholder
+      bio: 'Organizovana i proaktivna, Ana osigurava da projekti teku glatko, na vreme i u okviru budžeta.' 
+    },
+    { 
+      name: 'Jelena Marković', 
+      role: 'Tehnički Lead (Backend)', 
+      imageUrl: '/images/team-member-3.jpg', // Placeholder
+      bio: 'Sa fokusom na skalabilnost i sigurnost, Jelena vodi razvoj robusnih serverskih arhitektura.' 
+    }
+  ],
+  // Nivo 3: Seniori/Specijalisti
+  [
+    { 
+      name: 'Nikola Jovanović', 
+      role: 'Senior Frontend Developer', 
+      imageUrl: '/images/team-member-1.jpg', // Placeholder
+      bio: 'Majstor za korisničke interfejse, Nikola pretvara dizajn u interaktivna web iskustva.' 
+    },
+    { 
+      name: 'Stefan Ilić', 
+      role: 'UI/UX Dizajn Lead', 
+      imageUrl: '/images/team-member-2.jpg', // Placeholder
+      bio: 'Kreativni um tima, Stefan je odgovoran za vizuelno privlačne i korisnički orijentisane dizajne.' 
+    },
+    { 
+      name: 'Marija Đorđević', 
+      role: 'QA Inženjer', 
+      imageUrl: '/images/team-member-3.jpg', // Placeholder
+      bio: 'Marijino oštro oko za detalje garantuje da svaki proizvod zadovoljava najviše standarde kvaliteta.' 
+    }
+  ],
+  // Nivo 4: Juniori/Podrška
+  [
+    { 
+      name: 'Sofija Simić', 
+      role: 'Junior Web Developer', 
+      imageUrl: '/images/team-member-1.jpg', // Placeholder
+      bio: 'Entuzijastična i željna učenja, Sofija doprinosi razvoju projekata pod mentorstvom.' 
+    },
+    { 
+      name: 'Luka Pavlović', 
+      role: 'Marketing Specijalista', 
+      imageUrl: '/images/team-member-2.jpg', // Placeholder
+      bio: 'Luka pomaže klijentima da dosegnu pravu publiku kroz efikasne digitalne strategije.' 
+    }
+  ]
+];
+
+// TODO: Zamenite ovaj generički tekst stvarnom misijom i vizijom vaše kompanije/tima
+const missionVisionText = "Posvećeni smo kreiranju inovativnih i efikasnih digitalnih rešenja koja pokreću rast naših klijenata. Naša vizija je da budemo prepoznati kao lideri u industriji, postavljajući standarde kvaliteta i korisničkog iskustva.";
+// Removed textShadow variable as it's now a Tailwind class
+// const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
+---
+
+{/* Removed bg-white from section */}
+<section id="o-nama" class="py-16 transition-colors duration-300">
+  <div class="container mx-auto px-6">
+    {/* Removed h2 title as it's now handled by PageTitle component */}
+
+    {/* Removed background from Mission/Vision, changed text color, added shadow class */}
+    <div class="text-center mb-12 max-w-3xl mx-auto" data-aos="fade-right">
+      <h3 class="text-2xl font-semibold text-white mb-4 text-shadow-sm">Naša Misija i Vizija</h3> {/* Added text-shadow-sm */}
+      <p class="text-gray-200 leading-relaxed text-shadow-sm"> {/* Added text-shadow-sm */}
+        {missionVisionText}
+      </p>
+    </div>
+
+    {/* Zadržan originalni naslov sekcije */}
+    <h3 class="text-2xl font-semibold text-center text-white mb-12 text-shadow-sm" data-aos="fade-left">Upoznajte Naš Tim</h3> {/* Added text-shadow-sm */}
+    {/* Piramidalna struktura koristeći Flexbox */}
+    <div class="flex flex-col items-center space-y-10"> {/* Glavni kontejner za nivoe */}
+      {teamHierarchy.map((level, levelIndex) => (
+        <div class={`flex justify-center flex-wrap gap-8 md:gap-12 lg:gap-16 w-full ${levelIndex === 0 ? 'max-w-xs' : ''} ${levelIndex === 1 ? 'max-w-xl' : ''} ${levelIndex === 2 ? 'max-w-4xl' : ''} ${levelIndex === 3 ? 'max-w-2xl' : ''}`}> {/* Malo prilagođena širina za nivo 4 */}
+          {level.map((member, memberIndex) => (
+            <div class="p-4 rounded-lg text-center max-w-xs flex flex-col items-center" data-aos="fade-up" data-aos-delay={(levelIndex * 3 + memberIndex) * 50}> {/* Povećana širina kartice na max-w-xs */}
+              {/* TODO: Proverite da li 'alt' atribut adekvatno opisuje sliku i da li je putanja tačna */}
+              <img src={member.imageUrl} alt={member.name} class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-3 object-cover border-4 border-white shadow-md"/> {/* Manja slika */}
+              <h4 class="text-lg font-semibold text-white mb-1 text-shadow-sm">{member.name}</h4> {/* Added text-shadow-sm */}
+              <p class="text-indigo-200 text-sm mb-2 text-shadow-sm">{member.role}</p> {/* Added text-shadow-sm */}
+              <p class="text-gray-300 text-sm leading-relaxed text-shadow-sm">{member.bio}</p> {/* Added text-shadow-sm */}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

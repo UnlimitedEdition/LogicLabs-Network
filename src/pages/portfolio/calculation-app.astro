@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Web Aplikacija za Tehničke Proračune',
+  imageUrl: '/images/programmer-wallpaper-preview.jpg', // Corrected image path
+  tech: ['React', 'JavaScript', 'MathJax'],
+  description: `
+    <p class="mb-4">Primer web aplikacije koja služi kao online alat za specifične inženjerske, naučne ili finansijske proračune. Korisnici mogu uneti potrebne parametre, a aplikacija dinamički izračunava i prikazuje rezultate, često uz grafikone ili detaljne izveštaje.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Funkcionalnosti:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Intuitivni interfejs za unos ulaznih parametara.</li>
+      <li>Validacija unosa kako bi se sprečile greške.</li>
+      <li>Implementacija kompleksnih matematičkih formula i algoritama u JavaScript-u.</li>
+      <li>Dinamički prikaz rezultata u realnom vremenu.</li>
+      <li>Mogućnost prikaza rezultata u vidu grafikona (npr. koristeći Chart.js).</li>
+      <li>Prikaz matematičkih formula koristeći MathJax biblioteku.</li>
+      <li>Mogućnost izvoza rezultata (npr. u CSV ili PDF formatu).</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Primer Koda (React - Frontend Komponenta):</h3>
+    <p class="text-sm mb-2">Ovaj isečak prikazuje osnovnu strukturu React komponente za unos parametara i prikaz rezultata.</p>
+    <pre class="bg-gray-800 text-white p-4 rounded-md text-sm overflow-x-auto"><code>
+// src/components/CalculatorComponent.jsx
+
+import React, { useState, useEffect } from 'react';
+// Pretpostavka: Imate funkciju za kalkulaciju
+// import { performCalculation } from '../utils/calculations'; 
+
+function CalculatorComponent() {
+  const [param1, setParam1] = useState(10); // Primer parametra
+  const [param2, setParam2] = useState(5);  // Primer parametra
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState('');
+
+  // Efekat koji se pokreće kada se promene parametri
+  useEffect(() => {
+    try {
+      setError(''); // Resetuj grešku
+      // Validacija unosa (primer)
+      if (isNaN(param1) || isNaN(param2)) {
+        throw new Error('Parametri moraju biti brojevi.');
+      }
+      if (param2 === 0 && calculationType === 'division') { // Primer provere deljenja nulom
+         throw new Error('Deljenje nulom nije dozvoljeno.');
+      }
+
+      // Poziv funkcije za kalkulaciju
+      // const calculatedResult = performCalculation(param1, param2, calculationType); 
+      const calculatedResult = param1 * param2; // Primer jednostavne kalkulacije
+      
+      setResult(calculatedResult);
+
+    } catch (err) {
+      setError(err.message);
+      setResult(null); // Resetuj rezultat u slučaju greške
+    }
+  }, [param1, param2]); // Zavisnosti efekta
+
+  return (
+    <div className="calculator-container p-6 border rounded">
+      <h4 className="text-lg font-semibold mb-4">Kalkulator</h4>
+      <div className="input-group mb-3">
+        <label htmlFor="param1" className="block mb-1">Parametar 1:</label>
+        <input 
+          type="number" 
+          id="param1" 
+          value={param1} 
+          onChange={(e) => setParam1(parseFloat(e.target.value))} 
+          className="p-2 border rounded w-full text-black" // Dodata crna boja teksta za input
+        />
+      </div>
+      <div className="input-group mb-3">
+        <label htmlFor="param2" className="block mb-1">Parametar 2:</label>
+        <input 
+          type="number" 
+          id="param2" 
+          value={param2} 
+          onChange={(e) => setParam2(parseFloat(e.target.value))} 
+          className="p-2 border rounded w-full text-black" // Dodata crna boja teksta za input
+        />
+      </div>
+      
+      {/* Prikaz rezultata ili greške */}
+      <div className="result-display mt-4 p-4 bg-gray-700 rounded">
+        <h5 className="font-semibold mb-2">Rezultat:</h5>
+        {error ? (
+          <p className="text-red-400">{error}</p>
+        ) : (
+          <p className="text-xl font-bold">{result !== null ? result.toFixed(2) : '...'}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default CalculatorComponent;
+    </code></pre>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

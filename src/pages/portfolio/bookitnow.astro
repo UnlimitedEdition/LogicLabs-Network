@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Web Aplikacija za Rezervacije "BookItNow"',
+  imageUrl: '/images/portfolio-project-3.jpg', // Placeholder slika
+  tech: ['Vue.js', 'Firebase', 'Tailwind CSS'],
+  description: `
+    <p class="mb-4">"BookItNow" je primer web aplikacije dizajnirane za jednostavno online zakazivanje termina za različite uslužne delatnosti (npr. frizerski saloni, lekarske ordinacije, konsultanti). Aplikacija omogućava klijentima da vide dostupne termine i rezervišu ih, dok pruža administrativni interfejs za upravljanje rasporedom i rezervacijama.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Faze Razvoja (Primer):</h3>
+    <ol class="list-decimal list-inside space-y-2 mb-4">
+      <li><strong>Analiza Zahteva i Toka Rada:</strong> Razumevanje specifičnih potreba sistema za rezervacije (tipovi usluga, trajanje, raspoloživost osoblja/resursa, pravila otkazivanja).</li>
+      <li><strong>Dizajn Interfejsa (UI/UX):</strong> Kreiranje preglednog kalendara za prikaz dostupnosti i jednostavnog procesa rezervacije za klijente. Dizajniranje administrativnog panela za upravljanje uslugama, radnim vremenom i pregled rezervacija.</li>
+      <li><strong>Frontend Razvoj (Vue.js):</strong> Implementacija interaktivnog korisničkog interfejsa koristeći Vue.js za dinamičko prikazivanje kalendara, odabir termina i popunjavanje forme za rezervaciju.</li>
+      <li><strong>Backend i Baza Podataka (Firebase):</strong> Korišćenje Firebase platforme (Firestore za bazu podataka, Authentication za korisnike, Functions za serversku logiku) za efikasan razvoj backend funkcionalnosti bez upravljanja serverima.</li>
+      <li><strong>Notifikacije:</strong> Implementacija automatskih email ili SMS podsetnika za klijente i obaveštenja za osoblje o novim rezervacijama ili otkazivanjima.</li>
+      <li><strong>Testiranje:</strong> Provera funkcionalnosti kalendara, procesa rezervacije, upravljanja terminima i sigurnosti korisničkih podataka.</li>
+    </ol>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Karakteristike:</h3>
+    <ul class="list-disc list-inside space-y-1">
+      <li>Pregledan kalendar sa dostupnim terminima.</li>
+      <li>Jednostavan proces rezervacije u nekoliko koraka.</li>
+      <li>Mogućnost upravljanja uslugama, cenama i trajanjem.</li>
+      <li>Administrativni panel za pregled i upravljanje rezervacijama.</li>
+      <li>Automatske notifikacije (podsetnici).</li>
+      <li>Prilagodljivost različitim tipovima uslužnih delatnosti.</li>
+    </ul>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} breadcrumbs={[{ label: 'Portfolio', href: '/portfolio' }, { label: project.title }]} />
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

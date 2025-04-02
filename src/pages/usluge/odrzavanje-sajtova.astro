@@ -1,0 +1,126 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+
+const service = {
+  title: 'Održavanje Sajtova',
+  description: 'Pružamo redovno održavanje, ažuriranja i tehničku podršku. Osiguravamo da vaš sajt uvek bude siguran, brz i funkcionalan.'
+};
+
+const pageTitleSeo = `${service.title} | Usluge | LogicLabs Network`; // Updated Site Name
+const pageDescription = service.description;
+const displayTitle = service.title; // Use service title for display
+
+// Import icon components
+import IconUpdates from '../../components/icons/IconUpdates.astro';
+import IconSecurity from '../../components/icons/IconSecurity.astro';
+import IconBackup from '../../components/icons/IconBackup.astro';
+import IconPerformance from '../../components/icons/IconPerformance.astro';
+import IconSupport from '../../components/icons/IconSupport.astro';
+// Removed maintenanceIcons object
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Use PageTitle component - Removed breadcrumbs */}
+  <PageTitle title={displayTitle} subtitle={service.description} />
+  {/* Apply background to main, ensure inner div is transparent */}
+  <main 
+    class="relative bg-cover bg-center bg-fixed text-white" 
+    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} 
+  >
+    <div class="container mx-auto px-6 py-12 bg-transparent"> 
+      <div class="max-w-4xl mx-auto space-y-12"> 
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Zašto je Održavanje Sajta Neophodno?</h2> 
+          <p class="text-gray-200 text-shadow-sm"> 
+            Vaš web sajt je dinamična digitalna imovina koja zahteva redovnu pažnju kako bi ostala sigurna, brza, funkcionalna i relevantna. Zanemarivanje održavanja može dovesti do sigurnosnih propusta, pada performansi, lošeg korisničkog iskustva, pa čak i potpunog prestanka rada sajta. Redovno održavanje je investicija u stabilnost, sigurnost i dugoročni uspeh vašeg online prisustva.
+          </p>
+        </div>
+
+        {/* Updated Services Section with Icons */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h2 class="text-2xl font-semibold text-white mb-4 text-shadow-sm">Šta Naše Usluge Održavanja Obuhvataju?</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm">Nudimo sveobuhvatne pakete održavanja prilagođene različitim potrebama, od osnovnih statičkih sajtova do kompleksnih WordPress platformi i web aplikacija. Naše standardne usluge uključuju:</p> 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-gray-200 text-shadow-sm"> 
+            <div class="flex items-start">
+               <IconUpdates /> {/* Use Icon component */}
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Redovna Ažuriranja</h3> 
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                  <li>CMS sistema (npr. WordPress core).</li>
+                  <li>Tema i pluginova (dodataka).</li>
+                  <li>Serverskog softvera (po potrebi).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="flex items-start">
+               <IconSecurity /> {/* Use Icon component */}
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Sigurnosne Provere i Zaštita</h3> 
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                  <li>Redovno skeniranje na malware.</li>
+                  <li>Implementacija osnovnih sigurnosnih mera.</li>
+                  <li>Praćenje i reagovanje na pretnje.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="flex items-start">
+               <IconBackup /> {/* Use Icon component */}
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Backup (Rezervne Kopije)</h3> 
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                  <li>Redovno kreiranje kompletnih rezervnih kopija.</li>
+                  <li>Čuvanje kopija na sigurnoj lokaciji.</li>
+                  <li>Mogućnost brzog vraćanja sajta.</li>
+                </ul>
+              </div>
+            </div>
+             <div class="flex items-start">
+               <IconPerformance /> {/* Use Icon component */}
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Praćenje Performansi</h3> 
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                  <li>Monitoring dostupnosti sajta (uptime).</li>
+                  <li>Osnovno praćenje brzine učitavanja.</li>
+                  <li>Rešavanje manjih problema.</li>
+                </ul>
+              </div>
+            </div>
+             <div class="flex items-start">
+               <IconSupport /> {/* Use Icon component */}
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Tehnička Podrška</h3> 
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                  <li>Podrška putem emaila/telefona.</li>
+                  <li>Manje izmene sadržaja (zavisi od paketa).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+           <p class="mt-4 text-sm text-gray-300 text-shadow-sm">Dodatne usluge (optimizacija brzine, napredna sigurnost, razvoj...) dostupne na zahtev.</p> 
+        </div>
+
+         <div data-aos="fade-up" data-aos-delay="300">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Kako se naplaćuje Održavanje Sajtova?</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm"> 
+            Održavanje se najčešće naplaćuje kroz mesečne ili godišnje pakete. Cena zavisi od tipa i kompleksnosti sajta, učestalosti provera i nivoa podrške.
+          </p>
+          <p class="text-gray-200 text-shadow-sm">Okvirne cene za mesečne pakete održavanja kreću se <strong class="text-blue-400">od 30-50 Eura mesečno</strong> za osnovne pakete, pa naviše za naprednije pakete ili kompleksnije sajtove/aplikacije.</p> 
+           <p class="text-sm italic mt-4 text-gray-300 text-shadow-sm">Za preciznu ponudu prilagođenu vašim potrebama, molimo vas da nas kontaktirate.</p> 
+        </div>
+
+       <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
+         {/* Button style is already suitable */}
+        <a href="/kontakt?usluga=odrzavanje" class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 text-lg font-semibold">
+            Zatražite Ponudu za Održavanje
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

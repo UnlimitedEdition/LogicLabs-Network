@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: 45 93 140; /* RGB values for #2D5D8C */
+}
+
+/* scroll-padding-top removed as it's no longer needed for MPA structure */
+/* html { */
+  /* scroll-padding-top: 5rem; */
+  /* scroll-behavior: smooth; */
+/* } */
+
+body {
+  /* user-select rules removed */
+}

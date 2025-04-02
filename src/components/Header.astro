@@ -1,0 +1,73 @@
+---
+// import ThemeToggleButton from './ThemeToggleButton.astro'; // Removed toggle button import
+---
+
+{/* Removed dark mode classes and duplicate frontmatter */}
+{/* Changed header background to a 4-color light gradient */}
+<header class="bg-gradient-to-r from-cyan-100 via-blue-200 via-indigo-200 to-purple-200 shadow-md transition-colors duration-300">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <div>
+      {/* Increased scale effect to scale-110 */}
+      <a href="/" aria-label="LogicLabs Network Početna" class="text-gray-800 block hover:opacity-80 hover:scale-110 transition-all duration-300 ease-in-out"> 
+        <img src="/logo.svg" alt="LogicLabs Network Logo" class="h-8 w-auto"> {/* Use SVG Logo, adjust height (h-8) if needed */}
+      </a>
+    </div>
+    <div class="hidden md:flex space-x-4">
+      {/* Added bottom border on hover */}
+      <a href="/usluge" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Usluge</a>
+      <a href="/portfolio" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Portfolio</a>
+      <a href="/o-nama" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">O nama</a>
+      <a href="/usluge/cenovnik" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Cenovnik</a>
+      {/* <a href="/kontakt" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Kontakt</a> */}
+    </div>
+    <div class="flex items-center"> {/* Wrap buttons in a flex container */}
+      {/* Style update: Gradient background, rounded-full, enhanced hover */}
+      <a href="/kontakt" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hidden md:inline-block mr-4">
+        Kontakt
+      </a>
+      {/* <ThemeToggleButton /> */}
+      {/* Mobile Menu Button - Added ARIA attributes */}
+      <button 
+        id="mobile-menu-button" 
+        class="md:hidden focus:outline-none" 
+        aria-controls="mobile-menu" 
+        aria-expanded="false" 
+      >
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <span class="sr-only">Otvori glavni meni</span> {/* Added screen reader text */}
+      </button>
+    </div>
+  </nav>
+
+  {/* Mobile Menu */}
+  <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md"> {/* Initially hidden */}
+    <a href="/usluge" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Usluge</a>
+    <a href="/portfolio" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Portfolio</a>
+    <a href="/o-nama" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">O nama</a>
+    <a href="/usluge/cenovnik" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Cenovnik</a>
+    <a href="/kontakt" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 border-t border-gray-200">Kontakt</a> {/* Added border top */}
+  </div>
+</header>
+
+<script>
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuButton?.addEventListener('click', () => {
+    const isHidden = mobileMenu?.classList.toggle('hidden'); // Toggle visibility
+    // Update aria-expanded based on visibility
+    menuButton.setAttribute('aria-expanded', isHidden ? 'false' : 'true'); 
+  });
+
+  // Close menu if clicking outside of it (optional, but good UX)
+  document.addEventListener('click', (event) => {
+    const isClickInsideMenu = mobileMenu?.contains(event.target as Node);
+    const isClickOnButton = menuButton?.contains(event.target as Node);
+
+    if (!isClickInsideMenu && !isClickOnButton && !mobileMenu?.classList.contains('hidden')) {
+      mobileMenu?.classList.add('hidden');
+      // Also update aria-expanded when closing by clicking outside
+      menuButton?.setAttribute('aria-expanded', 'false'); 
+    }
+  });
+</script>

@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Analitička Kontrolna Tabla',
+  imageUrl: '/images/generic-image-1.jpg', // Corrected image path
+  tech: ['Python (Flask)', 'Chart.js', 'PostgreSQL'],
+  description: `
+    <p class="mb-4">Ovaj projekat demonstrira izradu interaktivne kontrolne table (dashboard) za vizualizaciju ključnih poslovnih metrika (KPI) u realnom vremenu. Omogućava menadžmentu brz uvid u performanse i donošenje odluka zasnovanih na podacima.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Funkcionalnosti:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Povezivanje sa bazom podataka (PostgreSQL).</li>
+      <li>Agregacija i obrada podataka pomoću Python (Flask) backend-a.</li>
+      <li>Prikaz podataka kroz interaktivne grafikone (Chart.js).</li>
+      <li>Filtriranje podataka po periodu i drugim parametrima.</li>
+      <li>Responzivan dizajn za pregled na različitim uređajima.</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Primer Koda (Python/Flask - Backend):</h3>
+    <p class="text-sm mb-2">Ovaj isečak prikazuje osnovnu Flask rutu za dohvatanje podataka iz baze i pripremu za slanje ka frontend-u.</p>
+    <pre class="bg-gray-800 text-white p-4 rounded-md text-sm overflow-x-auto"><code>
+# Učitavanje potrebnih biblioteka
+from flask import Flask, jsonify
+import psycopg2 
+# ... (ostale importovane biblioteke)
+
+app = Flask(__name__)
+
+# Funkcija za konekciju na bazu
+def get_db_connection():
+    conn = psycopg2.connect(
+        host="your_db_host",
+        database="your_db_name",
+        user="your_db_user",
+        password="your_db_password"
+    )
+    return conn
+
+@app.route('/api/kpi-data')
+def get_kpi_data():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    # Primer upita - prilagoditi stvarnim tabelama i metrikama
+    cur.execute('SELECT SUM(sales_amount) as total_sales, COUNT(DISTINCT customer_id) as unique_customers FROM sales WHERE sale_date > NOW() - INTERVAL \'30 days\';')
+    data = cur.fetchone()
+    cur.close()
+    conn.close()
+    
+    # Formatiranje podataka za JSON odgovor
+    response_data = {
+        'totalSales': data[0] if data else 0,
+        'uniqueCustomers': data[1] if data else 0
+        # ... dodati ostale metrike
+    }
+    return jsonify(response_data)
+
+# ... (ostatak Flask aplikacije)
+    </code></pre>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          {/* Koristimo prose klase za stilizovanje HTML-a iz opisa */}
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+           {/* Dodatno: Link ka "live" verziji ako postoji */}
+           {/* <a href="#" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block text-primary hover:underline font-medium">Pogledaj uživo (Demo) &rarr;</a> */}
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

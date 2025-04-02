@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PageTitle from '../components/PageTitle.astro'; // Added PageTitle import
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+// Define page-specific SEO data if needed
+const pageTitleSeo = "Kontakt | LogicLabs Network"; // Renamed for clarity
+const pageDescription = "Kontaktirajte nas putem forme ili pronađite naše kontakt informacije.";
+const displayTitle = "Kontaktirajte Nas"; // Added display title
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Added PageTitle component - Removed breadcrumbs */}
+  <PageTitle title={displayTitle} subtitle={pageDescription} /> {/* Removed breadcrumbs, added subtitle */}
+  {/* Applied background image and text color to main */}
+  {/* Removed padding from main, added pt-0 to avoid double padding with PageTitle */}
+  <main class="text-white pt-0 pb-12" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-background.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
+    {/* Contact component now sits directly inside main without extra padding */}
+    <Contact /> 
+  </main>
+  <Footer />
+</Layout>

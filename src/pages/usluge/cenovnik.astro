@@ -1,0 +1,296 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Added PageTitle import
+
+const pageTitleSeo = `Cenovnik | Usluge | LogicLabs Network`; // Renamed for clarity
+const pageDescription = "Pregled cena za naše pakete izrade web sajtova, SEO, aplikacija, dizajna i održavanja.";
+const displayTitle = "Cenovnik Usluga"; // Added display title for PageTitle
+// Removed textShadow variable as it's now a Tailwind class
+// const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
+
+// Define ALL packages again
+const packages = [
+  // Web Development
+  {
+    title: "Statički web sajt",
+    price: "20.000",
+    currency: "dinara",
+    detailUrl: "/usluge/izrada-web-sajtova",
+    features: [
+      "Statički web sajt (HTML, CSS, JS)",
+      "Izrada idejnog grafičkog rešenja",
+      "Izrada HTML/CSS template-a",
+      "Do 10 HTML stranica",
+      "Osnovna SEO optimizacija",
+      "6 meseci besplatnog održavanja"
+    ],
+    time: "do 4 radnih dana"
+  },
+  {
+    title: "Dinamički web sajt",
+    price: "25.000",
+    currency: "dinara",
+    detailUrl: "/usluge/dinamicki-web-sajt",
+    features: [
+      "WordPress CMS",
+      "Grafičko rešenje prilagođeno korisniku",
+      "Izrada WP teme",
+      "Neograničen broj stranica",
+      "Osnovna SEO optimizacija",
+      "6 meseci besplatnog održavanja"
+    ],
+    time: "do 7 radnih dana"
+  },
+  {
+    title: "Dinamički web sajt (Pro)",
+    price: "40.000",
+    currency: "dinara",
+    detailUrl: "/usluge/dinamicki-web-sajt-pro",
+    features: [
+      "WordPress CMS",
+      "Izrada jedinstvenog grafičkog rešenja",
+      "Izrada WP teme",
+      "Neograničen broj stranica",
+      "Administracija prilagođena klijentu",
+      "Galerija fotografija",
+      "Kontakt forma",
+      "Osnovna SEO optimizacija",
+      "6 meseci besplatnog održavanja"
+    ],
+    time: "od 7 do 10 radnih dana",
+    highlighted: true
+  },
+   {
+    title: "Internet prodavnica",
+    price: "45.000",
+    currency: "dinara",
+    detailUrl: "/usluge/internet-prodavnica",
+    features: [
+      "Grafičko rešenje prilagođeno korisniku",
+      "Izrada teme",
+      "Neograničen broj proizvoda",
+      "Osnovna SEO optimizacija",
+      "6 meseci besplatnog održavanja"
+    ],
+    time: "od 7 do 10 radnih dana"
+  },
+  // SEO Packages
+  {
+    title: "Osnovna SEO Analiza",
+    price: "250",
+    currency: "Eura",
+    detailUrl: "/usluge/seo-optimizacija",
+    features: [
+      "Tehnička analiza sajta",
+      "Analiza ključnih reči",
+      "On-page optimizacija (glavne strane)",
+      "Preporuke za poboljšanje"
+    ],
+    time: "Jednokratno"
+  },
+    {
+    title: "Mesečni SEO (Osnovni)",
+    price: "150",
+    currency: "Eura/mes",
+    detailUrl: "/usluge/seo-optimizacija",
+    features: [
+      "Praćenje pozicija",
+      "Osnovni link building",
+      "Tehničko održavanje (SEO)",
+      "Mesečni izveštaj"
+    ],
+    time: "Mesečno"
+  },
+  {
+    title: "Mesečni SEO (Napredni)",
+    price: "300",
+    currency: "Eura/mes",
+    detailUrl: "/usluge/seo-optimizacija",
+    features: [
+      "Sve iz Osnovnog paketa",
+      "Napredni link building",
+      "Optimizacija sadržaja",
+      "Detaljni izveštaji"
+    ],
+    time: "Mesečno",
+    highlighted: true
+  },
+  // App Development Packages
+  {
+    title: "Web Aplikacija",
+    price: "1.500+",
+    currency: "Eura",
+    detailUrl: "/usluge/programiranje",
+    features: [
+      "Prilagođene funkcionalnosti",
+      "Frontend & Backend",
+      "Baza podataka",
+      "API Integracije"
+    ],
+    time: "Po dogovoru"
+  },
+  {
+    title: "Mobilna Aplikacija (Nativna)",
+    price: "2.000+",
+    currency: "Eura",
+    detailUrl: "/usluge/programiranje",
+    features: [
+      "iOS (Swift) ili Android (Kotlin)",
+      "Najbolje performanse",
+      "Prilagođen UI/UX",
+      "Pristup svim funkcijama uređaja"
+    ],
+    time: "Po dogovoru"
+  },
+   {
+    title: "Mobilna Aplikacija (Cross-Platform)",
+    price: "1.800+",
+    currency: "Eura",
+    detailUrl: "/usluge/programiranje",
+    features: [
+      "React Native ili Flutter",
+      "Jedan codebase za iOS & Android",
+      "Brži razvoj",
+      "Idealno za većinu aplikacija"
+    ],
+    time: "Po dogovoru"
+  },
+  {
+    title: "Windows Aplikacija",
+    price: "1.200+",
+    currency: "Eura",
+    detailUrl: "/usluge/programiranje",
+     features: [
+      ".NET (C#) ili Electron",
+      "Prilagođen interfejs",
+      "Lokalna ili mrežna funkcionalnost",
+      "Instalacioni paket"
+    ],
+    time: "od 15 radnih dana"
+  },
+  // Web Design Packages
+  {
+    title: "Osnovni Dizajn Paket",
+    price: "300+",
+    currency: "Eura",
+    detailUrl: "/usluge/web-dizajn",
+    features: [
+      "Idejno rešenje",
+      "Dizajn do 5 ključnih strana",
+      "Prilagođeno brendu",
+      "Priprema za razvoj"
+    ],
+    time: "Po dogovoru"
+  },
+  {
+    title: "Pro Dizajn Paket",
+    price: "600+",
+    currency: "Eura",
+    detailUrl: "/usluge/web-dizajn",
+    features: [
+      "Jedinstveno rešenje",
+      "Dizajn do 10-15 strana/template-a",
+      "UI Kit (osnovni)",
+      "Responsive dizajn"
+    ],
+    time: "Po dogovoru",
+    highlighted: true
+  },
+  {
+    title: "UX/UI Dizajn za Aplikacije",
+    price: "Dogovor",
+    currency: "",
+    detailUrl: "/usluge/web-dizajn",
+    features: [
+      "Istraživanje i Wireframing",
+      "Detaljan UI dizajn",
+      "Interaktivni prototip",
+      "Dizajn sistem (opciono)"
+    ],
+    time: "Po dogovoru"
+  },
+  // Maintenance Packages
+  {
+    title: "Osnovno Održavanje (WP)",
+    price: "50+",
+    currency: "Eura/mes",
+    detailUrl: "/usluge/odrzavanje-sajtova",
+    features: [
+      "Mesečna ažuriranja",
+      "Nedeljni backup",
+      "Osnovni security monitoring",
+      "Email podrška"
+    ],
+    time: "Mesečno"
+  },
+  {
+    title: "Napredno Održavanje (WP)",
+    price: "100+",
+    currency: "Eura/mes",
+    detailUrl: "/usluge/odrzavanje-sajtova",
+    features: [
+      "Sve iz Osnovnog paketa",
+      "Performance monitoring",
+      "Prioritetna podrška",
+      "Manje izmene sadržaja"
+    ],
+    time: "Mesečno"
+  },
+  {
+    title: "Održavanje Web Aplikacija",
+    price: "Dogovor",
+    currency: "",
+    detailUrl: "/usluge/odrzavanje-sajtova",
+    features: [
+      "Prilagođeni plan",
+      "Ažuriranje framework-a/biblioteka",
+      "Monitoring performansi i grešaka",
+      "Namenska podrška"
+    ],
+    time: "Po dogovoru"
+  }
+];
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Added PageTitle component */}
+  <PageTitle title={displayTitle} breadcrumbs={[{ label: 'Usluge', href: '/usluge' }, { label: 'Cenovnik' }]} />
+  {/* Applied background image and text color to main */}
+  {/* Removed py-12 from main, added pt-0 to avoid double padding with PageTitle */}
+  <main class="text-white pt-0 pb-12" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-background.jpg'); background-attachment: fixed; background-size: cover; background-position: center;"> 
+    <div class="container mx-auto px-6"> {/* Removed py-12 from here */}
+      {/* Removed h1 as it's now in PageTitle */}
+      {/* Pricing Cards - Using Flexbox for automatic wrapping */}
+      {/* Removed mt-12 as PageTitle provides spacing */}
+      <div class="flex flex-wrap justify-center gap-6"> {/* Changed to flex wrap */}
+        {packages.map((pkg, index) => (
+          <div
+          class="basis-64 shrink-0 bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 group" /* Added basis-64 and shrink-0 */
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <h3 class="text-xl font-semibold text-white group-hover:text-white mb-2 transition-colors duration-300 text-shadow-sm">{pkg.title}</h3> {/* Added text-shadow-sm */}
+          {/* Display price and currency - Handle "Dogovor" price */}
+          <p class="text-3xl font-bold text-blue-400 group-hover:text-white my-4 transition-colors duration-300 text-shadow-sm"> {/* Added text-shadow-sm */}
+            {pkg.price === 'Dogovor' ? 'Na upit' : `od ${pkg.price}${pkg.price.endsWith('+') ? '' : '+'}`} <span class="text-sm font-normal text-gray-400 group-hover:text-gray-200 transition-colors duration-300">{pkg.currency}</span> {/* Adjusted currency color */}
+          </p>
+          {/* Features list */}
+          <ul class="space-y-2 text-gray-200 group-hover:text-gray-100 text-sm mb-6 flex-grow transition-colors duration-300 text-shadow-sm"> {/* Added text-shadow-sm */}
+            {pkg.features.map(feature => (
+              <li>✓ {feature}</li>
+            ))}
+          </ul>
+          {/* Time */}
+          <p class="text-xs text-gray-400 group-hover:text-gray-300 mb-4 transition-colors duration-300 text-shadow-sm">Potrebno vreme za izradu: {pkg.time}</p> {/* Added text-shadow-sm */}
+          {/* Single Details Link - Styled like Header Contact button */}
+            <a href={pkg.detailUrl} class="mt-auto block text-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 font-semibold">Detaljnije</a>
+          </div>
+        ))}
+      </div>
+    </div> {/* Added closing div */}
+  </main>
+  <Footer />
+</Layout>

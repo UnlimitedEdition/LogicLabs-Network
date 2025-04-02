@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Integracija sa SMS Gateway API-jem',
+  imageUrl: '/images/images (4).jpeg', // Corrected image path again
+  tech: ['Python (Django)', 'REST API', 'Twilio'],
+  description: `
+    <p class="mb-4">Ovaj projekat opisuje proces integracije postojeće CRM (Customer Relationship Management) platforme sa eksternim SMS gateway servisom (npr. Twilio). Cilj je bio omogućiti automatsko slanje SMS podsetnika i obaveštenja klijentima direktno iz CRM sistema.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Funkcionalnosti:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Analiza zahteva i odabir odgovarajućeg SMS gateway provajdera.</li>
+      <li>Povezivanje sa API-jem SMS provajdera (autentifikacija, slanje poruka).</li>
+      <li>Razvoj modula unutar CRM sistema (npr. u Python/Django) za upravljanje SMS porukama.</li>
+      <li>Definisanje okidača (triggers) za slanje SMS poruka (npr. zakazan termin, status narudžbine).</li>
+      <li>Kreiranje templejta za SMS poruke.</li>
+      <li>Logovanje poslatih poruka i praćenje statusa isporuke.</li>
+      <li>Obrada grešaka i neuspešnih slanja.</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Primer Koda (Python/Django - Servisna Klasa):</h3>
+    <p class="text-sm mb-2">Ovaj isečak prikazuje deo servisne klase u Django aplikaciji koja koristi Twilio klijent za slanje SMS poruka.</p>
+    <pre class="bg-gray-800 text-white p-4 rounded-md text-sm overflow-x-auto"><code>
+# services/sms_service.py (Django primer)
+
+from twilio.rest import Client
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
+
+class SMSService:
+    def __init__(self):
+        # Inicijalizacija Twilio klijenta sa kredencijalima iz Django settings
+        self.account_sid = settings.TWILIO_ACCOUNT_SID
+        self.auth_token = settings.TWILIO_AUTH_TOKEN
+        self.twilio_phone_number = settings.TWILIO_PHONE_NUMBER
+        if not all([self.account_sid, self.auth_token, self.twilio_phone_number]):
+            logger.error("Twilio credentials not configured properly.")
+            self.client = None
+        else:
+            self.client = Client(self.account_sid, self.auth_token)
+
+    def send_sms(self, to_number, message_body):
+        """
+        Šalje SMS poruku na dati broj.
+        :param to_number: Broj telefona primaoca (npr. '+3816xxxxxxxx')
+        :param message_body: Tekst poruke
+        :return: True ako je slanje uspešno inicirano, False inače
+        """
+        if not self.client:
+            logger.error("Twilio client not initialized. Cannot send SMS.")
+            return False
+
+        try:
+            message = self.client.messages.create(
+                body=message_body,
+                from_=self.twilio_phone_number,
+                to=to_number
+            )
+            logger.info(f"SMS sent successfully to {to_number}. SID: {message.sid}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to send SMS to {to_number}: {e}")
+            return False
+
+# Primer korišćenja u Django view-u ili signalu:
+# from .services.sms_service import SMSService
+# 
+# def notify_customer(customer_phone, message):
+#     sms_service = SMSService()
+#     sms_service.send_sms(customer_phone, message)
+
+    </code></pre>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

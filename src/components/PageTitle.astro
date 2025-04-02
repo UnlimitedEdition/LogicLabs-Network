@@ -1,0 +1,24 @@
+---
+// Reusable component for page titles with background image
+
+interface Props {
+	title: string;
+	subtitle?: string; // Optional subtitle
+}
+
+const { title, subtitle } = Astro.props;
+const heroImageUrl = '/images/hero-background.jpg'; // Define image URL
+// Removed textShadow variable as it's now a Tailwind class
+// const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
+---
+
+{/* Restored section wrapper, background image, overlay (60% dark), padding, text styles AND bg-fixed */}
+<section 
+  class="relative py-16 md:py-24 bg-cover bg-center bg-fixed text-white" 
+  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImageUrl}');`} 
+>
+  <div class="relative z-10 container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 text-shadow-sm">{title}</h1> {/* Added text-shadow-sm class */}
+    {subtitle && <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto text-shadow-sm">{subtitle}</p>} {/* Added text-shadow-sm class */}
+  </div>
+</section>

@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+
+const service = {
+  title: 'Prilagođena Programerska Rešenja', // Updated title slightly
+  description: 'Nudimo širok spektar programerskih usluga, od jednostavnih skripti do kompleksnih multi-platformskih aplikacija.'
+};
+
+const pageTitleSeo = `Programiranje | Usluge | LogicLabs Network`; // Updated Site Name
+const pageDescription = service.description;
+const displayTitle = service.title; // Use service title for display
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Use PageTitle component - Removed breadcrumbs */}
+  <PageTitle title={displayTitle} subtitle={service.description} />
+  {/* Apply background to main, ensure inner div is transparent */}
+  <main 
+    class="relative bg-cover bg-center bg-fixed text-white" 
+    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} 
+  >
+    <div class="container mx-auto px-6 py-12 bg-transparent"> 
+      <div class="max-w-4xl mx-auto space-y-12"> 
+
+        <p class="text-lg text-center text-gray-200 text-shadow-sm" data-aos="fade-up" data-aos-delay="100"> 
+          Razumemo da svaki projekat ima jedinstvene zahteve. Naš tim iskusnih programera specijalizovan je za kreiranje prilagođenih softverskih rešenja koja tačno odgovaraju vašim poslovnim ciljevima, bez obzira na platformu ili kompleksnost.
+        </p>
+
+        {/* Added "Our Approach" Section */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Naš Pristup Razvoju</h2>
+          <ol class="relative border-l border-gray-600 space-y-6 pl-6 text-shadow-sm"> 
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">1. Analiza i Specifikacija</h3>
+              <p class="text-sm text-gray-300">Detaljno analiziramo Vaše zahteve, definišemo funkcionalnosti i tehničke specifikacije.</p>
+            </li>
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">2. Dizajn i Arhitektura</h3>
+              <p class="text-sm text-gray-300">Planiramo arhitekturu sistema, dizajniramo bazu podataka i korisnički interfejs (ako je primenjivo).</p>
+            </li>
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">3. Iterativni Razvoj</h3>
+              <p class="text-sm text-gray-300">Koristimo agilne metodologije za razvoj, sa redovnim demonstracijama i povratnim informacijama.</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">4. Testiranje (QA)</h3>
+              <p class="text-sm text-gray-300">Sprovodimo temeljna testiranja kako bismo osigurali kvalitet, performanse i sigurnost.</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white">5. Implementacija i Održavanje</h3>
+              <p class="text-sm text-gray-300">Pomažemo pri postavljanju aplikacije i nudimo planove za dalje održavanje i podršku.</p>
+            </li>
+          </ol>
+        </div>
+
+        {/* Web Aplikacije */}
+        <div data-aos="fade-up" data-aos-delay="300"> 
+          <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Web Aplikacije</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm"> 
+            Od jednostavnih landing stranica do kompleksnih SaaS platformi, pokrivamo ceo spektar web razvoja. Pristupamo svakom projektu individualno, birajući optimalnu kombinaciju tehnologija:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mb-4 text-sm text-gray-200 text-shadow-sm"> 
+            <li><strong class="font-medium text-white">Brza rešenja (Manja kompleksnost):</strong> Statički sajtovi (Astro, HTML/CSS/JS), jednostavni CMS (WordPress sa prilagođenom temom), landing stranice. Vreme izrade: Nekoliko dana do par nedelja.</li>
+            <li><strong class="font-medium text-white">Standardna rešenja (Srednja kompleksnost):</strong> Poslovni sajtovi sa specifičnim funkcionalnostima, manje e-commerce platforme, blogovi sa naprednim opcijama. Tehnologije: React/Vue/Angular + Node.js/PHP/Python backend. Vreme izrade: Nekoliko nedelja do par meseci.</li>
+            <li><strong class="font-medium text-white">Kompleksna rešenja (Visoka kompleksnost):</strong> Velike platforme, SaaS aplikacije, sistemi sa kompleksnom logikom i integracijama. Zahtevaju detaljno planiranje, arhitekturu i duži period razvoja. Vreme izrade: Više meseci.</li>
+          </ul>
+          <p class="text-sm italic text-gray-300 text-shadow-sm">Svaki projekat zahteva posebnu analizu. <a href="/kontakt?usluga=web-aplikacija" class="text-blue-400 hover:underline">Kontaktirajte nas</a> za besplatne konsultacije i procenu.</p> 
+        </div>
+
+        {/* Mobilne Aplikacije (iOS & Android) */}
+        <div data-aos="fade-up" data-aos-delay="400"> 
+          <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Mobilne Aplikacije (iOS & Android)</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm"> 
+            Pretvaramo vaše ideje u funkcionalne i privlačne mobilne aplikacije. Nudimo razvoj za obe glavne platforme, birajući pristup koji najviše odgovara vašem budžetu i ciljevima:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mb-4 text-sm text-gray-200 text-shadow-sm"> 
+            <li><strong class="font-medium text-white">Nativni Razvoj (iOS - Swift/SwiftUI, Android - Kotlin/Java):</strong> Najbolje performanse i pristup svim mogućnostima uređaja. Idealno za zahtevne aplikacije gde je korisničko iskustvo prioritet. Vreme izrade: Obično duže, zahteva odvojene codebase-ove.</li>
+            <li><strong class="font-medium text-white">Cross-Platform Razvoj (React Native, Flutter):</strong> Brži razvoj i niži troškovi jer se koristi jedan codebase za obe platforme. Odlično za većinu aplikacija koje ne zahtevaju intenzivno korišćenje specifičnih hardverskih funkcija. Vreme izrade: Generalno brže od nativnog razvoja.</li>
+            <li><strong class="font-medium text-white">Jednostavnije Aplikacije / Prototipovi:</strong> Mogu biti brže izrađene, fokusirane na osnovnu funkcionalnost.</li>
+          </ul>
+           <p class="text-sm italic text-gray-300 text-shadow-sm">Razvoj mobilnih aplikacija je kompleksan proces. <a href="/kontakt?usluga=mobilna-aplikacija" class="text-blue-400 hover:underline">Javite nam se</a> da razmotrimo vašu ideju.</p> 
+        </div>
+
+        {/* Windows Aplikacije */}
+        <div data-aos="fade-up" data-aos-delay="500"> 
+          <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Windows Aplikacije</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm"> 
+            Pored web i mobilnih rešenja, nudimo i izradu prilagođenih desktop aplikacija za Windows okruženje:
+          </p>
+           <ul class="list-disc list-inside space-y-2 mb-4 text-sm text-gray-200 text-shadow-sm"> 
+             <li><strong class="font-medium text-white">Poslovne Aplikacije (.NET - C#, WPF, WinForms):</strong> Interni alati, sistemi za upravljanje podacima, integracija sa postojećim sistemima.</li>
+             <li><strong class="font-medium text-white">Cross-Platform Desktop Aplikacije (Electron):</strong> Korišćenje web tehnologija (HTML, CSS, JS) za kreiranje aplikacija koje rade na više operativnih sistema. Pogodno za brži razvoj određenih tipova aplikacija.</li>
+          </ul>
+           <p class="text-sm italic text-gray-300 text-shadow-sm">Za specifične zahteve vezane za desktop aplikacije, <a href="/kontakt?usluga=windows-aplikacija" class="text-blue-400 hover:underline">pošaljite nam upit</a>.</p> 
+        </div>
+
+       <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="600"> 
+         {/* Button style is already suitable */}
+        <a href="/kontakt" class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 text-lg font-semibold">
+            Započnite Vaš Projekat Sa Nama
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

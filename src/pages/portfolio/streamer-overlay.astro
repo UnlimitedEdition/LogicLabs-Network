@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro'; // Added Header import
+import Footer from '../../components/Footer.astro'; // Added Footer import
+import PageTitle from '../../components/PageTitle.astro';
+
+const project = {
+  title: 'Interaktivni Overlay za Strimere',
+  imageUrl: '/images/images (3).jpeg', // Corrected image path
+  tech: ['Node.js', 'Socket.IO', 'HTML/CSS/JS'],
+  description: `
+    <p class="mb-4">Razvoj prilagođenog web overlay-a za Twitch i YouTube strimere. Ovaj overlay prikazuje dinamičke informacije kao što su poslednji pratioci, donacije, pretplatnici, kao i interaktivne elemente poput ciljeva (goals) ili anketa, sve ažurirano u realnom vremenu.</p>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Ključne Funkcionalnosti:</h3>
+    <ul class="list-disc list-inside space-y-1 mb-4">
+      <li>Povezivanje sa API-jima platformi (Twitch API, YouTube Data API).</li>
+      <li>Prijem događaja u realnom vremenu (npr. preko WebSockets ili platformskih event servisa).</li>
+      <li>Prikaz animiranih notifikacija za nove pratioce, donacije, itd.</li>
+      <li>Prikaz progres barova za ciljeve (npr. broj pratilaca, sakupljeni iznos).</li>
+      <li>Mogućnost kontrole i ažuriranja overlay-a od strane strimera preko jednostavnog interfejsa.</li>
+      <li>Optimizovano za korišćenje u OBS-u ili drugim streaming softverima kao Browser Source.</li>
+    </ul>
+    <h3 class="text-xl font-semibold mb-2 mt-6">Primer Koda (Node.js - Socket.IO Server):</h3>
+    <p class="text-sm mb-2">Ovaj isečak prikazuje osnovnu postavku Socket.IO servera za slanje događaja ka overlay-u u realnom vremenu.</p>
+    <pre class="bg-gray-800 text-white p-4 rounded-md text-sm overflow-x-auto"><code>
+// server.js (Node.js backend)
+
+const express = require('express');
+const http = require('http');
+const { Server } = require("socket.io");
+// Pretpostavka: Imate modul za povezivanje sa Twitch/YouTube API-jem
+// const streamServices = require('./streamServices'); 
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*", // Prilagoditi za produkciju!
+    methods: ["GET", "POST"]
+  }
+});
+
+// Kada se overlay konektuje
+io.on('connection', (socket) => {
+  console.log('Overlay connected:', socket.id);
+
+  socket.on('disconnect', () => {
+    console.log('Overlay disconnected:', socket.id);
+  });
+
+  // TODO: Ovde bi se slušali događaji sa streamServices 
+  // i emitovali ka povezanom overlay-u
+  // Primer:
+  // streamServices.onNewFollower((username) => {
+  //   io.emit('new_follower', { username }); 
+  // });
+  // streamServices.onNewDonation((donor, amount) => {
+  //   io.emit('new_donation', { donor, amount });
+  // });
+});
+
+// Funkcija za emitovanje događaja (poziva se iz drugog dela aplikacije)
+function broadcastEvent(eventName, data) {
+  // Korišćenje konkatenacije stringova umesto template literala
+  console.log('Broadcasting event: ' + eventName, data); 
+  io.emit(eventName, data);
+}
+
+// Primer kako bi se koristilo iz drugog dela koda
+// broadcastEvent('new_subscriber', { username: 'NekoNovi', months: 3 });
+
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+  // Korišćenje konkatenacije stringova umesto template literala
+  console.log('Socket.IO server listening on *:' + PORT); 
+});
+
+// TODO: Dodati Express rute ako su potrebne za kontrolni panel strimera
+// app.get('/control-panel', ...);
+    </code></pre>
+  `
+};
+---
+
+<Layout title={`Portfolio - ${project.title}`}>
+  <Header /> {/* Added Header component */}
+  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+
+  {/* Added main wrapper with background */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+    <section class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
+          <div class="prose prose-invert max-w-none" set:html={project.description} />
+        </div>
+        <div class="md:col-span-1">
+          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
+          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map(t => (
+              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main> {/* Closed main wrapper */}
+  <Footer /> {/* Added Footer component */}
+</Layout>

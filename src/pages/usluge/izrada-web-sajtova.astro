@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+// Import icon components
+import IconSpeed from '../../components/icons/IconSpeed.astro';
+import IconSecurity from '../../components/icons/IconSecurity.astro';
+import IconSimplicity from '../../components/icons/IconSimplicity.astro';
+import IconCost from '../../components/icons/IconCost.astro';
+
+const service = {
+  title: 'Izrada Statičkih Web Sajtova',
+  description: 'Brza, sigurna i povoljna rešenja za vaše prisustvo na internetu. Idealno za prezentacije, portfolije i landing stranice.'
+};
+
+const pageTitleSeo = `Statički Web Sajtovi | Usluge | LogicLabs Network`; // Updated Site Name
+const pageDescription = service.description;
+const displayTitle = service.title; // Use service title for display
+
+// Removed benefitIcons object as icons are now components
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Use PageTitle component - Removed breadcrumbs */}
+  <PageTitle title={displayTitle} subtitle={service.description} /> 
+  {/* Apply background to main, ensure inner div is transparent */}
+  <main 
+    class="relative bg-cover bg-center bg-fixed text-white" 
+    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} 
+  >
+    <div class="container mx-auto px-6 py-12 bg-transparent"> 
+      <div class="max-w-4xl mx-auto space-y-12"> 
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-2xl font-semibold mb-3 text-shadow-sm">Šta je Statički Web Sajt?</h2> 
+          <p class="text-gray-200 text-shadow-sm"> 
+            Statički web sajt se sastoji od unapred pripremljenih HTML, CSS i JavaScript fajlova. Za razliku od dinamičkih sajtova, on ne zahteva serversku obradu ili bazu podataka za prikazivanje sadržaja – svaki posetilac dobija istu, unapred generisanu verziju stranice. Sadržaj se menja samo kada programer ažurira izvorni kod sajta.
+          </p>
+        </div>
+
+        {/* Updated Benefits Section with Placeholders */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h2 class="text-2xl font-semibold mb-4 text-shadow-sm">Prednosti Statičkih Sajtova:</h2> 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex items-start">
+              <IconSpeed /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Izuzetna Brzina</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Stranice se učitavaju ekstremno brzo, poboljšavajući korisničko iskustvo i SEO.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <IconSecurity /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Povećana Sigurnost</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Manje kompleksnosti znači manju površinu za potencijalne napade.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <IconSimplicity /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Jednostavnost i Pouzdanost</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Lakši za hosting i održavanje, sa manjom šansom za tehničke probleme.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <IconCost /> {/* Use Icon component */}
+              <div>
+                <h3 class="font-medium text-white text-lg mb-1 text-shadow-sm">Niži Troškovi</h3>
+                <p class="text-gray-300 text-sm text-shadow-sm">Hosting je često jeftiniji, a inicijalni troškovi izrade mogu biti niži.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h2 class="text-2xl font-semibold mb-3 text-shadow-sm">Kada Odabrati Statički Sajt?</h2> 
+          <p class="text-gray-200 text-shadow-sm">Statički sajtovi su odličan izbor za:</p> 
+          <ul class="list-disc list-inside space-y-1 text-sm text-gray-200 text-shadow-sm"> 
+            <li>Prezentacione sajtove kompanija ili usluga.</li>
+            <li>Lične ili profesionalne portfolije.</li>
+            <li>Landing stranice za proizvode ili kampanje.</li>
+            <li>Dokumentaciju za softver ili proizvode.</li>
+            <li>Blogove sa manjim brojem autora i ređim ažuriranjima (uz korišćenje Static Site Generatora).</li>
+            <li>Sajtove gde se sadržaj ne menja često.</li>
+          </ul>
+        </div>
+
+        {/* Added "Our Process" Section */}
+        <div data-aos="fade-up" data-aos-delay="400">
+          <h2 class="text-2xl font-semibold mb-4 text-shadow-sm">Naš Proces Izrade:</h2>
+          <ol class="relative border-l border-gray-600 space-y-6 pl-6">                  
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white text-shadow-sm">1. Konsultacije i Planiranje</h3>
+              <p class="text-sm text-gray-300 text-shadow-sm">Razgovaramo o Vašim ciljevima, publici i zahtevima kako bismo definisali obim projekta.</p>
+            </li>
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white text-shadow-sm">2. Dizajn (Opciono)</h3>
+              <p class="text-sm text-gray-300 text-shadow-sm">Kreiramo ili prilagođavamo dizajn koji odgovara Vašem brendu i viziji.</p>
+            </li>
+            <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white text-shadow-sm">3. Razvoj</h3>
+              <p class="text-sm text-gray-300 text-shadow-sm">Implementiramo dizajn koristeći moderne web tehnologije (HTML, CSS, JS, Astro).</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white text-shadow-sm">4. Testiranje i Optimizacija</h3>
+              <p class="text-sm text-gray-300 text-shadow-sm">Proveravamo funkcionalnost, responzivnost, brzinu i osnovni SEO.</p>
+            </li>
+             <li class="ml-4">
+              <div class="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -left-[6.5px] border border-gray-900"></div>
+              <h3 class="text-lg font-semibold text-white text-shadow-sm">5. Lansiranje i Podrška</h3>
+              <p class="text-sm text-gray-300 text-shadow-sm">Postavljamo sajt na server i pružamo početnu podršku i održavanje.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="500"> 
+          <h2 class="text-2xl font-semibold mb-3 text-shadow-sm">Naš Osnovni Paket Statičkog Sajta</h2> 
+          <p class="mb-4 text-gray-200 text-shadow-sm"> 
+            Naš osnovni paket, dostupan po ceni počev od <strong class="text-blue-400 font-semibold">20.000 dinara</strong> (prema <a href="/usluge/cenovnik" class="text-blue-400 hover:underline">cenovniku</a>), uključuje sve što vam je potrebno za kvalitetno online prisustvo:
+          </p>
+          <ul class="list-disc list-inside space-y-1 text-sm mb-4 text-gray-200 text-shadow-sm"> 
+            <li>Izrada idejnog grafičkog rešenja (ili rad po vašem dizajnu).</li>
+            <li>Izrada HTML/CSS/JS template-a.</li>
+            <li>Do 10 HTML stranica.</li>
+            <li>Osnovna SEO optimizacija (naslovi, opisi, struktura).</li>
+            <li>Prilagođenost mobilnim uređajima (Responsive dizajn).</li>
+            <li>6 meseci besplatnog održavanja (manje izmene, backup).</li>
+          </ul>
+          <p class="text-xs text-gray-400 text-shadow-sm">Potrebno vreme za izradu: do 4 radnih dana.</p> 
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="600"> 
+          <h2 class="text-2xl font-semibold mb-3 text-shadow-sm">Dodatne Opcije</h2> 
+          <p class="mb-2 text-gray-200 text-shadow-sm">Ukoliko su vam potrebne dodatne funkcionalnosti, nudimo:</p> 
+          <ul class="list-disc list-inside space-y-1 text-sm mb-4 text-gray-200 text-shadow-sm"> 
+            <li>Kontakt forma (od 30 Eura).</li>
+            <li>Slajder (slideshow) (od 25 Eura).</li>
+            <li>Napredna SEO optimizacija (od 100 Eura).</li>
+            <li>Izrada jedinstvenog grafičkog rešenja po vašim zahtevima (od 50 Eura).</li>
+            <li>Implementacija dizajna iz .psd fajla (od 100 Eura).</li>
+            <li>Registracija domena.</li>
+          </ul>
+          <p class="text-sm italic text-gray-300 text-shadow-sm">Navedene cene su okvirne. <a href="/kontakt?usluga=staticki-sajt-dodatno" class="text-blue-400 hover:underline">Kontaktirajte nas</a> za preciznu ponudu.</p> 
+        </div>
+
+
+        <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="700"> 
+         {/* Button style is already suitable */}
+        <a href="/kontakt?usluga=staticki-sajt" class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 text-lg font-semibold">
+            Zatražite Ponudu za Statički Sajt
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

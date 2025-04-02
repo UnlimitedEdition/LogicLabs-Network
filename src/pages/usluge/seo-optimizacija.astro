@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+
+const service = {
+  title: 'SEO Optimizacija',
+  description: 'Poboljšavamo vidljivost vašeg sajta na pretraživačima kao što su Google i Bing. Analiziramo ključne reči, optimizujemo sadržaj i tehničke aspekte sajta.'
+};
+
+const pageTitleSeo = `${service.title} | Usluge | LogicLabs Network`; // Updated Site Name
+const pageDescription = service.description;
+const displayTitle = service.title; // Use service title for display
+// Removed textShadow variable
+---
+
+<Layout title={pageTitleSeo} description={pageDescription}>
+  <Header />
+  {/* Use PageTitle component */}
+  <PageTitle title={displayTitle} subtitle={service.description} />
+  {/* Apply background to main, ensure inner div is transparent */}
+  <main 
+    class="relative bg-cover bg-center bg-fixed text-white" 
+    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} 
+  >
+    <div class="container mx-auto px-6 py-12 bg-transparent"> 
+      <div class="max-w-4xl mx-auto space-y-6"> 
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Šta je SEO Optimizacija?</h2> {/* Use class */}
+          <p class="text-gray-200 text-shadow-sm"> {/* Use class */}
+            SEO (Search Engine Optimization) ili optimizacija za pretraživače je proces unapređenja vašeg web sajta kako bi se postigla bolja pozicija u rezultatima pretrage na pretraživačima kao što su Google, Bing i drugi. Cilj je da se vaš sajt pojavi što više na listi rezultata kada potencijalni klijenti traže proizvode, usluge ili informacije koje vi nudite. Bolja vidljivost znači više posetilaca, a samim tim i više potencijalnih klijenata i veću prepoznatljivost brenda.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Zašto je SEO važan?</h2> {/* Use class */}
+          <ul class="list-disc list-inside space-y-2 text-gray-200 text-shadow-sm"> {/* Use class */}
+            <li><strong class="font-medium text-white">Povećana vidljivost i saobraćaj:</strong> Većina korisnika Interneta pronalazi nove sajtove putem pretraživača. Dobra SEO pozicija dovodi ciljane posetioce na vaš sajt.</li>
+            <li><strong class="font-medium text-white">Kredibilitet i poverenje:</strong> Sajtovi koji se pojavljuju na vrhu rezultata pretrage često se percipiraju kao pouzdaniji i relevantniji.</li>
+            <li><strong class="font-medium text-white">Bolje korisničko iskustvo:</strong> SEO često uključuje poboljšanje strukture sajta, brzine učitavanja i mobilne prilagođenosti, što sve doprinosi boljem iskustvu za posetioce.</li>
+            <li><strong class="font-medium text-white">Dugoročni rezultati:</strong> Za razliku od plaćenog oglašavanja, dobro optimizovan sajt može donositi organski (besplatan) saobraćaj mesecima i godinama.</li>
+            <li><strong class="font-medium text-white">Konkurentska prednost:</strong> Ako vaši konkurenti koriste SEO, a vi ne, gubite dragocene posetioce.</li>
+          </ul>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Šta obuhvata naša SEO usluga?</h2> {/* Use class */}
+          <p class="mb-2 text-gray-200 text-shadow-sm">Naš pristup SEO optimizaciji je sveobuhvatan i uključuje sledeće ključne elemente:</p> {/* Use class */}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-200 text-shadow-sm"> {/* Use class */}
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-2">1. Tehnički SEO:</h3> 
+              <ul class="list-disc list-inside space-y-1 text-sm">
+                <li>Analiza i optimizacija brzine učitavanja sajta.</li>
+                <li>Optimizacija za mobilne uređaje (responsive dizajn).</li>
+                <li>Pravilna struktura URL adresa.</li>
+                <li>Implementacija SSL sertifikata (HTTPS).</li>
+                <li>Kreiranje i optimizacija `robots.txt` i `sitemap.xml`.</li>
+                <li>Rešavanje problema sa indeksiranjem i dupliranim sadržajem.</li>
+                <li>Implementacija strukturiranih podataka (Schema markup).</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-2">2. On-Page SEO:</h3> 
+              <ul class="list-disc list-inside space-y-1 text-sm">
+                <li>Istraživanje ključnih reči.</li>
+                <li>Optimizacija naslova stranica .</li>
+                <li>Kreiranje i optimizacija meta opisa.</li>
+                <li>Optimizacija zaglavlja (H1, H2, H3).</li>
+                <li>Optimizacija sadržaja (ključne reči, čitljivost).</li>
+                <li>Optimizacija slika (alt tagovi, veličina).</li>
+                <li>Interno povezivanje.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-2">3. Off-Page SEO:</h3> 
+              <ul class="list-disc list-inside space-y-1 text-sm">
+                <li>Analiza profila dolaznih linkova (backlinks).</li>
+                <li>Strategije za izgradnju kvalitetnih linkova.</li>
+                <li>Lokalni SEO (ako je primenjivo).</li>
+                <li>Praćenje reputacije brenda.</li>
+              </ul>
+            </div>
+             <div>
+              <h3 class="text-lg font-semibold text-white mb-2">4. Analitika i Izveštavanje:</h3> 
+              <ul class="list-disc list-inside space-y-1 text-sm">
+                <li>Podešavanje Google Analytics & Search Console.</li>
+                <li>Praćenje pozicija za ključne reči.</li>
+                <li>Analiza saobraćaja i ponašanja korisnika.</li>
+                <li>Periodično izveštavanje.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+         <div data-aos="fade-up" data-aos-delay="400">
+          <h2 class="text-2xl font-semibold text-white mb-3 text-shadow-sm">Kako se naplaćuje SEO Optimizacija?</h2> {/* Use class */}
+          <p class="mb-4 text-gray-200 text-shadow-sm"> {/* Use class */}
+            Cena SEO usluga može značajno varirati u zavisnosti od obima posla, konkurencije u vašoj industriji, trenutnog stanja sajta i željenih ciljeva. Najčešći modeli naplate su:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mb-4 text-gray-200 text-shadow-sm"> {/* Use class */}
+             <li><strong class="font-medium text-white">Mesečni Paušal (Retainer):</strong> Najčešći model za kontinuiranu optimizaciju. Klijent plaća fiksni mesečni iznos za dogovoreni set aktivnosti. Cene obično kreću <strong class="text-blue-400">od 150-200 Eura mesečno</strong> za osnovne pakete.</li> 
+             <li><strong class="font-medium text-white">Projektna Cena:</strong> Za jednokratne SEO zadatke, kao što je inicijalna SEO revizija i optimizacija. Inicijalna revizija često košta <strong class="text-blue-400">od 200-300 Eura</strong> pa naviše.</li> 
+             <li><strong class="font-medium text-white">Satnica:</strong> Za konsultacije ili specifične, manje zadatke. Satnice se kreću <strong class="text-blue-400">od 25-50 Eura po satu</strong> ili više.</li> 
+          </ul>
+           <p class="text-sm italic text-gray-300 text-shadow-sm">Za preciznu ponudu prilagođenu vašim potrebama, molimo vas da nas kontaktirate.</p> {/* Use class */}
+        </div>
+
+       <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="500">
+         {/* Button style is already suitable */}
+        <a href="/kontakt?usluga=seo-optimizacija" class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 font-semibold">
+            Zatražite SEO Ponudu
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer /> {/* Footer is included */}
+</Layout>

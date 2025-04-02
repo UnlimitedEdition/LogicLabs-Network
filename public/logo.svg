@@ -1,0 +1,23 @@
+<svg width="280" height="50" viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Povećan viewBox width sa 240 na 280 -->
+  <!-- Abstract Shape -->
+  <defs>
+    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" /> <!-- blue-500 -->
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" /> <!-- blue-700 -->
+    </linearGradient>
+  </defs>
+  
+  <!-- Simple abstract lines suggesting network/circuit -->
+  <g transform="translate(5, 5)">
+    <path d="M0 20 Q 5 0, 10 20 T 20 20" stroke="url(#techGradient)" stroke-width="2" fill="none" />
+    <path d="M15 0 V 40" stroke="url(#techGradient)" stroke-width="1.5" fill="none" />
+    <path d="M5 30 H 25" stroke="url(#techGradient)" stroke-width="1.5" fill="none" />
+    <circle cx="10" cy="20" r="3" fill="url(#techGradient)" />
+  </g>
+
+  <!-- Text: LogicLabs Network - Bela boja -->
+  <text x="40" y="33" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="currentColor"> <!-- Koristi boju roditeljskog elementa -->
+    LogicLabs Network 
+  </text>
+</svg>
