@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
-import 'aos/dist/aos.css'; // Import AOS CSS
-// AOS JS se sada importuje dinamički u klijentskom script tagu
+// AOS CSS i JS se sada učitavaju preko CDN-a
 
 // Define props for the layout
 interface Props {
@@ -43,22 +42,21 @@ const {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-		{/* AOS CSS is now imported in the script section */}
+		{/* AOS CSS via CDN */}
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	</head>
 	
 	<body> {/* Removed background styling from body */}
 		<slot />
 
-		{/* Dinamički import i inicijalizacija AOS-a */}
+		{/* AOS JS via CDN and Initialization */}
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		<script>
-			// Ensure AOS is initialized after the DOM is ready
-			document.addEventListener('DOMContentLoaded', async () => {
-				// Dinamički importujemo AOS modul
-				const AOS = (await import('aos')).default; 
-				AOS.init({ // Koristimo importovani AOS objekat
-					duration: 800, // Animation duration in ms
-					once: true, // Whether animation should happen only once - while scrolling down
-				});
+			// Inicijalizacija AOS-a (sada je AOS globalno dostupan zbog CDN skripte)
+			// @ts-ignore - Govorimo TS-u da ignoriše sledeću liniju jer znamo da će AOS biti globalan
+			AOS.init({ 
+				duration: 800, // Animation duration in ms
+				once: true, // Whether animation should happen only once - while scrolling down
 			});
 		</script>
 		{/* Removed Theme Toggle Script */}

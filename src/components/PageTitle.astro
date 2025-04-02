@@ -7,7 +7,9 @@ interface Props {
 }
 
 const { title, subtitle } = Astro.props;
-const heroImageUrl = '/images/hero-background.jpg'; // Define image URL
+// Koristimo URL konstruktor za sigurnije formiranje putanje sa base URL-om
+const heroImageUrl = new URL('/images/hero-background.jpg', import.meta.env.BASE_URL).pathname; 
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("${heroImageUrl}");`; 
 // Removed textShadow variable as it's now a Tailwind class
 // const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
 ---
@@ -15,7 +17,7 @@ const heroImageUrl = '/images/hero-background.jpg'; // Define image URL
 {/* Restored section wrapper, background image, overlay (60% dark), padding, text styles AND bg-fixed */}
 <section 
   class="relative py-16 md:py-24 bg-cover bg-center bg-fixed text-white" 
-  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImageUrl}');`} 
+  style={sectionStyle} 
 >
   <div class="relative z-10 container mx-auto px-6 text-center">
     <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 text-shadow-sm">{title}</h1> {/* Added text-shadow-sm class */}
