@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-// AOS CSS i JS se sada učitavaju preko CDN-a
+import 'aos/dist/aos.css'; // Vraćen import AOS CSS
+import AOS from 'aos'; // Vraćen import AOS JS
 
 // Define props for the layout
 interface Props {
@@ -19,8 +20,8 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		{/* Pokušaj direktnog korišćenja BASE_URL za favicon */}
-		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} /> 
+		{/* Vraćena originalna putanja za favicon */}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" /> 
 		<meta name="generator" content={Astro.generator} />
 
 		{/* --- SEO Meta Tags (using props) --- */}
@@ -42,18 +43,15 @@ const {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-		{/* AOS CSS via CDN */}
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		{/* AOS CSS se importuje gore */}
 	</head>
 	
 	<body> {/* Removed background styling from body */}
 		<slot />
 
-		{/* AOS JS via CDN and Initialization */}
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		<script>
-			// Inicijalizacija AOS-a (sada je AOS globalno dostupan zbog CDN skripte)
-			// @ts-ignore - Govorimo TS-u da ignoriše sledeću liniju jer znamo da će AOS biti globalan
+		{/* Ispravna AOS inicijalizacija korišćenjem define:vars */}
+		<script define:vars={{ AOS }}>
+			// AOS objekat je prosleđen iz frontmatter-a
 			AOS.init({ 
 				duration: 800, // Animation duration in ms
 				once: true, // Whether animation should happen only once - while scrolling down

@@ -6,7 +6,7 @@ import PageTitle from '../../components/PageTitle.astro';
 
 const project = {
   title: 'Korporativni Sajt "Inovatech Solutions"',
-  imageUrl: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/portfolio-project-1.jpg`, // Dodat BASE_URL
+  imageUrl: '/images/portfolio-project-1.jpg', // Vraćena originalna putanja
   tech: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
   description: `
     <p class="mb-4">"Inovatech Solutions", fiktivna kompanija u oblasti softverskih rešenja, zahtevala je moderan i profesionalan web sajt koji bi služio kao centralna tačka za predstavljanje njihovih usluga, ekspertize i korporativne kulture. Primarni cilj bio je generisanje kvalitetnih poslovnih upita (leads) i jačanje brenda na tržištu.</p>
@@ -62,7 +62,7 @@ const project = {
           <div class="prose prose-invert max-w-none" set:html={project.description} />
         </div>
         <div class="md:col-span-1">
-          {/* imageUrl već sadrži ispravnu putanju */}
+          {/* Vraćena originalna putanja */}
           <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> 
           <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
           <div class="flex flex-wrap gap-2">

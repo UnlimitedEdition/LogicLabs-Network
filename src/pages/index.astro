@@ -22,21 +22,21 @@ const featuredProjects = [ // Copied from Portfolio.astro
     id: 'inovatech-solutions',
     title: 'Korporativni Sajt "Inovatech Solutions"',
     description: 'Moderan, responzivan sajt za fiktivnu tehnološku kompaniju...', // Shortened desc
-    imageUrl: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/portfolio-project-1.jpg`, // Dodat BASE_URL
+    imageUrl: '/images/portfolio-project-1.jpg', // Vraćena originalna putanja
     liveUrl: '/portfolio/inovatech-solutions', 
   },
   {
     id: 'crafty-corner',
     title: 'E-commerce Platforma "Crafty Corner"',
     description: 'Fiktivna online prodavnica za ručno rađene proizvode...', // Shortened desc
-    imageUrl: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/portfolio-project-2.jpg`, // Dodat BASE_URL
+    imageUrl: '/images/portfolio-project-2.jpg', // Vraćena originalna putanja
     liveUrl: '/portfolio/crafty-corner', 
   },
   {
     id: 'bookitnow',
     title: 'Web Aplikacija za Rezervacije "BookItNow"',
     description: 'Fiktivni sistem za online zakazivanje termina...', // Shortened desc
-    imageUrl: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/portfolio-project-3.jpg`, // Dodat BASE_URL
+    imageUrl: '/images/portfolio-project-3.jpg', // Vraćena originalna putanja
     liveUrl: '/portfolio/bookitnow', 
   },
 ];
@@ -78,7 +78,7 @@ const featuredProjects = [ // Copied from Portfolio.astro
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
            {featuredProjects.map((project, index) => (
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay={index * 100}>
-              {/* imageUrl već sadrži ispravnu putanju */}
+              {/* Vraćena originalna putanja */}
               <img src={project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/> 
               <div class="p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">{project.title}</h3>
