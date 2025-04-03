@@ -21,10 +21,10 @@ import heroImage from '/public/images/hero-background.jpg'; // Import background
   <Header />
   {/* Use PageTitle component - Removed breadcrumbs */}
   <PageTitle title={displayTitle} subtitle={service.description} />
-  {/* Apply background to main, ensure inner div is transparent - Use imported image */}
+  {/* Apply background to main, ensure inner div is transparent - Use imported image and string concatenation */}
   <main 
     class="relative bg-cover bg-center bg-fixed text-white" 
-    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`} 
+    style={"background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('" + heroImage.src + "');"} 
   >
     <div class="container mx-auto px-6 py-12 bg-transparent"> 
       <div class="max-w-4xl mx-auto space-y-12"> 

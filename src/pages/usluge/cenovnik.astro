@@ -259,9 +259,9 @@ const packages = [
   <Header />
   {/* Added PageTitle component - Removed breadcrumbs prop */}
   <PageTitle title={displayTitle} />
-  {/* Applied background image and text color to main - Use imported image */}
+  {/* Applied background image and text color to main - Use imported image and string concatenation */}
   {/* Removed py-12 from main, added pt-0 to avoid double padding with PageTitle */}
-  <main class="text-white pt-0 pb-12" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`}> 
+  <main class="text-white pt-0 pb-12" style={"background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + heroImage.src + "'); background-attachment: fixed; background-size: cover; background-position: center;"}> 
     <div class="container mx-auto px-6"> {/* Removed py-12 from here */}
       {/* Removed h1 as it's now in PageTitle */}
       {/* Pricing Cards - Using Flexbox for automatic wrapping */}

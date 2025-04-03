@@ -16,8 +16,8 @@ const displayTitle = "O Nama"; // Re-add displayTitle variable
   <Header />
   {/* Re-add PageTitle component call */}
   <PageTitle title={displayTitle} />
-  {/* Applied background image and text color to main - Use imported image */}
-  <main class="text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`}>
+  {/* Applied background image and text color to main - Use imported image and string concatenation */}
+  <main class="text-white" style={"background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + heroImage.src + "'); background-attachment: fixed; background-size: cover; background-position: center;"}>
     <div class="container mx-auto px-6 py-12"> {/* Removed bg-white */}
        <AboutUs />
     </div>

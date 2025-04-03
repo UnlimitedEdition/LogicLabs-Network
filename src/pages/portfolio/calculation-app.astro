@@ -109,8 +109,8 @@ export default CalculatorComponent;
   <Header /> {/* Added Header component */}
   <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
 
-  {/* Added main wrapper with background - Use imported image */}
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`}>
+  {/* Added main wrapper with background - Use imported image and string concatenation */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={"background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('" + heroImage.src + "');"}>
     <section class="py-12">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
