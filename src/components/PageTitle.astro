@@ -7,8 +7,9 @@ interface Props {
 }
 
 const { title, subtitle } = Astro.props;
-const heroImageUrl = `${import.meta.env.BASE_URL}/images/hero-background.jpg`; // Koristi BASE_URL
-const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("${heroImageUrl}");`; // Koristi BASE_URL putanju
+// Koristimo URL konstruktor za sigurnije formiranje putanje sa base URL-om
+const heroImageUrl = new URL('/images/hero-background.jpg', import.meta.env.BASE_URL).pathname; 
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("${heroImageUrl}");`; 
 // Removed textShadow variable as it's now a Tailwind class
 // const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
 ---
