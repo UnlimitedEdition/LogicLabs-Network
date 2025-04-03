@@ -10,14 +10,17 @@ import heroImage from '/public/images/hero-background.jpg'; // Import background
 const pageTitleSeo = "Naše Usluge | LogicLabs Network"; // Renamed for clarity
 const pageDescription = "Pregled usluga koje nudimo: izrada web sajtova, web dizajn, programiranje, održavanje i SEO optimizacija.";
 const displayTitle = "Naše Usluge"; // Re-add displayTitle variable
+
+// Define style as a variable
+const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
   {/* Re-add PageTitle component call */}
   <PageTitle title={displayTitle} /> 
-  {/* Applied background image and text color to main - Use imported image and string concatenation */}
-  <main class="text-white" style={"background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + heroImage.src + "'); background-attachment: fixed; background-size: cover; background-position: center;"}> 
+  {/* Apply background to main using the style variable */}
+  <main class="text-white" style={mainStyle}> 
     <div class="container mx-auto px-6 py-12"> {/* Removed bg-white */}
       <Services />
     </div>

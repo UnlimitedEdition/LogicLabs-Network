@@ -33,6 +33,9 @@ const project = {
     </ul>
   `
 };
+
+// Define style as a variable
+const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`;
 ---
 
 <Layout title={`Portfolio - ${project.title}`}>
@@ -40,8 +43,8 @@ const project = {
   {/* Uklonjen breadcrumbs prop jer ga PageTitle ne podržava */}
   <PageTitle title={project.title} /> 
 
-  {/* Added main wrapper with background - Use imported image and string concatenation */}
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={"background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('" + heroImage.src + "');"}>
+  {/* Apply background to main using the style variable */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
     <section class="py-12">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

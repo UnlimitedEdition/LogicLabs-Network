@@ -15,16 +15,19 @@ const displayTitle = service.title; // Use service title for display
 // Removed textShadow variable
 const base = import.meta.env.BASE_URL; // Get base URL once
 import heroImage from '/public/images/hero-background.jpg'; // Import background image
+
+// Define style as a variable
+const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`;
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
   {/* Use PageTitle component */}
   <PageTitle title={displayTitle} subtitle={service.description} />
-  {/* Apply background to main, ensure inner div is transparent - Use imported image and string concatenation */}
+  {/* Apply background to main using the style variable */}
   <main 
     class="relative bg-cover bg-center bg-fixed text-white" 
-    style={"background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('" + heroImage.src + "');"} 
+    style={mainStyle} 
   >
     <div class="container mx-auto px-6 py-12 bg-transparent"> 
       <div class="max-w-4xl mx-auto space-y-6"> 

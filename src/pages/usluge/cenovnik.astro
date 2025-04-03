@@ -11,6 +11,9 @@ const displayTitle = "Cenovnik Usluga"; // Added display title for PageTitle
 // Removed textShadow variable as it's now a Tailwind class
 // const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
 
+// Define style as a variable
+const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
+
 // Define ALL packages again
 const packages = [
   // Web Development
@@ -259,9 +262,9 @@ const packages = [
   <Header />
   {/* Added PageTitle component - Removed breadcrumbs prop */}
   <PageTitle title={displayTitle} />
-  {/* Applied background image and text color to main - Use imported image and string concatenation */}
+  {/* Apply background to main using the style variable */}
   {/* Removed py-12 from main, added pt-0 to avoid double padding with PageTitle */}
-  <main class="text-white pt-0 pb-12" style={"background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + heroImage.src + "'); background-attachment: fixed; background-size: cover; background-position: center;"}> 
+  <main class="text-white pt-0 pb-12" style={mainStyle}> 
     <div class="container mx-auto px-6"> {/* Removed py-12 from here */}
       {/* Removed h1 as it's now in PageTitle */}
       {/* Pricing Cards - Using Flexbox for automatic wrapping */}
