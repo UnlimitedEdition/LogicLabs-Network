@@ -1,18 +1,14 @@
 ---
-import { Image } from 'astro:assets'; // Importujemo Image komponentu ako želimo optimizaciju, ali za background je dovoljan import
-import heroImage from '/images/hero-background.jpg'; // Importujemo sliku
-
 // Reverted Hero section to standard light theme - Keeping only the first frontmatter block
 // Removed unused Image import
-// const heroImageUrl = '/images/hero-background.jpg'; // Ne koristi se više
-// const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImageUrl}");`; // Ne koristi se više
+const heroImageUrl = '/images/hero-background.jpg'; // Vraćena osnovna putanja
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImageUrl}");`; // Koristi osnovnu putanju
 ---
 
 {/* Restored background image and overlay (50% dark) */}
-{/* Primenjujemo stil direktno koristeći importovanu sliku */}
 <section 
   class="relative py-20 md:py-32 bg-cover bg-center text-white" 
-  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}');`} 
+  style={sectionStyle} 
 >
   {/* Content Container */}
   <div class="relative z-10 container mx-auto px-6 text-center"> {/* Added relative z-10 */}
