@@ -19,8 +19,8 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		{/* Vraćena osnovna putanja za favicon */}
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" /> 
+		{/* Vraćena putanja za favicon sa BASE_URL */}
+		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} /> 
 		<meta name="generator" content={Astro.generator} />
 
 		{/* --- SEO Meta Tags (using props) --- */}
