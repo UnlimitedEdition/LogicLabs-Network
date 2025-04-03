@@ -1,8 +1,9 @@
 ---
 // Reverted Hero section to standard light theme - Keeping only the first frontmatter block
 // Removed unused Image import
-const heroImageUrl = '/images/hero-background.jpg'; // Vraćena originalna putanja
-const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImageUrl}");`; // Koristi originalnu putanju
+// Koristimo URL konstruktor za sigurnije formiranje putanje sa base URL-om
+const heroImageUrl = new URL('/images/hero-background.jpg', import.meta.env.BASE_URL).pathname; 
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImageUrl}");`; 
 ---
 
 {/* Restored background image and overlay (50% dark) */}
