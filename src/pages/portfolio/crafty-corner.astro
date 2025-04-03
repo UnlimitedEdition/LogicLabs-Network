@@ -6,7 +6,7 @@ import PageTitle from '../../components/PageTitle.astro';
 
 const project = {
   title: 'E-commerce Platforma "Crafty Corner"',
-  imageUrl: `${import.meta.env.BASE_URL}/images/portfolio-project-2.jpg`, // Vraćena putanja sa BASE_URL
+  imageUrl: '/images/portfolio-project-2.jpg', // Vraćena osnovna putanja
   tech: ['React', 'Node.js', 'Stripe API', 'MongoDB'],
   description: `
     <p class="mb-4">"Crafty Corner" je primer fiktivne e-commerce platforme namenjene prodaji unikatnih, ručno rađenih proizvoda. Projekat demonstrira mogućnosti izrade kompletnog rešenja za online prodaju, od pregleda proizvoda do sigurnog plaćanja.</p>
@@ -48,7 +48,7 @@ const project = {
           <div class="prose prose-invert max-w-none" set:html={project.description} />
         </div>
         <div class="md:col-span-1">
-          {/* imageUrl sada sadrži ispravnu putanju */}
+          {/* Vraćena osnovna putanja */}
           <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
           <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
           <div class="flex flex-wrap gap-2">
