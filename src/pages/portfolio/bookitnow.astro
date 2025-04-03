@@ -6,7 +6,7 @@ import PageTitle from '../../components/PageTitle.astro';
 
 const project = {
   title: 'Web Aplikacija za Rezervacije "BookItNow"',
-  imageUrl: '/images/portfolio-project-3.jpg', // Vraćena originalna putanja
+  imageUrl: `${import.meta.env.BASE_URL}/images/portfolio-project-3.jpg`, // Vraćena putanja sa BASE_URL
   tech: ['Vue.js', 'Firebase', 'Tailwind CSS'],
   description: `
     <p class="mb-4">"BookItNow" je primer web aplikacije dizajnirane za jednostavno online zakazivanje termina za različite uslužne delatnosti (npr. frizerski saloni, lekarske ordinacije, konsultanti). Aplikacija omogućava klijentima da vide dostupne termine i rezervišu ih, dok pruža administrativni interfejs za upravljanje rasporedom i rezervacijama.</p>
@@ -47,7 +47,7 @@ const project = {
           <div class="prose prose-invert max-w-none" set:html={project.description} />
         </div>
         <div class="md:col-span-1">
-          {/* Vraćena originalna putanja */}
+          {/* imageUrl sada sadrži ispravnu putanju */}
           <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
           <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
           <div class="flex flex-wrap gap-2">
