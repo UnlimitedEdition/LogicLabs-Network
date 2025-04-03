@@ -3,10 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro'; // Added Header import
 import Footer from '../../components/Footer.astro'; // Added Footer import
 import PageTitle from '../../components/PageTitle.astro';
+import heroImage from '/public/images/hero-background.jpg'; // Import background image
+import projectImage from '/public/images/images (1).jpeg'; // Import project image
 
 const project = {
   title: 'Platforma za Upravljanje Događajima',
-  imageUrl: '/images/images (1).jpeg', // Vraćena osnovna putanja
+  // imageUrl: '/images/images (1).jpeg', // Path now handled by import
   tech: ['PHP (Laravel)', 'Vue.js', 'MySQL'],
   description: `
     <p class="mb-4">Primer web platforme koja omogućava organizatorima da lako kreiraju, promovišu i upravljaju događajima (konferencije, radionice, webinari). Uključuje funkcionalnosti za registraciju učesnika, prodaju karata (opciono) i komunikaciju.</p>
@@ -71,19 +73,19 @@ class EventRegistrationController extends Controller
   <Header /> {/* Added Header component */}
   <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
 
-  {/* Added main wrapper with background */}
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`}>
+  {/* Added main wrapper with background - Use imported image */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`}>
     <section class="py-12">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="md:col-span-2">
           <h2 class="text-2xl font-semibold mb-4">Opis Projekta</h2>
-          <div class="prose prose-invert max-w-none" set:html={project.description} />
-        </div>
-        <div class="md:col-span-1">
-          <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
-          <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
-          <div class="flex flex-wrap gap-2">
+           <div class="prose prose-invert max-w-none" set:html={project.description} />
+         </div>
+         <div class="md:col-span-1">
+           <img src={projectImage.src} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> {/* Use imported image */}
+           <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
+           <div class="flex flex-wrap gap-2">
             {project.tech.map(t => (
               <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
             ))}
