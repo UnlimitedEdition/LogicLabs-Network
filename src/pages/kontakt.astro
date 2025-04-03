@@ -15,9 +15,9 @@ const displayTitle = "Kontaktirajte Nas"; // Added display title
   <Header />
   {/* Added PageTitle component - Removed breadcrumbs */}
   <PageTitle title={displayTitle} subtitle={pageDescription} /> {/* Removed breadcrumbs, added subtitle */}
-  {/* Applied background image and text color to main */}
+  {/* Removed background style from main as PageTitle handles it */}
   {/* Removed padding from main, added pt-0 to avoid double padding with PageTitle */}
-  <main class="text-white pt-0 pb-12" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-background.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
+  <main class="text-white pt-0 pb-12">
     {/* Contact component now sits directly inside main without extra padding */}
     <Contact /> 
   </main>

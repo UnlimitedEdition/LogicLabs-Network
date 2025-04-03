@@ -1,9 +1,9 @@
 ---
 // Reverted Hero section to standard light theme - Keeping only the first frontmatter block
 // Removed unused Image import
-// Koristimo URL konstruktor za sigurnije formiranje putanje sa base URL-om
-const heroImageUrl = new URL('/images/hero-background.jpg', import.meta.env.BASE_URL).pathname; 
-const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImageUrl}");`; 
+// Jednostavno koristimo relativnu putanju. Astro će dodati 'base' tokom build-a.
+const heroImagePath = '/images/hero-background.jpg'; 
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${heroImagePath}");`; 
 ---
 
 {/* Restored background image and overlay (50% dark) */}

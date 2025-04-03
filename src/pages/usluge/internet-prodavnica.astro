@@ -12,7 +12,6 @@ const service = {
 const pageTitleSeo = `${service.title} | Usluge | LogicLabs Network`; // Updated Site Name
 const pageDescription = service.description;
 const displayTitle = service.title; // Use service title for display
-const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; // Define text shadow
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
@@ -28,24 +27,23 @@ const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; // Define text sha
       {/* Removed original h1 */}
       {/* Removed content container with white background, applied styles directly */}
       <div class="max-w-3xl mx-auto space-y-6"> {/* Removed bg-white, p-8, rounded, shadow, text-gray-700 */}
-        <p class="mb-4 text-gray-200" style={textShadow} data-aos="fade-up" data-aos-delay="100"> {/* Light gray text + shadow */}
+        <p class="mb-4 text-gray-200 text-shadow-sm" data-aos="fade-up" data-aos-delay="100"> 
           U okviru ovog paketa dobijate potpuno funkcionalan web sajt za prodaju preko Interneta na osnovu standardnog i predloženog dizajna od strane LogicLabs Network i sa osnovnom SEO optimizacijom. Mi ćemo za Vas izvršiti inicijalno kreiranje kategorija i dodavanje do 20 proizvoda.
         </p>
-      {/* Removed duplicate paragraph */}
-         <p class="mb-6 text-gray-200" style={textShadow} data-aos="fade-up" data-aos-delay="200"> {/* Adjusted delay */}
+         <p class="mb-6 text-gray-200 text-shadow-sm" data-aos="fade-up" data-aos-delay="200"> 
           Ovakav tip web sajta Vam omogućuje da samostalno vršite izmenu ili dodavanje sadržaja (proizvodi, kategorije, vesti…) u administrativnom delu, a koji je maksimalno prilagođen (lakoća u radu, brzina unosa…) korisniku koji nema ikakvu potrebu za poznavanjem programiranja i naprednih Web tehnika. Svi naši klijenti su već na prvom prikazivanju načina rada u administratorskom delu odmah bili u mogućnosti da samostalno ažuriraju svoj web sajt. Većini od njih nismo imali potrebu za bilo kakvim objašnjenjem jer su se na prvi pogled samostalno snašli u radu sa administratorskim delom koji je veoma jednostavan i funkcionalan.
         </p>
 
         <div class="my-6" data-aos="fade-up" data-aos-delay="350">
-          <p class="mb-2 text-gray-200" style={textShadow}>Na linkovima ispod možete da vidite kako izgleda demo verzija korisničkog i administratorskog dela naše Internet prodavnice.</p> {/* Light gray text + shadow */}
+          <p class="mb-2 text-gray-200 text-shadow-sm">Na linkovima ispod možete da vidite kako izgleda demo verzija korisničkog i administratorskog dela naše Internet prodavnice.</p> 
           {/* Replace # with actual demo links */}
-          <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline block" style={textShadow}>Demo verzija Internet prodavnice – korisnički deo</a> {/* Changed link color */}
-          <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline block" style={textShadow}>Demo verzija Internet prodavnice – administratorski deo</a> {/* Changed link color */}
+          <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline block text-shadow-sm">Demo verzija Internet prodavnice – korisnički deo</a> 
+          <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline block text-shadow-sm">Demo verzija Internet prodavnice – administratorski deo</a> 
         </div>
 
         <div data-aos="fade-up" data-aos-delay="400"> 
-          <h2 class="text-2xl font-semibold text-white mb-4" style={textShadow}>Dodatne opcije:</h2> {/* White text + shadow */}
-          <ul class="list-disc list-inside space-y-2 mb-6 text-gray-200" style={textShadow}> {/* Light gray text + shadow */}
+          <h2 class="text-2xl font-semibold text-white mb-4 text-shadow-sm">Dodatne opcije:</h2> 
+          <ul class="list-disc list-inside space-y-2 mb-6 text-gray-200 text-shadow-sm"> 
             <li>Galerija fotografija - od 20 Eura.</li>
             <li>Napredna SEO optimizacija – od 100 Eura.</li>
             <li>Dodatna zaštita web sajta – 50 Eura.</li>
@@ -56,12 +54,12 @@ const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; // Define text sha
         </div>
 
         <div data-aos="fade-up" data-aos-delay="600"> 
-          <h3 class="text-xl font-semibold text-white mb-2" style={textShadow}>Napomena:</h3> {/* White text + shadow */}
-          <p class="mb-4 text-sm text-gray-300" style={textShadow}> {/* Lighter gray text + shadow */}
+          <h3 class="text-xl font-semibold text-white mb-2 text-shadow-sm">Napomena:</h3> 
+          <p class="mb-4 text-sm text-gray-300 text-shadow-sm"> 
             Cene za dodatne opcije su navedene okvirno i mogu varirati u zavisnosti od zahteva korisnika, kompleksnosti web sajta, kao i vremena potrebnog za izradu. Konačnu cenu Vam možemo dati nakon razgovora sa Vama i nakon detaljnijeg sagledavanja svih opcija koje Vi kao korisnik želite da imate na web sajtu.
           </p>
-          <p class="text-sm text-gray-300" style={textShadow}> {/* Lighter gray text + shadow */}
-            U slučaju da imate potrebu za našim dodatnim angažovanjem, molimo Vas da pogledate <a href="/usluge/cenovnik" class="text-blue-400 hover:underline">cenovnik naših usluga</a>. {/* Changed link color */}
+          <p class="text-sm text-gray-300 text-shadow-sm"> 
+            U slučaju da imate potrebu za našim dodatnim angažovanjem, molimo Vas da pogledate <a href="/usluge/cenovnik" class="text-blue-400 hover:underline">cenovnik naših usluga</a>. 
           </p>
         </div>
 

@@ -6,7 +6,7 @@ import PageTitle from '../../components/PageTitle.astro';
 
 const project = {
   title: 'Web Aplikacija za Tehničke Proračune',
-  imageUrl: '/images/programmer-wallpaper-preview.jpg', // Corrected image path
+  imageUrl: '/images/programmer-wallpaper-preview.jpg', // Vraćena osnovna putanja
   tech: ['React', 'JavaScript', 'MathJax'],
   description: `
     <p class="mb-4">Primer web aplikacije koja služi kao online alat za specifične inženjerske, naučne ili finansijske proračune. Korisnici mogu uneti potrebne parametre, a aplikacija dinamički izračunava i prikazuje rezultate, često uz grafikone ili detaljne izveštaje.</p>
@@ -43,9 +43,10 @@ function CalculatorComponent() {
       if (isNaN(param1) || isNaN(param2)) {
         throw new Error('Parametri moraju biti brojevi.');
       }
-      if (param2 === 0 && calculationType === 'division') { // Primer provere deljenja nulom
-         throw new Error('Deljenje nulom nije dozvoljeno.');
-      }
+      // Primer provere deljenja nulom
+      // if (param2 === 0 && calculationType === 'division') { 
+      //    throw new Error('Deljenje nulom nije dozvoljeno.');
+      // }
 
       // Poziv funkcije za kalkulaciju
       // const calculatedResult = performCalculation(param1, param2, calculationType); 
