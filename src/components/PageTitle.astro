@@ -1,5 +1,6 @@
 ---
 // Reusable component for page titles with background image
+import heroImage from '/public/images/hero-background.jpg'; // Import the image directly
 
 interface Props {
 	title: string;
@@ -7,10 +8,10 @@ interface Props {
 }
 
 const { title, subtitle } = Astro.props;
-// Eksplicitno dodajemo base prefiks
-const base = import.meta.env.BASE_URL; // Get base URL once
-const heroImagePath = '/images/hero-background.jpg'; 
-const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("${base + heroImagePath}");`; 
+// Eksplicitno dodajemo base prefiks - VIŠE NIJE POTREBNO ZA SLIKU
+const base = import.meta.env.BASE_URL; // Get base URL once (still needed for other links potentially)
+// Use the imported image path. Astro handles the base prefix automatically during build.
+const sectionStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("${heroImage.src}");`; 
 // Removed textShadow variable as it's now a Tailwind class
 // const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
 ---

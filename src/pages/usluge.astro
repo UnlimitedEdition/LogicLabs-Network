@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Services from '../components/Services.astro';
 import PageTitle from '../components/PageTitle.astro'; // Re-import PageTitle
+import heroImage from '/public/images/hero-background.jpg'; // Import background image
 
 // Define page-specific SEO data if needed
 const pageTitleSeo = "Naše Usluge | LogicLabs Network"; // Renamed for clarity
@@ -15,8 +16,8 @@ const displayTitle = "Naše Usluge"; // Re-add displayTitle variable
   <Header />
   {/* Re-add PageTitle component call */}
   <PageTitle title={displayTitle} /> 
-  {/* Applied background image and text color to main */}
-  <main class="text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-background.jpg'); background-attachment: fixed; background-size: cover; background-position: center;"> 
+  {/* Applied background image and text color to main - Use imported image */}
+  <main class="text-white" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`}> 
     <div class="container mx-auto px-6 py-12"> {/* Removed bg-white */}
       <Services />
     </div>

@@ -1,4 +1,10 @@
 ---
+// Importuj slike članova tima
+import teamMember1 from '/public/images/team-member-1.jpg';
+import teamMember2 from '/public/images/team-member-2.jpg';
+import teamMember3 from '/public/images/team-member-3.jpg';
+// Napomena: Koristimo iste slike kao placeholdere, ali importujemo ih ispravno
+
 // Podaci o timu - Hijerarhijski organizovani
 const teamHierarchy = [
   // Nivo 1: Osnivač
@@ -6,7 +12,7 @@ const teamHierarchy = [
     { 
       name: 'Milan Tošić', 
       role: 'Osnivač & CEO', 
-      imageUrl: '/images/team-member-1.jpg', // Placeholder
+      imageUrl: teamMember1.src, // Koristi importovanu sliku
       bio: 'Vizionar sa dubokim tehničkim znanjem, Milan vodi tim ka inovacijama i izvrsnosti. Njegova strast leži u rešavanju kompleksnih izazova i kreiranju digitalnih proizvoda koji ne samo da ispunjavaju, već i premašuju očekivanja klijenata.' 
     }
   ],
@@ -15,13 +21,13 @@ const teamHierarchy = [
     { 
       name: 'Ana Petrović', 
       role: 'Projekt Menadžer', 
-      imageUrl: '/images/team-member-2.jpg', // Placeholder
+      imageUrl: teamMember2.src, // Koristi importovanu sliku
       bio: 'Organizovana i proaktivna, Ana osigurava da projekti teku glatko, na vreme i u okviru budžeta.' 
     },
     { 
       name: 'Jelena Marković', 
       role: 'Tehnički Lead (Backend)', 
-      imageUrl: '/images/team-member-3.jpg', // Placeholder
+      imageUrl: teamMember3.src, // Koristi importovanu sliku
       bio: 'Sa fokusom na skalabilnost i sigurnost, Jelena vodi razvoj robusnih serverskih arhitektura.' 
     }
   ],
@@ -30,19 +36,19 @@ const teamHierarchy = [
     { 
       name: 'Nikola Jovanović', 
       role: 'Senior Frontend Developer', 
-      imageUrl: '/images/team-member-1.jpg', // Placeholder
+      imageUrl: teamMember1.src, // Koristi importovanu sliku (placeholder)
       bio: 'Majstor za korisničke interfejse, Nikola pretvara dizajn u interaktivna web iskustva.' 
     },
     { 
       name: 'Stefan Ilić', 
       role: 'UI/UX Dizajn Lead', 
-      imageUrl: '/images/team-member-2.jpg', // Placeholder
+      imageUrl: teamMember2.src, // Koristi importovanu sliku (placeholder)
       bio: 'Kreativni um tima, Stefan je odgovoran za vizuelno privlačne i korisnički orijentisane dizajne.' 
     },
     { 
       name: 'Marija Đorđević', 
       role: 'QA Inženjer', 
-      imageUrl: '/images/team-member-3.jpg', // Placeholder
+      imageUrl: teamMember3.src, // Koristi importovanu sliku (placeholder)
       bio: 'Marijino oštro oko za detalje garantuje da svaki proizvod zadovoljava najviše standarde kvaliteta.' 
     }
   ],
@@ -51,13 +57,13 @@ const teamHierarchy = [
     { 
       name: 'Sofija Simić', 
       role: 'Junior Web Developer', 
-      imageUrl: '/images/team-member-1.jpg', // Placeholder
+      imageUrl: teamMember1.src, // Koristi importovanu sliku (placeholder)
       bio: 'Entuzijastična i željna učenja, Sofija doprinosi razvoju projekata pod mentorstvom.' 
     },
     { 
       name: 'Luka Pavlović', 
       role: 'Marketing Specijalista', 
-      imageUrl: '/images/team-member-2.jpg', // Placeholder
+      imageUrl: teamMember2.src, // Koristi importovanu sliku (placeholder)
       bio: 'Luka pomaže klijentima da dosegnu pravu publiku kroz efikasne digitalne strategije.' 
     }
   ]

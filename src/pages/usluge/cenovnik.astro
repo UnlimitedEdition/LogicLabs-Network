@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+import heroImage from '/public/images/hero-background.jpg'; // Import background image
 
 const pageTitleSeo = `Cenovnik | Usluge | LogicLabs Network`; // Renamed for clarity
 const pageDescription = "Pregled cena za naše pakete izrade web sajtova, SEO, aplikacija, dizajna i održavanja.";
@@ -256,11 +257,11 @@ const packages = [
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
-  {/* Added PageTitle component */}
-  <PageTitle title={displayTitle} breadcrumbs={[{ label: 'Usluge', href: '/usluge' }, { label: 'Cenovnik' }]} />
-  {/* Applied background image and text color to main */}
+  {/* Added PageTitle component - Removed breadcrumbs prop */}
+  <PageTitle title={displayTitle} />
+  {/* Applied background image and text color to main - Use imported image */}
   {/* Removed py-12 from main, added pt-0 to avoid double padding with PageTitle */}
-  <main class="text-white pt-0 pb-12" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-background.jpg'); background-attachment: fixed; background-size: cover; background-position: center;"> 
+  <main class="text-white pt-0 pb-12" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`}> 
     <div class="container mx-auto px-6"> {/* Removed py-12 from here */}
       {/* Removed h1 as it's now in PageTitle */}
       {/* Pricing Cards - Using Flexbox for automatic wrapping */}
@@ -268,7 +269,7 @@ const packages = [
       <div class="flex flex-wrap justify-center gap-6"> {/* Changed to flex wrap */}
         {packages.map((pkg, index) => (
           <div
-          class="basis-64 shrink-0 bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 group" /* Added basis-64 and shrink-0 */
+          class="basis-64 shrink-0 bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 group"
           data-aos="fade-up"
           data-aos-delay={index * 100}
         >
