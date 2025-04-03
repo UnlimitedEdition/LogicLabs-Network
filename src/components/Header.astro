@@ -15,15 +15,17 @@
     </div>
     <div class="hidden md:flex space-x-4">
       {/* Added bottom border on hover */}
-      <a href="/usluge" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Usluge</a>
-      <a href="/portfolio" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Portfolio</a>
-      <a href="/o-nama" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">O nama</a>
-      <a href="/usluge/cenovnik" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Cenovnik</a>
-      {/* <a href="/kontakt" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Kontakt</a> */}
+      {/* Dodajemo BASE_URL prefiks linkovima */}
+      <a href={`${import.meta.env.BASE_URL}/usluge`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Usluge</a>
+      <a href={`${import.meta.env.BASE_URL}/portfolio`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Portfolio</a>
+      <a href={`${import.meta.env.BASE_URL}/o-nama`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">O nama</a>
+      <a href={`${import.meta.env.BASE_URL}/usluge/cenovnik`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Cenovnik</a>
+      {/* <a href={`${import.meta.env.BASE_URL}/kontakt`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Kontakt</a> */}
     </div>
     <div class="flex items-center"> {/* Wrap buttons in a flex container */}
       {/* Style update: Gradient background, rounded-full, enhanced hover */}
-      <a href="/kontakt" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hidden md:inline-block mr-4">
+      {/* Dodajemo BASE_URL prefiks linku */}
+      <a href={`${import.meta.env.BASE_URL}/kontakt`} class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hidden md:inline-block mr-4">
         Kontakt
       </a>
       {/* <ThemeToggleButton /> */}
@@ -42,11 +44,12 @@
 
   {/* Mobile Menu */}
   <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md"> {/* Initially hidden */}
-    <a href="/usluge" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Usluge</a>
-    <a href="/portfolio" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Portfolio</a>
-    <a href="/o-nama" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">O nama</a>
-    <a href="/usluge/cenovnik" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Cenovnik</a>
-    <a href="/kontakt" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 border-t border-gray-200">Kontakt</a> {/* Added border top */}
+    {/* Dodajemo BASE_URL prefiks linkovima */}
+    <a href={`${import.meta.env.BASE_URL}/usluge`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Usluge</a>
+    <a href={`${import.meta.env.BASE_URL}/portfolio`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Portfolio</a>
+    <a href={`${import.meta.env.BASE_URL}/o-nama`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">O nama</a>
+    <a href={`${import.meta.env.BASE_URL}/usluge/cenovnik`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Cenovnik</a>
+    <a href={`${import.meta.env.BASE_URL}/kontakt`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100 border-t border-gray-200">Kontakt</a> {/* Added border top */}
   </div>
 </header>
 
