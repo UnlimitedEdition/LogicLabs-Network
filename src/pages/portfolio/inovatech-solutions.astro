@@ -3,11 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro'; // Added Header import
 import Footer from '../../components/Footer.astro'; // Added Footer import
 import PageTitle from '../../components/PageTitle.astro';
-import projectImage1 from '/images/portfolio-project-1.jpg'; // Import slike
 
 const project = {
   title: 'Korporativni Sajt "Inovatech Solutions"',
-  imageUrl: projectImage1.src, // Koristi importovanu sliku
+  imageUrl: '/images/portfolio-project-1.jpg', // Vraćena osnovna putanja
   tech: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
   description: `
     <p class="mb-4">"Inovatech Solutions", fiktivna kompanija u oblasti softverskih rešenja, zahtevala je moderan i profesionalan web sajt koji bi služio kao centralna tačka za predstavljanje njihovih usluga, ekspertize i korporativne kulture. Primarni cilj bio je generisanje kvalitetnih poslovnih upita (leads) i jačanje brenda na tržištu.</p>
@@ -63,7 +62,7 @@ const project = {
           <div class="prose prose-invert max-w-none" set:html={project.description} />
         </div>
         <div class="md:col-span-1">
-          {/* Koristi importovanu sliku */}
+          {/* Vraćena osnovna putanja */}
           <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> 
           <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
           <div class="flex flex-wrap gap-2">

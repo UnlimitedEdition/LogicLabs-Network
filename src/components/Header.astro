@@ -1,5 +1,4 @@
 ---
-import logoImage from '/logo.svg'; // Import logo
 // import ThemeToggleButton from './ThemeToggleButton.astro'; // Removed toggle button import
 ---
 
@@ -10,23 +9,23 @@ import logoImage from '/logo.svg'; // Import logo
     <div>
       {/* Increased scale effect to scale-110 */}
       <a href="/" aria-label="LogicLabs Network Početna" class="text-gray-800 block hover:opacity-80 hover:scale-110 transition-all duration-300 ease-in-out"> 
-        {/* Koristi importovan logo */}
-        <img src={logoImage.src} alt="LogicLabs Network Logo" class="h-8 w-auto"> 
+        {/* Vraćena osnovna putanja */}
+        <img src="/logo.svg" alt="LogicLabs Network Logo" class="h-8 w-auto"> 
       </a>
     </div>
     <div class="hidden md:flex space-x-4">
       {/* Added bottom border on hover */}
-      {/* Dodajemo BASE_URL prefiks linkovima */}
-      <a href={`${import.meta.env.BASE_URL}/usluge`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Usluge</a>
-      <a href={`${import.meta.env.BASE_URL}/portfolio`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Portfolio</a>
-      <a href={`${import.meta.env.BASE_URL}/o-nama`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">O nama</a>
-      <a href={`${import.meta.env.BASE_URL}/usluge/cenovnik`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Cenovnik</a>
-      {/* <a href={`${import.meta.env.BASE_URL}/kontakt`} class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Kontakt</a> */}
+      {/* Vraćeni osnovni linkovi */}
+      <a href="/usluge" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Usluge</a>
+      <a href="/portfolio" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Portfolio</a>
+      <a href="/o-nama" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">O nama</a>
+      <a href="/usluge/cenovnik" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Cenovnik</a>
+      {/* <a href="/kontakt" class="text-gray-600 pb-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-500 transition-colors duration-200">Kontakt</a> */}
     </div>
     <div class="flex items-center"> {/* Wrap buttons in a flex container */}
       {/* Style update: Gradient background, rounded-full, enhanced hover */}
-      {/* Dodajemo BASE_URL prefiks linku */}
-      <a href={`${import.meta.env.BASE_URL}/kontakt`} class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hidden md:inline-block mr-4">
+      {/* Vraćen osnovni link */}
+      <a href="/kontakt" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hidden md:inline-block mr-4">
         Kontakt
       </a>
       {/* <ThemeToggleButton /> */}
@@ -45,12 +44,12 @@ import logoImage from '/logo.svg'; // Import logo
 
   {/* Mobile Menu */}
   <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md"> {/* Initially hidden */}
-    {/* Dodajemo BASE_URL prefiks linkovima */}
-    <a href={`${import.meta.env.BASE_URL}/usluge`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Usluge</a>
-    <a href={`${import.meta.env.BASE_URL}/portfolio`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Portfolio</a>
-    <a href={`${import.meta.env.BASE_URL}/o-nama`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">O nama</a>
-    <a href={`${import.meta.env.BASE_URL}/usluge/cenovnik`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Cenovnik</a>
-    <a href={`${import.meta.env.BASE_URL}/kontakt`} class="block px-6 py-3 text-gray-600 hover:bg-gray-100 border-t border-gray-200">Kontakt</a> {/* Added border top */}
+    {/* Vraćeni osnovni linkovi */}
+    <a href="/usluge" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Usluge</a>
+    <a href="/portfolio" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Portfolio</a>
+    <a href="/o-nama" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">O nama</a>
+    <a href="/usluge/cenovnik" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Cenovnik</a>
+    <a href="/kontakt" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 border-t border-gray-200">Kontakt</a> {/* Added border top */}
   </div>
 </header>
 

@@ -3,11 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro'; // Added Header import
 import Footer from '../../components/Footer.astro'; // Added Footer import
 import PageTitle from '../../components/PageTitle.astro';
-import projectImage2 from '/images/portfolio-project-2.jpg'; // Import slike
 
 const project = {
   title: 'E-commerce Platforma "Crafty Corner"',
-  imageUrl: projectImage2.src, // Koristi importovanu sliku
+  imageUrl: '/images/portfolio-project-2.jpg', // Vraćena osnovna putanja
   tech: ['React', 'Node.js', 'Stripe API', 'MongoDB'],
   description: `
     <p class="mb-4">"Crafty Corner" je primer fiktivne e-commerce platforme namenjene prodaji unikatnih, ručno rađenih proizvoda. Projekat demonstrira mogućnosti izrade kompletnog rešenja za online prodaju, od pregleda proizvoda do sigurnog plaćanja.</p>
@@ -49,7 +48,7 @@ const project = {
           <div class="prose prose-invert max-w-none" set:html={project.description} />
         </div>
         <div class="md:col-span-1">
-          {/* Koristi importovanu sliku */}
+          {/* Vraćena osnovna putanja */}
           <img src={project.imageUrl} alt={project.title} class="rounded-lg shadow-md mb-6 w-full">
           <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
           <div class="flex flex-wrap gap-2">

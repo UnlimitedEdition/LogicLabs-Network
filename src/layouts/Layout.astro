@@ -1,8 +1,7 @@
 ---
 import '../styles/global.css';
-import favicon from '/favicon.svg'; // Import favicon
-import ogImage from '/images/hero-background.jpg'; // Import OG image
 // AOS CSS i JS se sada učitavaju preko CDN-a
+// Favicon i OG image se referenciraju direktno
 
 // Define props for the layout
 interface Props {
@@ -21,8 +20,8 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		{/* Koristi importovan favicon */}
-		<link rel="icon" type="image/svg+xml" href={favicon.src} /> 
+		{/* Vraćena osnovna putanja za favicon */}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" /> 
 		<meta name="generator" content={Astro.generator} />
 
 		{/* --- SEO Meta Tags (using props) --- */}
@@ -36,8 +35,8 @@ const {
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
-		{/* Koristi importovanu OG sliku */}
-		<meta property="og:image" content={ogImage.src} /> 
+		{/* Vraćena osnovna putanja za OG sliku (new URL() je ispravan način ovde) */}
+		<meta property="og:image" content={new URL('/images/hero-background.jpg', Astro.url).href} /> 
 		<meta property="og:image:alt" content="Moderan web dizajn i razvoj" />
 
 		{/* Google Font Import (Inter) - Added weight 800 */}
