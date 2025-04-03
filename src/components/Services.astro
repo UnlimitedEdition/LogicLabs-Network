@@ -24,6 +24,8 @@ const icons = {
 
 // Define a type for the keys of the icons object
 type IconKey = keyof typeof icons;
+
+const base = import.meta.env.BASE_URL; // Get base URL once
 ---
 
 {/* Removed bg-white from section */}
@@ -46,13 +48,13 @@ type IconKey = keyof typeof icons;
           .replace(/-+$/, ''); // Trim - from end of text
         // Point 'Cenovnik' card to the main web development page where all packages are listed
         const serviceUrl = service.id === 'pricing' ? '/usluge/izrada-web-sajtova' : `/usluge/${slug}`;
-
-        return (
-          // Transparent base, multi-color gradient on hover, white text default
-          <a href={serviceUrl} class="block bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 text-center no-underline group" data-aos="fade-up" data-aos-delay={index * 100}>
-            {/* Icon white default, white on hover (as background changes) */}
-            {/* Use type assertion to satisfy TypeScript */}
-            <div class="flex-shrink-0 text-white transition-colors duration-300" set:html={icons[service.id as IconKey]}></div> 
+ 
+         return (
+           // Transparent base, multi-color gradient on hover, white text default
+           <a href={base + serviceUrl} class="block bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 text-center no-underline group" data-aos="fade-up" data-aos-delay={index * 100}> {/* Add base prefix */}
+             {/* Icon white default, white on hover (as background changes) */}
+             {/* Use type assertion to satisfy TypeScript */}
+             <div class="flex-shrink-0 text-white transition-colors duration-300" set:html={icons[service.id as IconKey]}></div> 
             <div class="flex-grow"> 
               <h3 class="text-xl font-semibold text-white group-hover:text-white mb-2 transition-colors duration-300 text-shadow-sm">{service.title}</h3> {/* Added text-shadow-sm */}
               <p class="text-gray-200 group-hover:text-gray-100 transition-colors duration-300 text-shadow-sm">{service.description}</p> {/* Added text-shadow-sm */}
