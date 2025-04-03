@@ -1,6 +1,7 @@
 ---
 import logoImage from '../assets/logo.svg'; // Import logo from assets
 const currentYear = new Date().getFullYear();
+const base = import.meta.env.BASE_URL; // Get base URL once
 
 // Define navigation structure for dropdowns based on actual content
 // Vraćeni osnovni linkovi
@@ -87,7 +88,7 @@ const socialLinks = [
     <div class="flex flex-wrap justify-around items-start mb-8"> {/* Changed justify-between to justify-around */}
       {/* Logo and Slogan */}
       <div class="w-full md:w-1/4 mb-6 md:mb-0">
-        <a href="/" aria-label="LogicLabs Network Početna" class="text-white inline-block hover:opacity-80 hover:scale-110 transition-all duration-300 ease-in-out">
+        <a href={base + '/'} aria-label="LogicLabs Network Početna" class="text-white inline-block hover:opacity-80 hover:scale-110 transition-all duration-300 ease-in-out">
           {/* Koristi importovan logo */}
           <img src={logoImage.src} alt="LogicLabs Network Logo" class="h-8 w-auto inline-block">
         </a>
@@ -99,7 +100,8 @@ const socialLinks = [
         <ul class="flex flex-wrap justify-center space-x-4 md:space-x-6"> {/* Keep justify-center */}
           {navItems.map((item, index) => ( // Added index here
             <li class="relative group py-2"> {/* Removed pb-4 */}
-              <a href={item.href} class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+              {/* Dodat base prefiks */}
+              <a href={base + item.href} class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 {item.name}
                 {item.sublinks.length > 0 && (
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
@@ -114,7 +116,8 @@ const socialLinks = [
                   <div class={`bg-indigo-700 rounded-md shadow-lg py-1 ${item.columns === 2 ? 'grid grid-cols-2 gap-x-4' : ''}`}>
                     {item.sublinks.map((sublink, subIndex) => ( // Changed inner loop index to subIndex
                       // Add column break logic for 2-column layout
-                      <a href={sublink.href} class={`block px-4 py-2 text-sm text-gray-200 hover:bg-indigo-600 hover:text-white ${item.columns === 2 && subIndex === 0 ? 'col-start-1' : ''} ${item.columns === 2 && subIndex === Math.ceil(item.sublinks.length / 2) ? 'col-start-2' : ''}`}>
+                      // Dodat base prefiks
+                      <a href={base + sublink.href} class={`block px-4 py-2 text-sm text-gray-200 hover:bg-indigo-600 hover:text-white ${item.columns === 2 && subIndex === 0 ? 'col-start-1' : ''} ${item.columns === 2 && subIndex === Math.ceil(item.sublinks.length / 2) ? 'col-start-2' : ''}`}>
                         {sublink.name}
                       </a>
                     ))}

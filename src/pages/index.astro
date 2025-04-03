@@ -9,6 +9,7 @@ import Hero from '../components/Hero.astro';
 // import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 // Removed duplicate Layout import
+const base = import.meta.env.BASE_URL; // Get base URL once
 
 // Data for featured services and projects (simplified)
 const featuredServices = [
@@ -59,12 +60,14 @@ const featuredProjects = [ // Copied from Portfolio.astro
               <div set:html={service.icon}></div> 
               <h3 class="text-xl font-semibold text-gray-700 mb-3">{service.title}</h3>
               <p class="text-gray-600 mb-4">{service.description}</p>
-              <a href={service.url} class="text-blue-600 hover:text-blue-800 font-medium">Saznaj više &rarr;</a>
+              {/* Dodat base prefiks */}
+              <a href={base + service.url} class="text-blue-600 hover:text-blue-800 font-medium">Saznaj više &rarr;</a>
             </div>
           ))}
         </div>
         <div class="mt-12">
-           <a href="/usluge" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300">
+           {/* Dodat base prefiks */}
+           <a href={base + '/usluge'} class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300">
              Pogledajte Sve Usluge
            </a>
         </div>
@@ -78,12 +81,13 @@ const featuredProjects = [ // Copied from Portfolio.astro
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
            {featuredProjects.map((project, index) => (
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay={index * 100}>
-              {/* Vraćena osnovna putanja */}
-              <img src={project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/> 
+              {/* Dodat base prefiks */}
+              <img src={base + project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/> 
               <div class="p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">{project.title}</h3>
                 <p class="text-gray-600 text-sm mb-4">{project.description}</p>
-                <a href={project.liveUrl} class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                {/* Dodat base prefiks */}
+                <a href={base + project.liveUrl} class="text-blue-600 hover:text-blue-800 text-sm font-medium">
                   Pogledaj Detalje &rarr;
                 </a>
               </div>
@@ -91,7 +95,8 @@ const featuredProjects = [ // Copied from Portfolio.astro
           ))}
         </div>
          <div class="mt-12">
-           <a href="/portfolio" class="bg-gray-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
+           {/* Dodat base prefiks */}
+           <a href={base + '/portfolio'} class="bg-gray-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
              Pogledajte Ceo Portfolio
            </a>
         </div>
@@ -103,7 +108,8 @@ const featuredProjects = [ // Copied from Portfolio.astro
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-3xl font-bold mb-4">Spremni da Započnemo Vaš Projekat?</h2>
         <p class="text-lg mb-8 max-w-2xl mx-auto">Kontaktirajte nas danas da razgovaramo o Vašim idejama i kako možemo pomoći da ih ostvarite.</p>
-        <a href="/kontakt" class="bg-white text-blue-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300">
+        {/* Dodat base prefiks */}
+        <a href={base + '/kontakt'} class="bg-white text-blue-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300">
           Zatražite Ponudu
         </a>
       </div>
