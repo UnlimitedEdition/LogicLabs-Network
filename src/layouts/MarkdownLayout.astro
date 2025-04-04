@@ -1,0 +1,34 @@
+---
+// src/layouts/MarkdownLayout.astro
+import Layout from './Layout.astro'; // Uvozimo glavni layout
+import Header from '../components/Header.astro'; // Dodajemo Header
+import Footer from '../components/Footer.astro'; // Dodajemo Footer
+import PageTitle from '../components/PageTitle.astro'; // Uvozimo PageTitle za naslov
+
+// Pretpostavljamo da .md fajlovi imaju 'title' u frontmatter-u
+import heroImage from '/public/images/hero-background.jpg'; // Import background image
+const base = import.meta.env.BASE_URL; // Add base URL variable
+
+// Pretpostavljamo da .md fajlovi imaju 'title' u frontmatter-u
+const { frontmatter } = Astro.props; 
+
+// Define style with base URL but without the overlay gradient
+const mainStyle = `background-image: url('${base}${heroImage.src.startsWith('/') ? heroImage.src : '/' + heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
+---
+<Layout title={frontmatter.title ? `${frontmatter.title} | Portfolio | LogicLabs Network` : 'Detalji Tehnologije | Portfolio'}>
+  <Header /> {/* Dodajemo Header ovde */}
+  {/* Koristimo PageTitle da prikažemo naslov iz Markdown frontmatter-a */}
+  {frontmatter.title && <PageTitle title={frontmatter.title} />}
+  
+  {/* Glavni kontejner za Markdown sadržaj */}
+  {/* Apply background using proper inline styling with base path */}
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
+    <div class="container mx-auto px-6 py-12">
+      <article class="prose prose-invert max-w-none bg-black/30 p-6 md:p-8 rounded-lg shadow-lg">
+        {/* Ovde će se renderovati sadržaj iz .md fajla */}
+        <slot /> 
+      </article>
+    </div>
+  </main>
+  <Footer /> {/* Dodajemo Footer ovde */}
+</Layout>

@@ -8,14 +8,20 @@ import Hero from '../components/Hero.astro';
 // import AboutUs from '../components/AboutUs.astro';
 // import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+// Import icon components
+import IconWebDev from '../components/icons/IconWebDev.astro';
+import IconWebDesign from '../components/icons/IconWebDesign.astro';
+import IconSeo from '../components/icons/IconSeo.astro';
+
 // Removed duplicate Layout import
-const base = import.meta.env.BASE_URL; // Get base URL once
+const base = import.meta.env.BASE_URL || ''; // Get base URL once with fallback
 
 // Data for featured services and projects (simplified)
+// Updated to use component references instead of SVG strings
 const featuredServices = [
-  { id: 'web-dev', title: 'Izrada Web Sajtova', description: 'Moderni, brzi i responzivni sajtovi prilagođeni Vašim potrebama.', url: '/usluge/izrada-web-sajtova', icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-blue-500 mb-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" /></svg>` },
-  { id: 'web-design', title: 'Web Dizajn', description: 'Kreiramo jedinstvena vizuelna rešenja koja privlače pažnju i ostavljaju utisak.', url: '/usluge/web-dizajn', icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-blue-500 mb-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" /></svg>` },
-  { id: 'seo', title: 'SEO Optimizacija', description: 'Povećavamo vidljivost Vašeg sajta na Google-u i drugim pretraživačima.', url: '/usluge/seo-optimizacija', icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-blue-500 mb-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>` },
+  { id: 'web-dev', title: 'Izrada Web Sajtova', description: 'Moderni, brzi i responzivni sajtovi prilagođeni Vašim potrebama.', url: '/usluge/izrada-web-sajtova', IconComponent: IconWebDev },
+  { id: 'web-design', title: 'Web Dizajn', description: 'Kreiramo jedinstvena vizuelna rešenja koja privlače pažnju i ostavljaju utisak.', url: '/usluge/web-dizajn', IconComponent: IconWebDesign },
+  { id: 'seo', title: 'SEO Optimizacija', description: 'Povećavamo vidljivost Vašeg sajta na Google-u i drugim pretraživačima.', url: '/usluge/seo-optimizacija', IconComponent: IconSeo },
 ];
 
 const featuredProjects = [ // Copied from Portfolio.astro
@@ -42,31 +48,41 @@ const featuredProjects = [ // Copied from Portfolio.astro
   },
 ];
 
+// Use a simple path for background image instead of import
+const heroImagePath = '/images/hero-background.jpg';
+const mainStyle = {
+  backgroundImage: `url(${base + heroImagePath})`,
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center'
+};
 ---
 
 <Layout>
   <Header />
-  <main>
-    <Hero /> {/* Removed isHomepage prop as it's no longer needed */}
+  <!-- Apply background using proper inline styling with base path -->
+  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
+    <Hero /> <!-- Removed isHomepage prop as it's no longer needed -->
     
-    {/* Featured Services Section */}
-    <section class="py-16 bg-gray-50"> {/* Light background for contrast */}
+    <!-- Featured Services Section -->
+    <section class="py-16"> <!-- Removed bg-gray-50 -->
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8">Naše Ključne Usluge</h2>
+        <h2 class="text-3xl font-bold text-white mb-8">Naše Ključne Usluge</h2> <!-- Changed text-gray-800 to text-white -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {featuredServices.map(service => (
-            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center"> 
-              {/* Restored SVG injection */}
-              <div set:html={service.icon}></div> 
-              <h3 class="text-xl font-semibold text-gray-700 mb-3">{service.title}</h3>
-              <p class="text-gray-600 mb-4">{service.description}</p>
-              {/* Dodat base prefiks */}
-              <a href={base + service.url} class="text-blue-600 hover:text-blue-800 font-medium">Saznaj više &rarr;</a>
-            </div>
-          ))}
+          {featuredServices.map(service => {
+            const { IconComponent } = service; // Destructure the component
+            return (
+              <a href={base + service.url} class="block bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center no-underline group"> <!-- Wrap card in link, add group class -->
+                <IconComponent /> <!-- Use the imported component -->
+                <h3 class="text-xl font-semibold text-gray-700 mb-3 group-hover:text-blue-600 transition-colors duration-300">{service.title}</h3> <!-- Adjusted text color, added hover effect -->
+                <p class="text-gray-600 mb-4">{service.description}</p> <!-- Adjusted text color -->
+                <!-- Removed the explicit link text -->
+              </a>
+            );
+          })}
         </div>
         <div class="mt-12">
-           {/* Dodat base prefiks */}
+           <!-- Dodat base prefiks -->
            <a href={base + '/usluge'} class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300">
              Pogledajte Sve Usluge
            </a>
@@ -74,28 +90,25 @@ const featuredProjects = [ // Copied from Portfolio.astro
       </div>
     </section>
 
-    {/* Featured Projects Section */}
-    <section class="py-16"> {/* Default background */}
+    <!-- Featured Projects Section -->
+    <section class="py-16"> 
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8">Istaknuti Projekti</h2>
+        <h2 class="text-3xl font-bold text-white mb-8">Istaknuti Projekti</h2> <!-- Changed text-gray-800 to text-white -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
            {featuredProjects.map((project, index) => (
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay={index * 100}>
-              {/* Dodat base prefiks */}
+            <a href={base + project.liveUrl} class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 no-underline group" data-aos="fade-up" data-aos-delay={index * 100}> <!-- Wrap card in link, add group class -->
+              <!-- Dodat base prefiks -->
               <img src={base + project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/> 
-              <div class="p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">{project.title}</h3>
-                <p class="text-gray-600 text-sm mb-4">{project.description}</p>
-                {/* Dodat base prefiks */}
-                <a href={base + project.liveUrl} class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                  Pogledaj Detalje &rarr;
-                </a>
+              <div class="p-6 bg-black/20 rounded-b-lg"> <!-- Added subtle background to card text area -->
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">{project.title}</h3> <!-- Adjusted text color, added hover effect -->
+                <p class="text-gray-600 text-sm mb-4">{project.description}</p> <!-- Adjusted text color -->
+                <!-- Removed the explicit link text -->
               </div>
-            </div>
+            </a>
           ))}
         </div>
          <div class="mt-12">
-           {/* Dodat base prefiks */}
+           <!-- Dodat base prefiks -->
            <a href={base + '/portfolio'} class="bg-gray-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
              Pogledajte Ceo Portfolio
            </a>
@@ -103,12 +116,12 @@ const featuredProjects = [ // Copied from Portfolio.astro
       </div>
     </section>
 
-    {/* Call to Action Section */}
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <!-- Call to Action Section -->
+    <section class="py-20"> <!-- Removed background gradient -->
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-4">Spremni da Započnemo Vaš Projekat?</h2>
-        <p class="text-lg mb-8 max-w-2xl mx-auto">Kontaktirajte nas danas da razgovaramo o Vašim idejama i kako možemo pomoći da ih ostvarite.</p>
-        {/* Dodat base prefiks */}
+        <h2 class="text-3xl font-bold text-white mb-4">Spremni da Započnemo Vaš Projekat?</h2> <!-- Ensured text is white -->
+        <p class="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">Kontaktirajte nas danas da razgovaramo o Vašim idejama i kako možemo pomoći da ih ostvarite.</p> <!-- Adjusted text color -->
+        <!-- Dodat base prefiks -->
         <a href={base + '/kontakt'} class="bg-white text-blue-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300">
           Zatražite Ponudu
         </a>

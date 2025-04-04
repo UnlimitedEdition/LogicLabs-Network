@@ -16,13 +16,16 @@ export default {
            // Using RGB values from the CSS variable --color-primary
            // The <alpha-value> placeholder allows Tailwind to handle opacity (e.g., bg-primary/50)
            DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)', 
-           // You can still add shades if needed, perhaps defining more CSS variables
-        },
-        // You can add other custom colors here
-        // secondary: '#...',
-      },
-      // Removed animation keyframes and utility
-    }, // Closing brace for extend
+         // You can still add shades if needed, perhaps defining more CSS variables
+         },
+         // You can add other custom colors here
+         // secondary: '#...',
+       },
+       backgroundImage: { // Add backgroundImage extension
+         'hero-background': "url('/images/hero-background.jpg')",
+       },
+       // Removed animation keyframes and utility
+     }, // Closing brace for extend
   }, // Closing brace for theme
   plugins: [
     // Add a custom plugin for text-shadow utilities

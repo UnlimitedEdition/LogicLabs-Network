@@ -83,9 +83,9 @@ function custom_price_calculator_shortcode_handler($atts) {
 
     ob_start();
     ?>
-    <div class="custom-calculator-wrapper" id="price-calculator-<?php echo esc_attr(uniqid()); ?>"> {/* Dodajemo jedinstveni ID */}
+    <div class="custom-calculator-wrapper" id="price-calculator-<?php echo esc_attr(uniqid()); ?>"> <!-- Dodajemo jedinstveni ID -->
         <h4 class="calculator-title">Kalkulator Cene</h4>
-        <form class="calculator-form"> {/* Uklonjen ID forme, oslanjamo se na wrapper ID */}
+        <form class="calculator-form"> <!-- Uklonjen ID forme, oslanjamo se na wrapper ID -->
             <div class="form-group">
                 <label for="param1-<?php echo esc_attr(uniqid()); ?>"><?php echo esc_html($param1_label); ?>:</label>
                 <input type="number" id="param1-<?php echo esc_attr(uniqid()); ?>" class="calc-param" data-param="param1" required>
@@ -115,16 +115,17 @@ add_shortcode('price_calculator', 'custom_price_calculator_shortcode_handler');
   `
 };
 
-// Define style as a variable
-const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`;
+const base = import.meta.env.BASE_URL; // Add the missing base URL variable
+
+// Removed mainStyle definition
 ---
 
 <Layout title={`Portfolio - ${project.title}`}>
-  <Header /> {/* Added Header component */}
-  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+  <Header /> <!-- Added Header component -->
+  <PageTitle title={project.title} /> <!-- Removed breadcrumbs prop -->
 
-  {/* Apply background to main using the style variable */}
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
+  {/* Removed inline background style */}
+  <main class="relative text-white"> {/* Changed text color */}
     <section class="py-12">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -133,17 +134,24 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
            <div class="prose prose-invert max-w-none" set:html={project.description} />
          </div>
          <div class="md:col-span-1">
-           <img src={projectImage.src} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> {/* Use imported image */}
+           <img src={projectImage.src} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> <!-- Use imported image -->
            <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
            <div class="flex flex-wrap gap-2">
-            {project.tech.map(t => (
-              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
-            ))}
+            {project.tech.map(t => {
+              let techSlug = t.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, ''); // Keep dots for .js, .io etc.
+              if (techSlug === 'wordpress-api') techSlug = 'wordpress-api'; // Already correct
+              const techUrl = `${base}/portfolio/${techSlug}/`; // Construct URL without .md and with trailing slash
+              return (
+                <a href={techUrl} class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300 no-underline">
+                  {t}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
       </div>
     </section>
-  </main> {/* Closed main wrapper */}
-  <Footer /> {/* Added Footer component */}
+  </main> <!-- Closed main wrapper -->
+  <Footer /> <!-- Added Footer component -->
 </Layout>

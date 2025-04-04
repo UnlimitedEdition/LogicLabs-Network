@@ -40,16 +40,16 @@ const io = new Server(server, {
     methods: ["GET", "POST"]
   }
 });
-
-// Kada se overlay konektuje
-io.on('connection', (socket) => {
-  console.log('Overlay connected:', socket.id);
-
-  socket.on('disconnect', () => {
-    console.log('Overlay disconnected:', socket.id);
-  });
-
-  // TODO: Ovde bi se slušali događaji sa streamServices 
+ 
+ // Kada se overlay konektuje
+ io.on('connection', (socket) => {
+   // console.log('Overlay connected:', socket.id); // Removed log
+ 
+   socket.on('disconnect', () => {
+     // console.log('Overlay disconnected:', socket.id); // Removed log
+   });
+ 
+   // TODO: Ovde bi se slušali događaji sa streamServices 
   // i emitovali ka povezanom overlay-u
   // Primer:
   // streamServices.onNewFollower((username) => {
@@ -60,38 +60,39 @@ io.on('connection', (socket) => {
   // });
 });
 
-// Funkcija za emitovanje događaja (poziva se iz drugog dela aplikacije)
-function broadcastEvent(eventName, data) {
-  // Korišćenje konkatenacije stringova umesto template literala
-  console.log('Broadcasting event: ' + eventName, data); 
-  io.emit(eventName, data);
-}
-
+ // Funkcija za emitovanje događaja (poziva se iz drugog dela aplikacije)
+ function broadcastEvent(eventName, data) {
+   // Korišćenje konkatenacije stringova umesto template literala
+   // console.log('Broadcasting event: ' + eventName, data); // Removed log
+   io.emit(eventName, data);
+ }
+ 
 // Primer kako bi se koristilo iz drugog dela koda
 // broadcastEvent('new_subscriber', { username: 'NekoNovi', months: 3 });
 
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  // Korišćenje konkatenacije stringova umesto template literala
-  console.log('Socket.IO server listening on *:' + PORT); 
-});
-
-// TODO: Dodati Express rute ako su potrebne za kontrolni panel strimera
+ const PORT = process.env.PORT || 3001;
+ server.listen(PORT, () => {
+   // Korišćenje konkatenacije stringova umesto template literala
+   // console.log('Socket.IO server listening on *:' + PORT); // Removed log
+ });
+ 
+ // TODO: Dodati Express rute ako su potrebne za kontrolni panel strimera
 // app.get('/control-panel', ...);
     </code></pre>
   `
 };
 
-// Define style as a variable
-const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`;
+const base = import.meta.env.BASE_URL; // Add the missing base URL variable
+
+// Removed mainStyle definition
 ---
 
 <Layout title={`Portfolio - ${project.title}`}>
-  <Header /> {/* Added Header component */}
-  <PageTitle title={project.title} /> {/* Removed breadcrumbs prop */}
+  <Header /> <!-- Added Header component -->
+  <PageTitle title={project.title} /> <!-- Removed breadcrumbs prop -->
 
-  {/* Apply background to main using the style variable */}
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
+  {/* Removed inline background style */}
+  <main class="relative text-white"> {/* Changed text color */}
     <section class="py-12">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -100,17 +101,26 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
            <div class="prose prose-invert max-w-none" set:html={project.description} />
          </div>
          <div class="md:col-span-1">
-           <img src={projectImage.src} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> {/* Use imported image */}
+           <img src={projectImage.src} alt={project.title} class="rounded-lg shadow-md mb-6 w-full"> <!-- Use imported image -->
            <h3 class="text-xl font-semibold mb-3">Korišćene Tehnologije</h3>
            <div class="flex flex-wrap gap-2">
-            {project.tech.map(t => (
-              <span class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold">{t}</span>
-            ))}
+            {project.tech.map(t => {
+              let techSlug = t.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, ''); // Keep dots for .js, .io etc.
+              if (techSlug === 'node.js') techSlug = 'node'; // Specific mapping
+              if (techSlug === 'socket.io') techSlug = 'socket-io'; // Specific mapping
+              if (techSlug === 'html/css/js') techSlug = 'html-css-js'; // Specific mapping
+              const techUrl = `${base}/portfolio/${techSlug}/`; // Construct URL without .md and with trailing slash
+              return (
+                <a href={techUrl} class="bg-gray-700 text-gray-200 rounded-full px-3 py-1 text-sm font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300 no-underline">
+                  {t}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
       </div>
     </section>
-  </main> {/* Closed main wrapper */}
-  <Footer /> {/* Added Footer component */}
+  </main> <!-- Closed main wrapper -->
+  <Footer /> <!-- Added Footer component -->
 </Layout>

@@ -11,8 +11,11 @@ const displayTitle = "Cenovnik Usluga"; // Added display title for PageTitle
 // Removed textShadow variable as it's now a Tailwind class
 // const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
 
-// Define style as a variable
-const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
+const base = import.meta.env.BASE_URL; // Define base BEFORE packages array
+// Removed duplicate heroImage import
+
+// Define style with base URL but without the overlay gradient
+const mainStyle = `background-image: url('${base}${heroImage.src.startsWith('/') ? heroImage.src : '/' + heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
 
 // Define ALL packages again
 const packages = [
@@ -21,7 +24,7 @@ const packages = [
     title: "Statički web sajt",
     price: "20.000",
     currency: "dinara",
-    detailUrl: "/usluge/izrada-web-sajtova",
+    detailUrl: base + "/usluge/izrada-web-sajtova", // Add base prefix
     features: [
       "Statički web sajt (HTML, CSS, JS)",
       "Izrada idejnog grafičkog rešenja",
@@ -36,22 +39,21 @@ const packages = [
     title: "Dinamički web sajt",
     price: "25.000",
     currency: "dinara",
-    detailUrl: "/usluge/dinamicki-web-sajt",
+    detailUrl: base + "/usluge/dinamicki-web-sajt", // Add base prefix
     features: [
       "WordPress CMS",
       "Grafičko rešenje prilagođeno korisniku",
       "Izrada WP teme",
       "Neograničen broj stranica",
-      "Osnovna SEO optimizacija",
-      "6 meseci besplatnog održavanja"
-    ],
+      "Osnovna SEO optimizacija", // Add missing comma
+    ], // Close features array properly
     time: "do 7 radnih dana"
   },
   {
     title: "Dinamički web sajt (Pro)",
     price: "40.000",
     currency: "dinara",
-    detailUrl: "/usluge/dinamicki-web-sajt-pro",
+    detailUrl: base + "/usluge/dinamicki-web-sajt-pro", // Add base prefix
     features: [
       "WordPress CMS",
       "Izrada jedinstvenog grafičkog rešenja",
@@ -70,7 +72,7 @@ const packages = [
     title: "Internet prodavnica",
     price: "45.000",
     currency: "dinara",
-    detailUrl: "/usluge/internet-prodavnica",
+    detailUrl: base + "/usluge/internet-prodavnica", // Add base prefix
     features: [
       "Grafičko rešenje prilagođeno korisniku",
       "Izrada teme",
@@ -85,7 +87,7 @@ const packages = [
     title: "Osnovna SEO Analiza",
     price: "250",
     currency: "Eura",
-    detailUrl: "/usluge/seo-optimizacija",
+    detailUrl: base + "/usluge/seo-optimizacija", // Add base prefix
     features: [
       "Tehnička analiza sajta",
       "Analiza ključnih reči",
@@ -98,7 +100,7 @@ const packages = [
     title: "Mesečni SEO (Osnovni)",
     price: "150",
     currency: "Eura/mes",
-    detailUrl: "/usluge/seo-optimizacija",
+    detailUrl: base + "/usluge/seo-optimizacija", // Add base prefix
     features: [
       "Praćenje pozicija",
       "Osnovni link building",
@@ -111,7 +113,7 @@ const packages = [
     title: "Mesečni SEO (Napredni)",
     price: "300",
     currency: "Eura/mes",
-    detailUrl: "/usluge/seo-optimizacija",
+    detailUrl: base + "/usluge/seo-optimizacija", // Add base prefix
     features: [
       "Sve iz Osnovnog paketa",
       "Napredni link building",
@@ -126,7 +128,7 @@ const packages = [
     title: "Web Aplikacija",
     price: "1.500+",
     currency: "Eura",
-    detailUrl: "/usluge/programiranje",
+    detailUrl: base + "/usluge/programiranje", // Add base prefix
     features: [
       "Prilagođene funkcionalnosti",
       "Frontend & Backend",
@@ -139,7 +141,7 @@ const packages = [
     title: "Mobilna Aplikacija (Nativna)",
     price: "2.000+",
     currency: "Eura",
-    detailUrl: "/usluge/programiranje",
+    detailUrl: base + "/usluge/programiranje", // Add base prefix
     features: [
       "iOS (Swift) ili Android (Kotlin)",
       "Najbolje performanse",
@@ -152,7 +154,7 @@ const packages = [
     title: "Mobilna Aplikacija (Cross-Platform)",
     price: "1.800+",
     currency: "Eura",
-    detailUrl: "/usluge/programiranje",
+    detailUrl: base + "/usluge/programiranje", // Add base prefix
     features: [
       "React Native ili Flutter",
       "Jedan codebase za iOS & Android",
@@ -165,7 +167,7 @@ const packages = [
     title: "Windows Aplikacija",
     price: "1.200+",
     currency: "Eura",
-    detailUrl: "/usluge/programiranje",
+    detailUrl: base + "/usluge/programiranje", // Add base prefix
      features: [
       ".NET (C#) ili Electron",
       "Prilagođen interfejs",
@@ -179,7 +181,7 @@ const packages = [
     title: "Osnovni Dizajn Paket",
     price: "300+",
     currency: "Eura",
-    detailUrl: "/usluge/web-dizajn",
+    detailUrl: base + "/usluge/web-dizajn", // Add base prefix
     features: [
       "Idejno rešenje",
       "Dizajn do 5 ključnih strana",
@@ -192,7 +194,7 @@ const packages = [
     title: "Pro Dizajn Paket",
     price: "600+",
     currency: "Eura",
-    detailUrl: "/usluge/web-dizajn",
+    detailUrl: base + "/usluge/web-dizajn", // Add base prefix
     features: [
       "Jedinstveno rešenje",
       "Dizajn do 10-15 strana/template-a",
@@ -206,7 +208,7 @@ const packages = [
     title: "UX/UI Dizajn za Aplikacije",
     price: "Dogovor",
     currency: "",
-    detailUrl: "/usluge/web-dizajn",
+    detailUrl: base + "/usluge/web-dizajn", // Add base prefix
     features: [
       "Istraživanje i Wireframing",
       "Detaljan UI dizajn",
@@ -220,7 +222,7 @@ const packages = [
     title: "Osnovno Održavanje (WP)",
     price: "50+",
     currency: "Eura/mes",
-    detailUrl: "/usluge/odrzavanje-sajtova",
+    detailUrl: base + "/usluge/odrzavanje-sajtova", // Add base prefix
     features: [
       "Mesečna ažuriranja",
       "Nedeljni backup",
@@ -233,7 +235,7 @@ const packages = [
     title: "Napredno Održavanje (WP)",
     price: "100+",
     currency: "Eura/mes",
-    detailUrl: "/usluge/odrzavanje-sajtova",
+    detailUrl: base + "/usluge/odrzavanje-sajtova", // Add base prefix
     features: [
       "Sve iz Osnovnog paketa",
       "Performance monitoring",
@@ -246,7 +248,7 @@ const packages = [
     title: "Održavanje Web Aplikacija",
     price: "Dogovor",
     currency: "",
-    detailUrl: "/usluge/odrzavanje-sajtova",
+    detailUrl: base + "/usluge/odrzavanje-sajtova", // Add base prefix
     features: [
       "Prilagođeni plan",
       "Ažuriranje framework-a/biblioteka",
@@ -262,20 +264,21 @@ const packages = [
   <Header />
   {/* Added PageTitle component - Removed breadcrumbs prop */}
   <PageTitle title={displayTitle} />
-  {/* Apply background to main using the style variable */}
+  {/* Apply background using proper inline styling with base path */}
   {/* Removed py-12 from main, added pt-0 to avoid double padding with PageTitle */}
-  <main class="text-white pt-0 pb-12" style={mainStyle}> 
-    <div class="container mx-auto px-6"> {/* Removed py-12 from here */}
+  <main class="relative pt-0 pb-12 bg-cover bg-center bg-fixed text-white" style={mainStyle}> 
+    <div class="relative z-10 container mx-auto px-6"> {/* Add relative z-10 to content */}
       {/* Removed h1 as it's now in PageTitle */}
       {/* Pricing Cards - Using Flexbox for automatic wrapping */}
       {/* Removed mt-12 as PageTitle provides spacing */}
       <div class="flex flex-wrap justify-center gap-6"> {/* Changed to flex wrap */}
         {packages.map((pkg, index) => (
-          <div
-          class="basis-64 shrink-0 bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 group"
-          data-aos="fade-up"
-          data-aos-delay={index * 100}
-        >
+          <a 
+            href={pkg.detailUrl} 
+            class="basis-64 shrink-0 bg-transparent p-6 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 group no-underline block" 
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
           <h3 class="text-xl font-semibold text-white group-hover:text-white mb-2 transition-colors duration-300 text-shadow-sm">{pkg.title}</h3> {/* Added text-shadow-sm */}
           {/* Display price and currency - Handle "Dogovor" price */}
           <p class="text-3xl font-bold text-blue-400 group-hover:text-white my-4 transition-colors duration-300 text-shadow-sm"> {/* Added text-shadow-sm */}
@@ -289,9 +292,8 @@ const packages = [
           </ul>
           {/* Time */}
           <p class="text-xs text-gray-400 group-hover:text-gray-300 mb-4 transition-colors duration-300 text-shadow-sm">Potrebno vreme za izradu: {pkg.time}</p> {/* Added text-shadow-sm */}
-          {/* Single Details Link - Styled like Header Contact button */}
-            <a href={pkg.detailUrl} class="mt-auto block text-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 font-semibold">Detaljnije</a>
-          </div>
+          {/* Removed the explicit link button */}
+          </a>
         ))}
       </div>
     </div> {/* Added closing div */}

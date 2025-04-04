@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
+import heroImage from '/public/images/hero-background.jpg'; // Import background image
 
 const service = {
   title: 'Prilagođena Programerska Rešenja', // Updated title slightly
@@ -12,19 +13,17 @@ const service = {
 const pageTitleSeo = `Programiranje | Usluge | LogicLabs Network`; // Updated Site Name
 const pageDescription = service.description;
 const displayTitle = service.title; // Use service title for display
-
 const base = import.meta.env.BASE_URL; // Get base URL once
-import heroImage from '/public/images/hero-background.jpg'; // Import background image
 
-// Define style as a variable
-const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroImage.src}');`;
+// Define style as a variable, explicitly adding base path and all properties
+const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${base}${heroImage.src.startsWith('/') ? heroImage.src : '/' + heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
-  {/* Use PageTitle component - Removed breadcrumbs */}
+  <!-- Import PageTitle -->
   <PageTitle title={displayTitle} subtitle={service.description} />
-  {/* Apply background to main using the style variable */}
+  <!-- Apply background to main using the style variable -->
   <main 
     class="relative bg-cover bg-center bg-fixed text-white" 
     style={mainStyle} 
@@ -36,7 +35,7 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
           Razumemo da svaki projekat ima jedinstvene zahteve. Naš tim iskusnih programera specijalizovan je za kreiranje prilagođenih softverskih rešenja koja tačno odgovaraju vašim poslovnim ciljevima, bez obzira na platformu ili kompleksnost.
         </p>
 
-        {/* Added "Our Approach" Section */}
+        <!-- Added "Our Approach" Section -->
         <div data-aos="fade-up" data-aos-delay="200">
           <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Naš Pristup Razvoju</h2>
           <ol class="relative border-l border-gray-600 space-y-6 pl-6 text-shadow-sm"> 
@@ -68,7 +67,7 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
           </ol>
         </div>
 
-        {/* Web Aplikacije */}
+        <!-- Web Aplikacije -->
         <div data-aos="fade-up" data-aos-delay="300"> 
           <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Web Aplikacije</h2> 
           <p class="mb-4 text-gray-200 text-shadow-sm"> 
@@ -82,7 +81,7 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
            <p class="text-sm italic text-gray-300 text-shadow-sm">Svaki projekat zahteva posebnu analizu. <a href={base + "/kontakt?usluga=web-aplikacija"} class="text-blue-400 hover:underline">Kontaktirajte nas</a> za besplatne konsultacije i procenu.</p> 
          </div>
 
-        {/* Mobilne Aplikacije (iOS & Android) */}
+        <!-- Mobilne Aplikacije (iOS & Android) -->
         <div data-aos="fade-up" data-aos-delay="400"> 
           <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Mobilne Aplikacije (iOS & Android)</h2> 
           <p class="mb-4 text-gray-200 text-shadow-sm"> 
@@ -96,7 +95,7 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
             <p class="text-sm italic text-gray-300 text-shadow-sm">Razvoj mobilnih aplikacija je kompleksan proces. <a href={base + "/kontakt?usluga=mobilna-aplikacija"} class="text-blue-400 hover:underline">Javite nam se</a> da razmotrimo vašu ideju.</p> 
          </div>
 
-        {/* Windows Aplikacije */}
+        <!-- Windows Aplikacije -->
         <div data-aos="fade-up" data-aos-delay="500"> 
           <h2 class="text-3xl font-semibold text-white mb-4 border-b border-gray-500 pb-2 text-shadow-sm">Windows Aplikacije</h2> 
           <p class="mb-4 text-gray-200 text-shadow-sm"> 
@@ -110,7 +109,7 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
          </div>
 
         <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="600"> 
-          {/* Button style is already suitable */}
+          <!-- Button style is already suitable -->
          <a href={base + "/kontakt"} class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all duration-300 text-lg font-semibold">
              Započnite Vaš Projekat Sa Nama
          </a>
