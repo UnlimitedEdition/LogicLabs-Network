@@ -4,171 +4,85 @@
   --color-primary: 45 93 140; /* RGB values for #2D5D8C */
 }
 
-/* Global styling for background images - Background set in Layout.astro */
+/* Essential body styling */
 body {
-  /* Background properties moved to Layout.astro's style block */
   background-color: #121212; /* Dark fallback */
   color: white;
-  position: relative; /* Needed for z-index stacking */
-}
-
-/* New background container styles */
-.background-container {
-  position: fixed; /* Fixed position to stay in place */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Place it behind the content */
-  background-image: url('/images/hero-background.jpg'); /* Use root-relative path */
-  background-size: cover;
-  background-attachment: fixed; /* Keep fixed attachment */
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Ensure content container is above background */
-.content-container {
   position: relative;
-  z-index: 1; /* Ensure content is above the background */
 }
 
-
-/* Make all containers completely transparent */
-header, main, footer, section, .container, article, div, aside {
+/* Make all containers and elements transparent */
+div, section, article, aside, header, footer, main, nav, .container, .wrapper,
+[class*="bg-"], [class*="card"], [class*="container"], [class*="wrapper"],
+[class*="section"], [class*="rounded"], [class*="shadow"] {
   background-color: transparent !important;
-  backdrop-filter: none !important;
-}
-
-/* Make sure footer and all its children are transparent */
-footer, 
-footer *, 
-footer div, 
-footer nav, 
-footer ul, 
-footer li, 
-footer a {
-  background-color: transparent !important; /* Ensure children are transparent */
   backdrop-filter: none !important;
   background-image: none !important;
 }
 
-/* Explicitly target footer element itself */
-footer {
-  background-color: transparent !important; 
-  backdrop-filter: none !important;
-}
-
-/* Animation for clickable elements */
-a, button, [role="button"], .clickable, 
-nav a, .nav-link, 
-.bg-gray-700, .rounded-full,
-span[class*="px-3"], 
-.card, .pricing-card, .portfolio-item, 
-.service-card, [class*="hover:"] {
+/* Enhanced text styling with transparent background and better readability */
+p, h1, h2, h3, h4, h5, h6, span, a, li, button, label, input, textarea, select, strong, em, b, i {
+  background-color: transparent !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
   position: relative;
-  transition: all 0.3s ease-out;
-  overflow: hidden;
+  z-index: 2;
 }
 
-/* Simplified hover effect for most clickable elements */
-a:hover, button:hover, [role="button"]:hover, .clickable:hover, 
-nav a:hover, .nav-link:hover, 
-.card:hover, .pricing-card:hover, .portfolio-item:hover, 
-.service-card:hover,
-.bg-gray-700:hover, .rounded-full:hover, span[class*="px-3"]:hover,
-[class*="hover:"]:hover {
-  transform: scale(1.03); /* Simple scale up */
-  filter: brightness(1.15); /* Slight brightness increase */
-  /* Removed complex transforms, shadows, and z-index changes */
-}
-
-/* Specific hover effect for footer dropdown (no scale) */
-[data-dropdown-menu] > div:hover {
-  filter: brightness(1.15); /* Slight brightness increase only */
-}
-
-/* Remove special bouncy animation for badges/tags, use default transition */
-.bg-gray-700, .rounded-full, span[class*="px-3"] {
-  background-color: rgba(31, 41, 55, 0.4) !important; /* Much more transparent */
-  /* transition is handled by the general rule above */
-}
-
-/* Ensure text is readable on transparent backgrounds */
-p, h1, h2, h3, h4, h5, h6, span, a, li {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
-  font-weight: 500; /* Slightly bolder for better readability */
-}
-
-/* Make heading text even more visible */
-h1, h2, h3, .text-xl, .text-2xl, .text-3xl, .text-4xl {
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.7);
+/* Stronger text emphasis for headings */
+h1, h2, h3, h4, .text-xl, .text-2xl, .text-3xl, .text-4xl {
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7);
   font-weight: 600;
 }
 
-/* Background wrapper that allows the underlying image to show through */
-.wrapper, .content-wrapper, .page-content, [class*="-wrapper"] {
-  background-color: transparent !important;
-  z-index: 1;
-}
-
-/* Improve contrast for code blocks */
-pre, code {
-  background-color: rgba(0, 0, 0, 0.7) !important; /* Slightly darker for code readability */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Removed separate subtle hover glow effect, integrated into main hover rule */
-
-/* Apply hero background via utility class that can properly handle base path in component files */
-.bg-hero-background {
-  /* The actual image will be set via inline style with base path in component files */
+/* Анимација за све интерактивне елементе - копирано из ценовника */
+a, button, [role="button"], .link, [class*="btn"], [class*="button"], [type="button"], 
+[type="submit"], input[type="button"], input[type="submit"], .nav-link, .card, 
+.clickable, [class*="hover:"], [class*="focus:"] {
+  transition: all 300ms ease-in-out !important;
   position: relative;
-}
-
-/* Override any Tailwind classes that might add backgrounds */
-.bg-transparent,
-.bg-black, 
-.bg-black\/20, 
-.bg-black\/30, 
-.bg-white\/10,
-[class*="bg-"] {
+  overflow: hidden;
+  border: 2px solid transparent;
   background-color: transparent !important;
-  /* background-image: none !important; <-- Removed this line */
 }
 
-/* Exception for glass effect elements - must be more specific than above */
-.glass-effect, 
-.backdrop-blur-md[data-dropdown-menu] div,
-header nav .backdrop-blur-sm, 
-.bg-black\/30.backdrop-blur-md {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(8px) !important;
+/* Хавер ефекти за све интерактивне елементе */
+a:hover, button:hover, [role="button"]:hover, .link:hover, [class*="btn"]:hover, 
+[class*="button"]:hover, [type="button"]:hover, [type="submit"]:hover, 
+input[type="button"]:hover, input[type="submit"]:hover, .nav-link:hover, 
+.card:hover, .clickable:hover, .hover-animate {
+  transform: scale(1.05) translateY(-3px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.3), rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)) !important;
+  z-index: 5;
+  backdrop-filter: blur(3px) !important;
 }
 
-/* Loading order optimization - critical styles first */
+/* Поправка градијента за специфичне елементе са позадином */
+a.bg-blue-600:hover, button.bg-blue-600:hover, 
+a.bg-white:hover, button.bg-white:hover, 
+a.bg-gray-700:hover, button.bg-gray-700:hover {
+  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 0.5), rgba(99, 102, 241, 0.5)) !important;
+}
+
+/* Exception for buttons that need their background color */
+.bg-blue-600, .bg-white, .bg-gray-700 {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent background */
+  backdrop-filter: blur(3px) !important; /* Add slight blur for better text contrast */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Додатни посебни стилови за истакнуте дугмиће */
+.btn-primary, .btn-cta, .cta, .highlighted {
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Basic layer definitions for Tailwind */
 @layer {
-  /* Base layer - loaded first */
   @layer base {
     html, body {
       min-height: 100vh;
       width: 100%;
-    }
-  }
-  
-  /* Layout components - loaded second */
-  @layer layout {
-    header, footer, main {
-      width: 100%;
-      position: relative; /* Ensure these are also positioned */
-      z-index: 10; /* Keep header/footer above other content if needed */
-    }
-  }
-  
-  /* Interactive elements - loaded after layout is established */
-  @layer components {
-    button, a, .interactive {
-      cursor: pointer;
     }
   }
 }

@@ -19,48 +19,51 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		{/* Ponovo ispravljena putanja za favicon */}
+		<!-- Ponovo ispravljena putanja za favicon -->
 		<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/favicon.svg'} /> 
 		<meta name="generator" content={Astro.generator} />
 
-		{/* --- SEO Meta Tags (using props) --- */}
+		<!-- SEO Meta Tags (using props) -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		{/* Updated keywords */}
+		<!-- Updated keywords -->
 		<meta name="keywords" content="izrada sajtova, web dizajn, programiranje, LogicLabs Network, web development, Astro, Tailwind CSS, Beograd, Srbija" />
 
-		{/* --- Open Graph Meta Tags (using props) --- */}
+		<!-- Open Graph Meta Tags (using props) -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
-		{/* Ponovo ispravljena putanja za OG sliku, koristeci Astro.site i base */}
+		<!-- Ponovo ispravljena putanja za OG sliku, koristeci Astro.site i base -->
 		<meta property="og:image" content={new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/images/hero-background.jpg', Astro.site).href} /> 
 		<meta property="og:image:alt" content="Moderan web dizajn i razvoj" />
 
-		{/* Google Font Import (Inter) - Added weight 800 */}
+		<!-- Google Font Import (Inter) - Added weight 800 -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-		{/* AOS CSS via CDN */}
+		<!-- AOS CSS via CDN -->
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	</head>
 	
-	<body> {/* Removed inline style */}
+	<body>
 		<slot />
 
-		{/* AOS JS via CDN and Initialization */}
+		<!-- AOS JS via CDN and Initialization -->
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script> 
 		<script>
 			// Inicijalizacija AOS-a (sada je AOS globalno dostupan zbog CDN skripte)
 			// @ts-ignore - Govorimo TS-u da ignoriše sledeću liniju jer znamo da će AOS biti globalan
-			AOS.init({ 
-				duration: 800, // Animation duration in ms
-				once: true, // Whether animation should happen only once - while scrolling down
+			document.addEventListener('DOMContentLoaded', function() {
+				if (typeof AOS !== 'undefined') {
+					AOS.init({ 
+						duration: 800, // Animation duration in ms
+						once: true, // Whether animation should happen only once - while scrolling down
+					});
+				}
 			});
 		</script>
-		{/* Removed Theme Toggle Script */}
 	</body>
 </html>
 
@@ -70,6 +73,6 @@ const {
 		margin: 0;
 		width: 100%;
 		min-height: 100%; /* Use min-height instead of height */
+		background-color: transparent !important;
 	}
-	/* Removed body background style from here */
 </style>

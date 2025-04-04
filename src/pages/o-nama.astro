@@ -3,17 +3,22 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import AboutUs from '../components/AboutUs.astro';
-import PageTitle from '../components/PageTitle.astro'; // Re-import PageTitle
-import heroImage from '/public/images/hero-background.jpg'; // Import background image
+import PageTitle from '../components/PageTitle.astro';
 
 // Define page-specific SEO data if needed
-const pageTitleSeo = "O Nama | LogicLabs Network"; // Renamed for clarity
+const pageTitleSeo = "O Nama | LogicLabs Network";
 const pageDescription = "Upoznajte naš tim i saznajte više o našoj misiji i viziji.";
-const displayTitle = "O Nama"; // Re-add displayTitle variable
-const base = import.meta.env.BASE_URL; // Add base URL variable
+const displayTitle = "O Nama";
+const base = import.meta.env.BASE_URL || ''; // Dodajemo fallback vrednost
 
-// Define style with base URL
-const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${base}${heroImage.src.startsWith('/') ? heroImage.src : '/' + heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
+// Поправка путање до позадинске слике
+const heroImagePath = '/images/hero-background.jpg'; 
+const mainStyle = {
+  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center'
+};
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
@@ -21,8 +26,8 @@ const mainStyle = `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,
   <!-- Re-add PageTitle component call -->
   <PageTitle title={displayTitle} />
   <!-- Apply background using proper inline styling with base path -->
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
-    <div class="relative z-10 container mx-auto px-6 py-12"> <!-- Add relative z-10 to content -->
+  <main class="relative bg-transparent text-white" style={mainStyle}>
+    <div class="relative z-10 container mx-auto px-6 py-12">
        <AboutUs />
     </div>
   </main>

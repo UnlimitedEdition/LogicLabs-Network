@@ -4,25 +4,29 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Services from '../components/Services.astro';
 import PageTitle from '../components/PageTitle.astro'; // Re-import PageTitle
-import heroImage from '/public/images/hero-background.jpg'; // Import background image
 
 // Define page-specific SEO data if needed
 const pageTitleSeo = "Naše Usluge | LogicLabs Network"; // Renamed for clarity
 const pageDescription = "Pregled usluga koje nudimo: izrada web sajtova, web dizajn, programiranje, održavanje i SEO optimizacija.";
 const displayTitle = "Naše Usluge"; // Re-add displayTitle variable
-const base = import.meta.env.BASE_URL; // Add base URL variable
 
-// Define style with base URL but without the overlay gradient
-const mainStyle = `background-image: url('${base}${heroImage.src.startsWith('/') ? heroImage.src : '/' + heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
+// Поправка путање до позадинске слике
+const heroImagePath = '/images/hero-background.jpg'; 
+const mainStyle = {
+  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center'
+};
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
-  {/* Re-add PageTitle component call */}
+  <!-- Re-add PageTitle component call -->
   <PageTitle title={displayTitle} /> 
-  {/* Apply background using proper inline styling with base path */}
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
-    <div class="relative z-10 container mx-auto px-6 py-12"> {/* Add relative z-10 to content */}
+  <!-- Apply background using proper inline styling with base path -->
+  <main class="relative bg-transparent text-white" style={mainStyle}>
+    <div class="relative z-10 container mx-auto px-6 py-12"> <!-- Add relative z-10 to content -->
       <Services />
     </div>
   </main>

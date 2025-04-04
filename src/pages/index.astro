@@ -28,30 +28,30 @@ const featuredProjects = [ // Copied from Portfolio.astro
   {
     id: 'inovatech-solutions',
     title: 'Korporativni Sajt "Inovatech Solutions"',
-    description: 'Moderan, responzivan sajt za fiktivnu tehnološku kompaniju...', // Shortened desc
-    imageUrl: '/images/portfolio-project-1.jpg', // Vraćena osnovna putanja
+    description: 'Moderan, responzivan sajt за fiktivnu tehnološku kompaniju...', // Shortened desc
+    imageUrl: '/images/portfolio-project-1.jpg', // Vraćена основна путанја
     liveUrl: '/portfolio/inovatech-solutions', 
   },
   {
     id: 'crafty-corner',
     title: 'E-commerce Platforma "Crafty Corner"',
-    description: 'Fiktivna online prodavnica za ručno rađene proizvode...', // Shortened desc
-    imageUrl: '/images/portfolio-project-2.jpg', // Vraćena osnovna putanja
+    description: 'Fiktivna online prodavnica за ručno rađене proizvode...', // Shortened desc
+    imageUrl: '/images/portfolio-project-2.jpg', // Vraћена основна путанја
     liveUrl: '/portfolio/crafty-corner', 
   },
   {
     id: 'bookitnow',
-    title: 'Web Aplikacija za Rezervacije "BookItNow"',
-    description: 'Fiktivni sistem za online zakazivanje termina...', // Shortened desc
-    imageUrl: '/images/portfolio-project-3.jpg', // Vraćena osnovna putanja
+    title: 'Web Aplikacija за Rezervacije "BookItNow"',
+    description: 'Fiktivni sistem за online zakazivanje termina...', // Shortened desc
+    imageUrl: '/images/portfolio-project-3.jpg', // Vraћена основна путанја
     liveUrl: '/portfolio/bookitnow', 
   },
 ];
 
-// Use a simple path for background image instead of import
-const heroImagePath = '/images/hero-background.jpg';
+// Поправка путање до позадинске слике
+const heroImagePath = '/images/hero-background.jpg'; // Додајем водећи / пре путање
 const mainStyle = {
-  backgroundImage: `url(${base + heroImagePath})`,
+  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
   backgroundAttachment: 'fixed',
   backgroundSize: 'cover',
   backgroundPosition: 'center'
@@ -61,7 +61,7 @@ const mainStyle = {
 <Layout>
   <Header />
   <!-- Apply background using proper inline styling with base path -->
-  <main class="relative bg-cover bg-center bg-fixed text-white" style={mainStyle}>
+  <main class="relative bg-transparent text-white" style={mainStyle}>
     <Hero /> <!-- Removed isHomepage prop as it's no longer needed -->
     
     <!-- Featured Services Section -->
@@ -72,10 +72,10 @@ const mainStyle = {
           {featuredServices.map(service => {
             const { IconComponent } = service; // Destructure the component
             return (
-              <a href={base + service.url} class="block bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center no-underline group"> <!-- Wrap card in link, add group class -->
+              <a href={base + service.url} class="block bg-transparent backdrop-blur-sm p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center no-underline group"> <!-- Wrap card in link, add group class -->
                 <IconComponent /> <!-- Use the imported component -->
-                <h3 class="text-xl font-semibold text-gray-700 mb-3 group-hover:text-blue-600 transition-colors duration-300">{service.title}</h3> <!-- Adjusted text color, added hover effect -->
-                <p class="text-gray-600 mb-4">{service.description}</p> <!-- Adjusted text color -->
+                <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">{service.title}</h3> <!-- Adjusted text color, added hover effect -->
+                <p class="text-gray-200 mb-4">{service.description}</p> <!-- Adjusted text color -->
                 <!-- Removed the explicit link text -->
               </a>
             );
@@ -83,7 +83,7 @@ const mainStyle = {
         </div>
         <div class="mt-12">
            <!-- Dodat base prefiks -->
-           <a href={base + '/usluge'} class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300">
+           <a href={base + '/usluge'} class="bg-transparent border-2 border-blue-400 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-900/20 transition-colors duration-300">
              Pogledajte Sve Usluge
            </a>
         </div>
@@ -96,12 +96,12 @@ const mainStyle = {
         <h2 class="text-3xl font-bold text-white mb-8">Istaknuti Projekti</h2> <!-- Changed text-gray-800 to text-white -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
            {featuredProjects.map((project, index) => (
-            <a href={base + project.liveUrl} class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 no-underline group" data-aos="fade-up" data-aos-delay={index * 100}> <!-- Wrap card in link, add group class -->
+            <a href={base + project.liveUrl} class="block bg-transparent backdrop-blur-sm rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 no-underline group" data-aos="fade-up" data-aos-delay={index * 100}> <!-- Wrap card in link, add group class -->
               <!-- Dodat base prefiks -->
               <img src={base + project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/> 
-              <div class="p-6 bg-black/20 rounded-b-lg"> <!-- Added subtle background to card text area -->
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">{project.title}</h3> <!-- Adjusted text color, added hover effect -->
-                <p class="text-gray-600 text-sm mb-4">{project.description}</p> <!-- Adjusted text color -->
+              <div class="p-6 rounded-b-lg"> <!-- Added subtle background to card text area -->
+                <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">{project.title}</h3> <!-- Adjusted text color, added hover effect -->
+                <p class="text-gray-200 text-sm mb-4">{project.description}</p> <!-- Adjusted text color -->
                 <!-- Removed the explicit link text -->
               </div>
             </a>
@@ -109,7 +109,7 @@ const mainStyle = {
         </div>
          <div class="mt-12">
            <!-- Dodat base prefiks -->
-           <a href={base + '/portfolio'} class="bg-gray-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
+           <a href={base + '/portfolio'} class="bg-transparent border-2 border-gray-400 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-900/20 transition-colors duration-300">
              Pogledajte Ceo Portfolio
            </a>
         </div>
@@ -120,9 +120,9 @@ const mainStyle = {
     <section class="py-20"> <!-- Removed background gradient -->
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-3xl font-bold text-white mb-4">Spremni da Započnemo Vaš Projekat?</h2> <!-- Ensured text is white -->
-        <p class="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">Kontaktirajte nas danas da razgovaramo o Vašim idejama i kako možemo pomoći da ih ostvarite.</p> <!-- Adjusted text color -->
+        <p class="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">Kontaktirajte нас данас да разговарамо о Вашим идејама и како можемо помоћи да их остварите.</p> <!-- Adjusted text color -->
         <!-- Dodat base prefiks -->
-        <a href={base + '/kontakt'} class="bg-white text-blue-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300">
+        <a href={base + '/kontakt'} class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white/10 transition-colors duration-300">
           Zatražite Ponudu
         </a>
       </div>
