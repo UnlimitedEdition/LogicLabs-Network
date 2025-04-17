@@ -12,8 +12,8 @@
       <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0" data-aos="fade-left">
         <h3 class="text-2xl font-semibold text-white mb-6">Kontakt Informacije</h3> {/* Changed text-gray-800 to text-white */}
         <div class="space-y-4 text-gray-200"> {/* Changed text-gray-700 to text-gray-200 */}
-          <p><strong>Adresa:</strong> Trg Inovacija 1, 11070 Novi Beograd</p> {/* Changed to an attractive fictional address */}
-          <p><strong>Telefon:</strong> <a href="tel:+381677275144" class="hover:text-blue-300"> 0677275144</a></p> {/* Updated phone number and link */}
+          <p><strong>Adresa:</strong> Novi Beograd</p> {/* Changed to an attractive fictional address */}
+          <p><strong>Telefon:</strong> <a href="tel:+381677275144" class="hover:text-blue-300"> +381677275144</a></p> {/* Updated phone number and link */}
           <p><strong>Email:</strong> <a href="mailto:mtosic0450@gmail.com" class="hover:text-blue-300"> mtosic0450@gmail.com</a></p> {/* Updated email and link */}
         </div>
         <div class="mt-8">
@@ -41,47 +41,40 @@
       </div>
 
       {/* Column for button and form */}
-      <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0 text-center lg:text-left">
-        {/* Button to reveal form */}
-        <div id="reveal-form-button-container" data-aos="fade-right">
-            {/* Added hover scale, translate, and color animation from pricing cards */}
-            <button id="reveal-form-button" class="bg-transparent text-white px-6 py-3 rounded font-semibold border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 mb-8 hover:scale-105 hover:-translate-y-1">
-            Želite da nas pitate za saradnju ili imate pitanje?
-            </button>
-        </div>
-
-        {/* Contact Form - Initially hidden */}
-        <div id="contact-form-wrapper" class="hidden" data-aos="fade-right" data-aos-delay="100">
-          {/* Added hover color animation from pricing cards, changed base bg, added group class */}
-          <div class="bg-white/90 p-8 rounded-lg shadow-md border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 group">
-            <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-white mb-6 transition-colors duration-300">Pošaljite nam poruku</h3> {/* Added group-hover text color */}
-            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-              {/* Hidden input for Netlify form name */}
-              <input type="hidden" name="form-name" value="contact" />
-              {/* Honeypot field */}
-              <p class="hidden">
-                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-              </p>
-              {/* Form Fields */}
-              <div class="mb-4">
-                <label for="name" class="block text-gray-700 group-hover:text-gray-200 font-medium mb-2 transition-colors duration-300">Ime</label> {/* Added group-hover text color */}
-                <input type="text" id="name" name="name" required autocomplete="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div class="mb-4">
-                <label for="email" class="block text-gray-700 group-hover:text-gray-200 font-medium mb-2 transition-colors duration-300">Email</label> {/* Added group-hover text color */}
-                <input type="email" id="email" name="email" required autocomplete="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
-              </div>
-              <div class="mb-6">
-                <label for="message" class="block text-gray-700 group-hover:text-gray-200 font-medium mb-2 transition-colors duration-300">Poruka</label> {/* Added group-hover text color */}
-                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-              </div>
-              {/* Submit button style might need adjustment if form background changes drastically on hover */}
-              <button type="submit" class="bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-opacity duration-300">
-                Pošalji Poruku
-              </button>
-            </form>
+      <div class="bg-white/90 p-8 rounded-lg shadow-md border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 group">
+        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-white mb-6 transition-colors duration-300">Pošaljite nam poruku</h3>
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+          </p>
+          
+          {/* Polja sa solid pozadinom */}
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 group-hover:text-white font-medium mb-2 transition-colors duration-300">Ime</label>
+            <input type="text" id="name" name="name" required autocomplete="name" 
+                   class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white group-hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
-        </div>
+          
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 group-hover:text-white font-medium mb-2 transition-colors duration-300">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" 
+                   class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white group-hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+          
+          <div class="mb-6">
+            <label for="message" class="block text-gray-700 group-hover:text-white font-medium mb-2 transition-colors duration-300">Poruka</label>
+            <textarea id="message" name="message" rows="5" required 
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white group-hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          </div>
+      
+          {/* Kontakt dugme sa boljim kontrastom */}
+          <button type="submit" 
+                  class="bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-all duration-300 group-hover:bg-indigo-700 group-hover:scale-105">
+            Pošalji Poruku
+          </button>
+        </form>
+      </div>
       </div>
 
     </div>

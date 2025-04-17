@@ -12,21 +12,14 @@ const displayTitle = "Naše Usluge"; // Re-add displayTitle variable
 
 // Поправка путање до позадинске слике
 const heroImagePath = '/images/hero-background.jpg'; 
-const mainStyle = {
-  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
-  backgroundAttachment: 'fixed',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center'
-};
+const mainStyle = undefined; // Uklanjam nepotrebnu promenljivu
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
-  <!-- Re-add PageTitle component call -->
   <PageTitle title={displayTitle} /> 
-  <!-- Apply background using proper inline styling with base path -->
-  <main class="relative bg-transparent text-white" style={mainStyle}>
-    <div class="relative z-10 container mx-auto px-6 py-12"> <!-- Add relative z-10 to content -->
+  <main class="relative bg-cover bg-center bg-fixed text-white"> <!-- Koristim Tailwind klase -->
+    <div class="relative z-10 container mx-auto px-6 py-12"> <!-- Zadržavam sadržaj -->
       <Services />
     </div>
   </main>

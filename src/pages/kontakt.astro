@@ -11,23 +11,13 @@ const pageDescription = "Kontaktirajte nas putem forme ili pronađite naše kont
 const displayTitle = "Kontaktirajte Nas";
 const base = import.meta.env.BASE_URL || ''; // Dodajemo fallback vrednost
 
-// Поправка путање до позадинске слике
-const heroImagePath = '/images/hero-background.jpg'; 
-const mainStyle = {
-  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
-  backgroundAttachment: 'fixed',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center'
-};
+const mainStyle = undefined; // Uklanjam inline stilove za pozadinsku sliku
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
-  <!-- Added PageTitle component -->
   <PageTitle title={displayTitle} subtitle={pageDescription} />
-  <!-- Apply background using proper inline styling with base path -->
-  <main class="relative pt-0 pb-12 bg-transparent text-white" style={mainStyle}>
-    <!-- Contact component now sits directly inside main without extra padding -->
+  <main class="relative pt-0 pb-12 bg-cover bg-center bg-fixed text-white"> <!-- Koristim Tailwind klase -->
     <Contact /> 
   </main>
   <Footer />

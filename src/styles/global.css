@@ -9,20 +9,23 @@ body {
   background-color: #121212; /* Dark fallback */
   color: white;
   position: relative;
+  background-image: url('/LogicLabs-Network/images/hero-background.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 /* Make all containers and elements transparent */
 div, section, article, aside, header, footer, main, nav, .container, .wrapper,
 [class*="bg-"], [class*="card"], [class*="container"], [class*="wrapper"],
 [class*="section"], [class*="rounded"], [class*="shadow"] {
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-  background-image: none !important;
+  background-color: transparent ;
+  \ackground-image: none ;
 }
 
 /* Enhanced text styling with transparent background and better readability */
 p, h1, h2, h3, h4, h5, h6, span, a, li, button, label, input, textarea, select, strong, em, b, i {
-  background-color: transparent !important;
+  background-color: transparent ;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 2;
@@ -38,11 +41,11 @@ h1, h2, h3, h4, .text-xl, .text-2xl, .text-3xl, .text-4xl {
 a, button, [role="button"], .link, [class*="btn"], [class*="button"], [type="button"], 
 [type="submit"], input[type="button"], input[type="submit"], .nav-link, .card, 
 .clickable, [class*="hover:"], [class*="focus:"] {
-  transition: all 300ms ease-in-out !important;
+  transition: all 300ms ease-in-out ;
   position: relative;
   overflow: hidden;
   border: 2px solid transparent;
-  background-color: transparent !important;
+  background-color: transparent ;
 }
 
 /* Хавер ефекти за све интерактивне елементе */
@@ -50,31 +53,31 @@ a:hover, button:hover, [role="button"]:hover, .link:hover, [class*="btn"]:hover,
 [class*="button"]:hover, [type="button"]:hover, [type="submit"]:hover, 
 input[type="button"]:hover, input[type="submit"]:hover, .nav-link:hover, 
 .card:hover, .clickable:hover, .hover-animate {
-  transform: scale(1.05) translateY(-3px) !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2) !important;
-  border-color: rgba(99, 102, 241, 0.5) !important;
-  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.3), rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)) !important;
+  transform: scale(1.05) translateY(-3px) ;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2) ;
+  border-color: rgba(99, 102, 241, 0.5) ;
+  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.3), rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)) ;
   z-index: 5;
-  backdrop-filter: blur(3px) !important;
+  backdrop-filter: blur(3px) ;
 }
 
 /* Поправка градијента за специфичне елементе са позадином */
 a.bg-blue-600:hover, button.bg-blue-600:hover, 
 a.bg-white:hover, button.bg-white:hover, 
 a.bg-gray-700:hover, button.bg-gray-700:hover {
-  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 0.5), rgba(99, 102, 241, 0.5)) !important;
+  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 0.5), rgba(99, 102, 241, 0.5)) ;
 }
 
 /* Exception for buttons that need their background color */
 .bg-blue-600, .bg-white, .bg-gray-700 {
-  background-color: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent background */
-  backdrop-filter: blur(3px) !important; /* Add slight blur for better text contrast */
+  background-color: rgba(255, 255, 255, 0.1) ; /* Semi-transparent background */
+  backdrop-filter: blur(3px) ; /* Add slight blur for better text contrast */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Додатни посебни стилови за истакнуте дугмиће */
 .btn-primary, .btn-cta, .cta, .highlighted {
-  border-color: rgba(99, 102, 241, 0.3) !important;
+  border-color: rgba(12, 15, 238, 0.3) ;
 }
 
 /* Basic layer definitions for Tailwind */

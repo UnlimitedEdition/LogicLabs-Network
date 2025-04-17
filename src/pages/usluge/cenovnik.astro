@@ -3,27 +3,20 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import PageTitle from '../../components/PageTitle.astro'; // Import PageTitle
-import heroImage from '/public/images/hero-background.jpg'; // Import background image
 
 const pageTitleSeo = `Cenovnik | Usluge | LogicLabs Network`; // Renamed for clarity
 const pageDescription = "Pregled cena za naše pakete izrade web sajtova, SEO, aplikacija, dizajna i održavanja.";
 const displayTitle = "Cenovnik Usluga"; // Added display title for PageTitle
-// Removed textShadow variable as it's now a Tailwind class
-// const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
 
 const base = import.meta.env.BASE_URL; // Define base BEFORE packages array
-// Removed duplicate heroImage import
-
-// Define style with base URL but without the overlay gradient
-const mainStyle = `background-image: url('${base}${heroImage.src.startsWith('/') ? heroImage.src : '/' + heroImage.src}'); background-attachment: fixed; background-size: cover; background-position: center;`;
 
 // Define ALL packages again
 const packages = [
   // Web Development
   {
     title: "Statički web sajt",
-    price: "20.000",
-    currency: "dinara",
+    price: "150",
+    currency: "Eura",
     detailUrl: base + "/usluge/izrada-web-sajtova", // Add base prefix
     features: [
       "Statički web sajt (HTML, CSS, JS)",
@@ -37,8 +30,8 @@ const packages = [
   },
   {
     title: "Dinamički web sajt",
-    price: "25.000",
-    currency: "dinara",
+    price: "200",
+    currency: "Eura",
     detailUrl: base + "/usluge/dinamicki-web-sajt", // Add base prefix
     features: [
       "WordPress CMS",
@@ -51,8 +44,8 @@ const packages = [
   },
   {
     title: "Dinamički web sajt (Pro)",
-    price: "40.000",
-    currency: "dinara",
+    price: "350",
+    currency: "Eura",
     detailUrl: base + "/usluge/dinamicki-web-sajt-pro", // Add base prefix
     features: [
       "WordPress CMS",
@@ -70,8 +63,8 @@ const packages = [
   },
    {
     title: "Internet prodavnica",
-    price: "45.000",
-    currency: "dinara",
+    price: "400",
+    currency: "Eura",
     detailUrl: base + "/usluge/internet-prodavnica", // Add base prefix
     features: [
       "Grafičko rešenje prilagođeno korisniku",
@@ -85,7 +78,7 @@ const packages = [
   // SEO Packages
   {
     title: "Osnovna SEO Analiza",
-    price: "250",
+    price: "150",
     currency: "Eura",
     detailUrl: base + "/usluge/seo-optimizacija", // Add base prefix
     features: [
@@ -98,7 +91,7 @@ const packages = [
   },
     {
     title: "Mesečni SEO (Osnovni)",
-    price: "150",
+    price: "100",
     currency: "Eura/mes",
     detailUrl: base + "/usluge/seo-optimizacija", // Add base prefix
     features: [
@@ -111,7 +104,7 @@ const packages = [
   },
   {
     title: "Mesečni SEO (Napredni)",
-    price: "300",
+    price: "200",
     currency: "Eura/mes",
     detailUrl: base + "/usluge/seo-optimizacija", // Add base prefix
     features: [
@@ -264,9 +257,9 @@ const packages = [
   <Header />
   {/* Added PageTitle component - Removed breadcrumbs prop */}
   <PageTitle title={displayTitle} />
-  {/* Apply background using proper inline styling with base path */}
+  {/* Apply background using proper inline styling */}
   {/* Removed py-12 from main, added pt-0 to avoid double padding with PageTitle */}
-  <main class="relative pt-0 pb-12 bg-cover bg-center bg-fixed text-white" style={mainStyle}> 
+  <main class="relative pt-0 pb-12 bg-cover bg-center bg-fixed text-white"> 
     <div class="relative z-10 container mx-auto px-6"> {/* Add relative z-10 to content */}
       {/* Removed h1 as it's now in PageTitle */}
       {/* Pricing Cards - Using Flexbox for automatic wrapping */}

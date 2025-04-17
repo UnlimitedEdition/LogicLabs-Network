@@ -1,110 +1,211 @@
 ---
-// Importuj slike članova tima
-import teamMember1 from '/public/images/team-member-1.jpg';
-import teamMember2 from '/public/images/team-member-2.jpg';
-import teamMember3 from '/public/images/team-member-3.jpg';
-// Napomena: Koristimo iste slike kao placeholdere, ali importujemo ih ispravno
+// Dobavi bazni URL
+const base = import.meta.env.BASE_URL || "";
 
-// Podaci o timu - Hijerarhijski organizovani
+// Putanje do slika članova tima sa baznim URL-om
+const teamMember1Url = `${base}/images/team-member-1.jpg`;
+const teamMember2Url = `${base}/images/team-member-2.jpg`;
+const teamMember3Url = `${base}/images/team-member-3.jpg`;
+const teamMember4Url = `${base}/images/team-member-4.jpg`;
+const teamMember5Url = `${base}/images/team-member-5.jpg`;
+const teamMember6Url = `${base}/images/team-member-6.jpg`;
+const teamMember7Url = `${base}/images/team-member-7.jpg`;
+const teamMember8Url = `${base}/images/team-member-8.jpg`;
+const teamMember9Url = `${base}/images/team-member-9.jpg`;
+const teamMember10Url = `${base}/images/team-member-10.jpg`;
+
+// Podaci o timu - Struktura 1-3-3-3 sa detaljnijim biografijama
 const teamHierarchy = [
-  // Nivo 1: Osnivač
+  // Nivo 1 (1 član): Vođstvo
   [
-    { 
-      name: 'Milan Tošić', 
-      role: 'Osnivač & CEO', 
-      imageUrl: teamMember1.src, // Koristi importovanu sliku
-      bio: 'Vizionar sa dubokim tehničkim znanjem, Milan vodi tim ka inovacijama i izvrsnosti. Njegova strast leži u rešavanju kompleksnih izazova i kreiranju digitalnih proizvoda koji ne samo da ispunjavaju, već i premašuju očekivanja klijenata.' 
-    }
+    { id: 1, name: 'Milan Tošić', role: 'Osnivač & CEO (Strategija)', imageUrl: teamMember1Url, bio: 'Kao osnivač i glavni izvršni direktor, Milan je pokretačka snaga iza vizije LogicLabs Network. Sa više od decenije iskustva u softverskoj industriji, on kombinuje duboko tehničko znanje sa strateškim razmišljanjem kako bi usmerio kompaniju ka inovacijama i rastu. Njegova strast leži u rešavanju kompleksnih poslovnih izazova kroz tehnologiju, stvarajući digitalne proizvode koji ne samo da ispunjavaju, već i prevazilaze očekivanja klijenata. Milan aktivno učestvuje u ključnim projektima, pružajući mentorstvo timu i osiguravajući da svako rešenje bude u skladu sa najvišim standardima kvaliteta i efikasnosti.' }
   ],
-  // Nivo 2: Menadžment/Lead
+  // Nivo 2 (3 člana): Menadžment i Lideri
   [
-    { 
-      name: 'Ana Petrović', 
-      role: 'Projekt Menadžer', 
-      imageUrl: teamMember2.src, // Koristi importovanu sliku
-      bio: 'Organizovana i proaktivna, Ana osigurava da projekti teku glatko, na vreme i u okviru budžeta.' 
-    },
-    { 
-      name: 'Jelena Marković', 
-      role: 'Tehnički Lead (Backend)', 
-      imageUrl: teamMember3.src, // Koristi importovanu sliku
-      bio: 'Sa fokusom na skalabilnost i sigurnost, Jelena vodi razvoj robusnih serverskih arhitektura.' 
-    }
+    { id: 2, name: 'Ana Petrović', role: 'Projekt Menadžer (Koordinacija)', imageUrl: teamMember2Url, bio: 'Ana je srce organizacije naših projekata. Kao iskusni projekt menadžer, ona vešto balansira između zahteva klijenata, resursa tima i rokova. Koristeći najbolje prakse agilnog upravljanja, Ana osigurava da svaki projekat teče glatko, od početne faze planiranja do finalne испоруке. Njene izvanredne komunikacione veštine, sposobnost predviđanja i upravljanja rizicima, kao i posvećenost transparentnosti, čine je ključnom figurom za uspešnu saradnju i postizanje izvanrednih rezultata.' },
+    { id: 5, name: 'Stefan Ilić', role: 'UI/UX Dizajn Lead (Dizajn)', imageUrl: teamMember2Url, bio: 'Stefan je kreativni um koji stoji iza vizuelnog identiteta i korisničkog iskustva naših proizvoda. Kao vodeći UI/UX dizajner, on pretvara ideje i potrebe korisnika u intuitivne, estetski privlačne i funkcionalne digitalne interfejse. Kroz detaljno istraživanje tržišta i korisnika, izradu wireframe-ova, interaktivnih prototipova i sofisticiranih dizajn sistema, Stefan osigurava da svaki piksel bude na svom mestu i da svaka interakcija bude logična i prijatna. Njegova posvećenost detaljima i praćenje najnovijih trendova u dizajnu garantuju vrhunski kvalitet.' },
+    { id: 3, name: 'Jelena Marković', role: 'Tehnički Lead (Backend Arhitektura)', imageUrl: teamMember3Url, bio: 'Jelena je stub naše backend ekspertize. Kao tehnički lider, ona je odgovorna za dizajn i implementaciju robusnih, skalabilnih i sigurnih serverskih arhitektura. Sa dubokim poznavanjem tehnologija kao što su Node.js, Python, različitih baza podataka (SQL i NoSQL) i mikroservisnih arhitektura, Jelena vodi tim u izgradnji složenih API-ja i sistema koji pokreću naše aplikacije. Njen fokus na čist, održiv kod, performanse i sigurnosne aspekte je od ključnog značaja za dugoročnu stabilnost i uspeh naših projekata.' }
   ],
-  // Nivo 3: Seniori/Specijalisti
+  // Nivo 3 (3 člana): Senior Razvoj i Kvalitet
   [
-    { 
-      name: 'Nikola Jovanović', 
-      role: 'Senior Frontend Developer', 
-      imageUrl: teamMember1.src, // Koristi importovanu sliku (placeholder)
-      bio: 'Majstor za korisničke interfejse, Nikola pretvara dizajn u interaktivna web iskustva.' 
-    },
-    { 
-      name: 'Stefan Ilić', 
-      role: 'UI/UX Dizajn Lead', 
-      imageUrl: teamMember2.src, // Koristi importovanu sliku (placeholder)
-      bio: 'Kreativni um tima, Stefan je odgovoran za vizuelno privlačne i korisnički orijentisane dizajne.' 
-    },
-    { 
-      name: 'Marija Đorđević', 
-      role: 'QA Inženjer', 
-      imageUrl: teamMember3.src, // Koristi importovanu sliku (placeholder)
-      bio: 'Marijino oštro oko za detalje garantuje da svaki proizvod zadovoljava najviše standarde kvaliteta.' 
-    }
+    { id: 4, name: 'Nikola Jovanović', role: 'Senior Frontend Developer (Implementacija UI)', imageUrl: teamMember1Url, bio: 'Nikola je majstor za oživljavanje dizajna kroz kod. Kao senior frontend developer, on poseduje izuzetnu veštinu u pretvaranju UI/UX koncepata u funkcionalne, responzivne i performantne korisničke interfejse. Sa bogatim iskustvom u radu sa modernim JavaScript frejmvorkcima i bibliotekama (React, Vue, Astro), kao i dubokim razumevanjem HTML-a, CSS-a i veb standarda, Nikola kreira besprekorna digitalna iskustva. Posebnu pažnju posvećuje optimizaciji brzine učitavanja, kompatibilnosti sa različitim pregledačima i pristupačnosti (accessibility).' },
+    { id: 10, name: 'Marko Stojanović', role: 'DevOps Inženjer (Infrastruktura)', imageUrl: teamMember1Url, bio: 'Marko je čuvar naše infrastrukture i procesa isporuke softvera. Kao DevOps inženjer, on je odgovoran za automatizaciju izgradnje, testiranja i postavljanja aplikacija, koristeći najsavremenije CI/CD alate i prakse. Upravljajući cloud okruženjima (AWS, Azure, Google Cloud) i tehnologijama za kontejnerizaciju (Docker, Kubernetes), Marko osigurava da naša infrastruktura bude skalabilna, pouzdana i sigurna. Njegov rad omogućava razvojnom timu da brzo i efikasno isporučuje nove funkcionalnosti.' },
+    { id: 6, name: 'Marija Đorđević', role: 'QA Inženjer (Kontrola Kvaliteta)', imageUrl: teamMember3Url, bio: 'Marija je naš garant kvaliteta. Kao posvećeni QA inženjer, njeno oštro oko za detalje i metodičan pristup testiranju osiguravaju da svaki proizvod koji napusti našu radionicu bude bez grešaka i u skladu sa najvišim standardima. Ona razvija sveobuhvatne test planove, izvršava manuelna i automatizovana testiranja (koristeći alate poput Selenium-a i Cypress-a), i blisko sarađuje sa developerima na identifikaciji i otklanjanju problema. Njena uloga je ključna za isporuku pouzdanih i kvalitetnih rešenja.' }
   ],
-  // Nivo 4: Juniori/Podrška
+  // Nivo 4 (3 člana): Podrška i Specijalizacije
   [
-    { 
-      name: 'Sofija Simić', 
-      role: 'Junior Web Developer', 
-      imageUrl: teamMember1.src, // Koristi importovanu sliku (placeholder)
-      bio: 'Entuzijastična i željna učenja, Sofija doprinosi razvoju projekata pod mentorstvom.' 
-    },
-    { 
-      name: 'Luka Pavlović', 
-      role: 'Marketing Specijalista', 
-      imageUrl: teamMember2.src, // Koristi importovanu sliku (placeholder)
-      bio: 'Luka pomaže klijentima da dosegnu pravu publiku kroz efikasne digitalne strategije.' 
-    }
+    { id: 7, name: 'Sofija Simić', role: 'Junior Web Developer (Podrška Razvoju)', imageUrl: teamMember1Url, bio: 'Sofija je mlada nada našeg razvojnog tima. Kao junior veb developer, ona sa entuzijazmom upija znanje i aktivno doprinosi projektima pod mentorstvom senior kolega. Brzo usvaja nove tehnologije i veštine, pomažući u implementaciji kako frontend, tako i backend zadataka. Njena posvećenost, želja za učenjem i timski duh čine je vrednim članom tima sa velikim potencijalom za rast.' },
+    { id: 9, name: 'Ivana Kostić', role: 'Content Creator (Sadržaj)', imageUrl: teamMember3Url, bio: 'Ivana je glas našeg brenda i naših klijenata. Kao kreator sadržaja, ona je zadužena za osmišljavanje i pisanje angažujućeg i informativnog sadržaja – od blog postova i studija slučaja do tekstova za veb sajtove i društvene mreže. Sa razumevanjem SEO principa i sposobnošću da prilagodi ton komunikacije različitim publikama, Ivana pomaže u izgradnji vidljivosti, privlačenju potencijalnih klijenata i jasnom predstavljanju vrednosti koju pružamo.' },
+    { id: 8, name: 'Luka Pavlović', role: 'Marketing Specijalista (Promocija)', imageUrl: teamMember2Url, bio: 'Luka je strateg koji stoji iza našeg digitalnog prisustva i uspeha naših klijenata na mreži. Kao marketing specijalista, on koristi svoje duboko poznavanje različitih digitalnih kanala (SEO, SEM, društvene mreže, email marketing) za kreiranje i sprovođenje efikasnih kampanja. Analizirajući tržišne trendove, podatke o performansama (Google Analytics) i ponašanju korisnika, Luka razvija strategije koje povećavaju vidljivost, generišu potencijalne klijente i doprinose rastu poslovanja.' }
   ]
 ];
 
-// TODO: Zamenite ovaj generički tekst stvarnom misijom i vizijom vaše kompanije/tima
 const missionVisionText = "Posvećeni smo kreiranju inovativnih i efikasnih digitalnih rešenja koja pokreću rast naših klijenata. Naša vizija je da budemo prepoznati kao lideri u industriji, postavljajući standarde kvaliteta i korisničkog iskustva.";
-// Removed textShadow variable as it's now a Tailwind class
-// const textShadow = 'text-shadow: 0 1px 3px rgba(0,0,0,0.4);'; 
+
+// Podaci koji će biti prosleđeni skripti
+const teamDataForScript = teamHierarchy.flat();
 ---
 
-{/* Removed bg-white from section */}
-<section id="o-nama" class="py-16 transition-colors duration-300">
+<section id="o-nama" class="py-16 transition-colors duration-300 overflow-hidden"> {/* Dodajemo overflow-hidden */}
   <div class="container mx-auto px-6">
-    {/* Removed h2 title as it's now handled by PageTitle component */}
-
-    {/* Removed background from Mission/Vision, changed text color, added shadow class */}
     <div class="text-center mb-12 max-w-3xl mx-auto" data-aos="fade-right">
-      <h3 class="text-2xl font-semibold text-white mb-4 text-shadow-sm">Naša Misija i Vizija</h3> {/* Added text-shadow-sm */}
-      <p class="text-gray-200 leading-relaxed text-shadow-sm"> {/* Added text-shadow-sm */}
+      <h3 class="text-2xl font-semibold text-white mb-4 text-shadow-sm">Naša Misija i Vizija</h3>
+      <p class="text-gray-200 leading-relaxed text-shadow-sm">
         {missionVisionText}
       </p>
     </div>
 
-    {/* Zadržan originalni naslov sekcije */}
-    <h3 class="text-2xl font-semibold text-center text-white mb-12 text-shadow-sm" data-aos="fade-left">Upoznajte Naš Tim</h3> {/* Added text-shadow-sm */}
-    {/* Piramidalna struktura koristeći Flexbox */}
-    <div class="flex flex-col items-center space-y-10"> {/* Glavni kontejner za nivoe */}
-      {teamHierarchy.map((level, levelIndex) => (
-        <div class={`flex justify-center flex-wrap gap-8 md:gap-12 lg:gap-16 w-full ${levelIndex === 0 ? 'max-w-xs' : ''} ${levelIndex === 1 ? 'max-w-xl' : ''} ${levelIndex === 2 ? 'max-w-4xl' : ''} ${levelIndex === 3 ? 'max-w-2xl' : ''}`}> {/* Malo prilagođena širina za nivo 4 */}
-          {level.map((member, memberIndex) => (
-            <div class="p-4 rounded-lg text-center max-w-xs flex flex-col items-center" data-aos="fade-up" data-aos-delay={(levelIndex * 3 + memberIndex) * 50}> {/* Povećana širina kartice na max-w-xs */}
-              {/* TODO: Proverite da li 'alt' atribut adekvatno opisuje sliku i da li je putanja tačna */}
-              <img src={member.imageUrl} alt={member.name} class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-3 object-cover border-4 border-white shadow-md"/> {/* Manja slika */}
-              <h4 class="text-lg font-semibold text-white mb-1 text-shadow-sm">{member.name}</h4> {/* Added text-shadow-sm */}
-              <p class="text-indigo-200 text-sm mb-2 text-shadow-sm">{member.role}</p> {/* Added text-shadow-sm */}
-              <p class="text-gray-300 text-sm leading-relaxed text-shadow-sm">{member.bio}</p> {/* Added text-shadow-sm */}
-            </div>
-          ))}
+    <h3 class="text-2xl font-semibold text-center text-white mb-12 text-shadow-sm" data-aos="fade-left">Upoznajte Naš Tim</h3>
+
+    {/* Glavni kontejner za split-screen */}
+    <div id="team-split-container" class="relative flex w-full transition-transform duration-500 ease-in-out">
+
+      {/* Kontejner za timsku mrežu */}
+      <div id="team-grid-container" class="w-full transition-all duration-500 ease-in-out flex-shrink-0">
+        <div class="flex flex-col items-center space-y-10">
+          {teamHierarchy.map((level, levelIndex) => {
+            // Koristimo Grid za redove sa 3 člana, Flex za red sa 1 članom
+            // Uklanjamo max-w-5xl iz grid-a da bismo poboljšali poravnanje
+            const layoutClass = levelIndex === 0 
+              ? 'flex justify-center max-w-xs mx-auto' 
+              : 'grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 w-full mx-auto place-items-center'; 
+
+            return (
+              <div class={`${layoutClass}`}>
+                {level.map((member, memberIndex) => (
+                  <div 
+                    class="p-4 rounded-lg text-center max-w-xs flex flex-col items-center cursor-pointer hover:scale-105 transition-transform duration-200 team-member-card"
+                    data-aos="fade-up"
+                    data-aos-delay={(levelIndex * 3 + memberIndex) * 50}
+                    data-member-id={member.id}
+                  >
+                    <img 
+                      src={member.imageUrl} 
+                      alt={member.name} 
+                      class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-3 object-cover border-4 border-white shadow-md pointer-events-none" 
+                    />
+                    <div class="pointer-events-none"> 
+                      <h4 class="text-lg font-semibold text-white mb-1 text-shadow-sm">{member.name}</h4>
+                      <p class="text-indigo-200 text-sm mb-2 text-shadow-sm">{member.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
-      ))}
-    </div>
+      </div>
+
+      {/* Panel za detalje člana (inicijalno van ekrana) */}
+      <div id="member-details-panel" class="absolute top-0 right-0 h-auto md:h-full w-full md:w-1/2 bg-gray-800 bg-opacity-95 backdrop-blur-sm shadow-2xl p-8 md:p-12 text-white transition-transform duration-500 ease-in-out transform translate-x-full overflow-y-auto"> {/* Počinje van ekrana desno */}
+          <button id="details-close-button" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors" aria-label="Zatvori detalje">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div id="details-body" class="flex flex-col items-center text-center pt-8">
+            <img id="details-img" src="" alt="" class="w-32 h-32 rounded-full mb-6 object-cover border-4 border-indigo-300 shadow-lg"/>
+            <h3 id="details-name" class="text-3xl font-bold mb-2"></h3>
+            <p id="details-role" class="text-indigo-300 text-xl mb-6"></p>
+            <p id="details-bio" class="text-gray-300 leading-relaxed text-left max-w-md"></p> {/* Levo poravnanje za bolju čitljivost */}
+          </div>
+      </div>
+
+    </div> {/* Kraj team-split-container */}
   </div>
 </section>
+
+<script define:vars={{ teamData: teamDataForScript }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const splitContainer = document.getElementById('team-split-container');
+    const gridContainer = document.getElementById('team-grid-container');
+    const detailsPanel = document.getElementById('member-details-panel');
+    const detailsCloseButton = document.getElementById('details-close-button');
+    const detailsImg = document.getElementById('details-img');
+    const detailsName = document.getElementById('details-name');
+    const detailsRole = document.getElementById('details-role');
+    const detailsBio = document.getElementById('details-bio');
+    const memberCards = document.querySelectorAll('.team-member-card');
+
+    let selectedMember = null;
+    let isPanelOpen = false;
+
+    function findMemberById(id) {
+      return teamData.find(m => m.id === parseInt(id, 10));
+    }
+
+    function openDetailsPanel(memberId) {
+      selectedMember = findMemberById(memberId);
+      if (!selectedMember) return;
+
+      // Popuni panel
+      detailsImg.src = selectedMember.imageUrl;
+      detailsImg.alt = selectedMember.name;
+      detailsName.textContent = selectedMember.name;
+      detailsRole.textContent = selectedMember.role;
+      detailsBio.textContent = selectedMember.bio;
+
+      // Animiraj otvaranje
+      // Pomeri grid ulevo (na manjim ekranima će se sakriti)
+      gridContainer.classList.add('-translate-x-full', 'md:-translate-x-0', 'md:w-1/2'); 
+      gridContainer.classList.remove('w-full');
+      // Pomeri panel u vidljivo polje
+      detailsPanel.classList.remove('translate-x-full');
+      detailsPanel.classList.add('translate-x-0');
+
+      isPanelOpen = true;
+    }
+
+    function closeDetailsPanel() {
+      if (!isPanelOpen) return;
+
+       // Animiraj zatvaranje
+      gridContainer.classList.remove('-translate-x-full', 'md:-translate-x-0', 'md:w-1/2');
+      gridContainer.classList.add('w-full');
+      detailsPanel.classList.remove('translate-x-0');
+      detailsPanel.classList.add('translate-x-full');
+
+      selectedMember = null;
+      isPanelOpen = false;
+    }
+
+    // Dodaj event listener-e za kartice članova
+    memberCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const memberId = card.dataset.memberId;
+        if (memberId) {
+          // Ako je panel otvoren i kliknuto na istog člana, zatvori ga
+          if (isPanelOpen && selectedMember && selectedMember.id === parseInt(memberId, 10)) {
+             // Ovo ponašanje nije eksplicitno traženo, ali može biti intuitivno.
+             // Trenutno ćemo samo otvoriti ponovo (ili ostaviti otvoreno).
+             // Ako želite da se zatvori, ovde bi išao poziv closeDetailsPanel();
+             // Za sada, samo osiguravamo da se otvori ako nije otvoren ili ako je drugi član
+             if (!isPanelOpen || (selectedMember && selectedMember.id !== parseInt(memberId, 10))) {
+                 openDetailsPanel(memberId);
+             }
+          } else {
+             openDetailsPanel(memberId); // Otvori za novog člana
+          }
+        }
+      });
+    });
+
+    // Event listener za zatvaranje panela klikom na dugme
+    detailsCloseButton.addEventListener('click', closeDetailsPanel);
+
+    // Opciono: Zatvaranje klikom van panela (ako je potrebno)
+    // document.addEventListener('click', (event) => {
+    //     if (isPanelOpen && !detailsPanel.contains(event.target) && !event.target.closest('.team-member-card')) {
+    //         closeDetailsPanel();
+    //     }
+    // });
+
+     // Event listener za zatvaranje panela pritiskom na Escape taster
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isPanelOpen) {
+        closeDetailsPanel();
+      }
+    });
+
+  });
+</script>

@@ -20,8 +20,7 @@ const displayTitle = service.title; // Use service title for display
   <PageTitle title={displayTitle} subtitle={service.description} />
   {/* Apply background to main, ensure inner div is transparent */}
   <main 
-    class="relative bg-cover bg-center bg-fixed text-white" /* Changed default text color */
-    style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-background.jpg');`} /* Dark overlay (60%) */
+    class="relative bg-cover bg-center bg-fixed text-white hero-background" /* Changed default text color */
   >
     <div class="container mx-auto px-6 py-12 bg-transparent"> {/* Ensure bg-transparent */}
       {/* Removed original h1 */}

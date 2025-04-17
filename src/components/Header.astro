@@ -1,177 +1,157 @@
 ---
-// import ThemeToggleButton from './ThemeToggleButton.astro'; // Removed toggle button import
-import logoImage from '../assets/logo.svg'; // Import logo from assets
-const base = import.meta.env.BASE_URL; // Get base URL once
+import logoImage from '../assets/logo.svg';
+const base = import.meta.env.BASE_URL;
 ---
 
-<!-- Made header completely transparent with no background color -->
-<header class="transition-all duration-300 z-50 w-full absolute top-0 left-0">
+<header class="z-50 w-full absolute top-0 left-0 transition-all duration-300">
   <nav class="container mx-auto px-6 py-4 flex justify-between items-center backdrop-blur-sm backdrop-filter">
+    <!-- Logo sekcija ostaje ista -->
     <div>
-      <!-- Лого са анимацијом из картица -->
       <a href={base + '/'} aria-label="LogicLabs Network Početna" class="block hover-card-animation"> 
-        <!-- Logo with special animation class -->
         <img src={logoImage.src} alt="LogicLabs Network Logo" class="h-10 w-auto filter drop-shadow-[0_0_10px_rgba(255,255,255,0.7)]"> 
       </a>
     </div>
+
+    <!-- Desktop Navigation -->
     <div class="hidden md:flex space-x-8">
-      <!-- Навигациони линкови са анимацијом картица -->
       <a href={base + '/usluge'} class="text-white hover-card-animation">Usluge</a>
       <a href={base + '/portfolio'} class="text-white hover-card-animation">Portfolio</a>
       <a href={base + '/o-nama'} class="text-white hover-card-animation">O nama</a>
       <a href={base + '/usluge/cenovnik'} class="text-white hover-card-animation">Cenovnik</a>
     </div>
-    <div class="flex items-center"> 
-      <!-- Контакт дугме са анимацијом картица -->
+
+    <!-- Kontakt dugme i mobile menu -->
+    <div class="flex items-center">
       <a href={base + '/kontakt'} class="hover-card-animation bg-transparent border-2 border-blue-400 text-white px-6 py-3 rounded-full shadow-lg hidden md:inline-block mr-4">
         Kontakt
       </a>
-      <!-- Mobile Menu Button with animated hamburger -->
+      
+      <!-- Mobile Menu Toggle -->
       <button 
         id="mobile-menu-button" 
         class="md:hidden focus:outline-none hamburger-btn hover-card-animation" 
-        aria-controls="mobile-menu" 
-        aria-expanded="false" 
+        aria-label="Menjaj mobilni meni"
       >
-
-        <span class="sr-only">Otvori glavni meni</span>
+        <!-- Hamburger ikon -->
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile Menu with glass morphism effect -->
-  <div id="mobile-menu" class="md:hidden hidden backdrop-blur-md backdrop-filter bg-black/30 shadow-2xl rounded-b-2xl overflow-hidden transition-all duration-500 ease-in-out"> 
-    <a href={base + '/usluge'} class="block px-8 py-4 text-white mobile-link hover-card-animation">Usluge</a>
-    <a href={base + '/portfolio'} class="block px-8 py-4 text-white mobile-link hover-card-animation">Portfolio</a>
-    <a href={base + '/o-nama'} class="block px-8 py-4 text-white mobile-link hover-card-animation">O nama</a>
-    <a href={base + '/usluge/cenovnik'} class="block px-8 py-4 text-white mobile-link hover-card-animation">Cenovnik</a>
-    <a href={base + '/kontakt'} class="block px-8 py-4 text-white mobile-link hover-card-animation border-t border-white/20">Kontakt</a>
+  <!-- Mobile Menu sa overlay efektom -->
+  <div class="fixed inset-0 z-40 hidden" id="mobile-overlay"></div>
+  
+  <!-- Izmenjeni mobile menu sa vidljivom pozadinom -->
+<!-- Izmenjeni mobile menu sa pozadinom -->
+<div id="mobile-menu" class="md:hidden fixed top-16 left-0 right-0 z-50 transform origin-top transition-all duration-300 opacity-0 translate-y-[-20px]">
+  <div class="container mx-auto px-6 backdrop-blur-2xl bg-black/80 border border-white/20 rounded-b-2xl shadow-2xl">
+    <div class="py-4 space-y-2">
+      <a href={base + '/usluge'} class="block px-4 py-3 text-white mobile-link hover:bg-white/10 transition-colors rounded-lg">Usluge</a>
+      <a href={base + '/portfolio'} class="block px-4 py-3 text-white mobile-link hover:bg-white/10 transition-colors rounded-lg">Portfolio</a>
+      <a href={base + '/o-nama'} class="block px-4 py-3 text-white mobile-link hover:bg-white/10 transition-colors rounded-lg">O nama</a>
+      <a href={base + '/usluge/cenovnik'} class="block px-4 py-3 text-white mobile-link hover:bg-white/10 transition-colors rounded-lg">Cenovnik</a>
+      <a href={base + '/kontakt'} class="block px-4 py-3 text-white mobile-link hover:bg-white/10 transition-colors rounded-lg border-2 border-blue-400 mt-2">Kontakt</a>
+    </div>
   </div>
+</div>
 </header>
 
-<style>
-/* Додајемо стилове за анимацију картица у хедеру */
-.hover-card-animation {
-  transition: all 300ms ease-in-out;
-  border: 2px solid transparent;
-  overflow: hidden;
-}
+<style is:global>
+  /* Poboljšane animacije za mobile menu */
+  #mobile-menu {
+    /* Podešavanje za full-screen overlay */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.85)) !important;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+  }
 
-.hover-card-animation:hover {
-  transform: scale(1.05) translateY(-3px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
-  border-color: rgba(99, 102, 241, 0.5);
-  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.3), rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3));
-  z-index: 5;
-  backdrop-filter: blur(3px);
-}
+  #mobile-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 0 100px rgba(0,0,0,0.5);
+  }
 
-/* Hamburger button styling */
-.hamburger-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 22px;
-  padding: 0;
-}
-.hamburger-line {
+  .mobile-link {
+    transform: translateX(-30px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #mobile-menu.active .mobile-link {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  #mobile-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
+  }
+
+  #mobile-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Hamburger animacije */
+  .hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  .hamburger-line {
   display: block;
-  width: 100%;
+  width: 30px;
   height: 2px;
+  margin: 6px 0;
   background-color: white;
   transition: all 0.3s ease;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
-
-/* Додатне анимације за hamburger */
-.hamburger-btn:hover .hamburger-line {
-  background-color: #3b82f6;
-}
-.hamburger-btn:hover .hamburger-line:nth-child(1) {
-  transform: translateY(-3px);
-}
-.hamburger-btn:hover .hamburger-line:nth-child(3) {
-  transform: translateY(3px);
-}
-
-/* Mobile menu link animation */
-.mobile-link {
-  transform: translateX(-20px);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-#mobile-menu:not(.hidden) .mobile-link {
-  transform: translateX(0);
-  opacity: 1;
-}
-#mobile-menu:not(.hidden) .mobile-link:nth-child(1) { transition-delay: 0.1s; }
-#mobile-menu:not(.hidden) .mobile-link:nth-child(2) { transition-delay: 0.15s; }
-#mobile-menu:not(.hidden) .mobile-link:nth-child(3) { transition-delay: 0.2s; }
-#mobile-menu:not(.hidden) .mobile-link:nth-child(4) { transition-delay: 0.25s; }
-#mobile-menu:not(.hidden) .mobile-link:nth-child(5) { transition-delay: 0.3s; }
 </style>
 
-<script>
-  const menuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamburgerLines = document.querySelectorAll('.hamburger-line');
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const hamburgerLines = document.querySelectorAll('.hamburger-line');
 
-  menuButton?.addEventListener('click', () => {
-    const isHidden = mobileMenu?.classList.toggle('hidden');
-    menuButton.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+    const toggleMenu = (isOpen) => {
+      mobileMenu.classList.toggle('active', isOpen);
+      mobileOverlay.classList.toggle('active', isOpen);
+      menuButton.classList.toggle('active', isOpen);
+      menuButton.setAttribute('aria-expanded', isOpen);
+    };
+
+    menuButton?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !mobileMenu.classList.contains('active');
+      toggleMenu(isOpen);
+    });
+
+    mobileOverlay?.addEventListener('click', () => toggleMenu(false));
     
-    // Transform hamburger into X when menu is open
-    if (!isHidden) {
-      // Cast to HTMLElement to access style
-      (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(5px, 5px)';
-      (hamburgerLines[1] as HTMLElement).style.opacity = '0';
-      (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(7px, -6px)';
-    } else {
-      // Cast to HTMLElement to access style
-      (hamburgerLines[0] as HTMLElement).style.transform = 'none';
-      (hamburgerLines[1] as HTMLElement).style.opacity = '1';
-      (hamburgerLines[2] as HTMLElement).style.transform = 'none';
-    }
-  });
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
 
-  // Close menu if clicking outside
-  document.addEventListener('click', (event) => {
-    const isClickInsideMenu = mobileMenu?.contains(event.target as Node);
-    const isClickOnButton = menuButton?.contains(event.target as Node);
-
-    if (!isClickInsideMenu && !isClickOnButton && !mobileMenu?.classList.contains('hidden')) {
-      mobileMenu?.classList.add('hidden');
-      menuButton?.setAttribute('aria-expanded', 'false');
-      
-      // Reset hamburger icon
-      hamburgerLines.forEach(line => {
-        // Cast to HTMLElement to access style
-        (line as HTMLElement).style.transform = 'none';
-        (line as HTMLElement).style.opacity = '1';
-      });
-    }
-  });
-
-  // Add scroll-based header transparency adjustment
-  let lastScrollTop = 0;
-  const header = document.querySelector('header');
-  
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 100) {
-      // Make header slightly visible on scroll down
-      header?.classList.add('backdrop-blur-md');
-      header?.classList.add('backdrop-filter');
-      header?.classList.add('bg-black/20');
-    } else {
-      // Make header fully transparent at top
-      header?.classList.remove('backdrop-blur-md');
-      header?.classList.remove('backdrop-filter');
-      header?.classList.remove('bg-black/20');
-    }
-    
-    lastScrollTop = scrollTop;
+    // Reset menu na resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        toggleMenu(false);
+      }
+    });
   });
 </script>

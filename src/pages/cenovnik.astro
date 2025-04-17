@@ -9,20 +9,13 @@ const pageDescription = "Pregled cena naših usluga.";
 const displayTitle = "Cenovnik";
 const base = import.meta.env.BASE_URL || ''; // Dodajemo fallback vrednost
 
-// Поправка путање до позадинске слике
-const heroImagePath = '/images/hero-background.jpg'; 
-const mainStyle = {
-  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
-  backgroundAttachment: 'fixed',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center'
-};
+const mainStyle = undefined; // Uklanjam inline stilove za pozadinsku sliku
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <Header />
   <PageTitle title={displayTitle} subtitle="Informacije o cenama naših usluga" />
-  <main class="relative bg-transparent text-white min-h-[calc(100vh-200px)]" style={mainStyle}>
+  <main class="relative bg-cover bg-center bg-fixed text-white min-h-[calc(100vh-200px)]"> <!-- Koristim Tailwind klase -->
     <div class="container mx-auto px-6 py-12">
       <div class="bg-transparent backdrop-blur-sm p-8 rounded-lg shadow-md transition-colors duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
         <p class="text-gray-200 text-lg">

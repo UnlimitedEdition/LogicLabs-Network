@@ -9,17 +9,6 @@ const pageTitleSeo = "Portfolio | LogicLabs Network";
 const pageDescription = "Pregled naših radova i projekata u oblastima web razvoja, dizajna i programiranja.";
 const displayTitle = "Naš Portfolio";
 const base = import.meta.env.BASE_URL || ''; // Add base URL variable with fallback
-
-// Jednostavniji način definisanja pozadinske slike
-// Директна путања као стринг са правилним BASE_URL префиксом
-// Поправка путање до позадинске слике
-const heroImagePath = '/images/hero-background.jpg'; 
-const mainStyle = {
-  backgroundImage: `url(${heroImagePath})`, // Уклањам base префикс
-  backgroundAttachment: 'fixed',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center'
-};
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
@@ -27,8 +16,7 @@ const mainStyle = {
   <PageTitle title={displayTitle} subtitle="Pogledajte neke od naših uspešno realizovanih projekata." />
   
   <!-- Main content area with the portfolio grid -->
-  <!-- Apply background using proper inline styling with base path -->
-  <main class="relative bg-transparent text-white" style={mainStyle}>
+  <main class="relative bg-transparent text-white">
     <!-- Portfolio component already has padding, so no extra padding needed here -->
     <PortfolioGrid />
   </main>
