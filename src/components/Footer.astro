@@ -1,301 +1,92 @@
 ---
-import logoImage from '../assets/logo.svg'; // Import logo from assets
-const currentYear = new Date().getFullYear();
-const base = import.meta.env.BASE_URL; // Get base URL once
+import logoImage from '../assets/logo.svg';
 
-// Define navigation structure for dropdowns based on actual content
-const navItems = [
+const currentYear = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const footerColumns = [
   {
-    name: "Usluge",
-    href: "/usluge",
-    sublinks: [ // From Services.astro
-      { name: "Izrada Web Sajtova", href: "/usluge/izrada-web-sajtova" },
-      { name: "Web Dizajn", href: "/usluge/web-dizajn" },
-      { name: "Programiranje", href: "/usluge/programiranje" },
-      { name: "Održavanje Sajtova", href: "/usluge/odrzavanje-sajtova" },
-      { name: "SEO Optimizacija", href: "/usluge/seo-optimizacija" },
+    title: 'Usluge',
+    links: [
+      { label: 'Izrada web sajtova', href: '/usluge/izrada-web-sajtova' },
+      { label: 'Web dizajn', href: '/usluge/web-dizajn' },
+      { label: 'Programiranje', href: '/usluge/programiranje' },
+      { label: 'SEO optimizacija', href: '/usluge/seo-optimizacija' },
+      { label: 'Cenovnik', href: '/usluge/cenovnik' },
     ],
   },
   {
-    name: "Portfolio",
-    href: "/portfolio",
-    sublinks: [ // Updated with all 9 projects
-      { name: 'Korporativni Sajt "Inovatech Solutions"', href: "/portfolio/inovatech-solutions" }, 
-      { name: 'E-commerce Platforma "Crafty Corner"', href: "/portfolio/crafty-corner" }, 
-      { name: 'Web Aplikacija za Rezervacije "BookItNow"', href: "/portfolio/bookitnow" }, 
-      { name: 'Analitička Kontrolna Tabla', href: "/portfolio/data-dashboard" }, 
-      { name: 'Platforma za Upravljanje Događajima', href: "/portfolio/event-platform" }, 
-      { name: 'Prilagođeni WordPress Plugin', href: "/portfolio/cms-plugin" }, 
-      { name: 'Interaktivni Overlay za Strimere', href: "/portfolio/streamer-overlay" }, 
-      { name: 'Web Aplikacija za Tehničke Proračune', href: "/portfolio/calculation-app" }, 
-      { name: 'Integracija sa SMS Gateway API-jem', href: "/portfolio/api-integration-sms" }, 
+    title: 'Portfolio',
+    links: [
+      { label: 'Svi projekti', href: '/portfolio' },
+      { label: 'Inovatech Solutions', href: '/portfolio/inovatech-solutions' },
+      { label: 'Crafty Corner', href: '/portfolio/crafty-corner' },
+      { label: 'BookItNow', href: '/portfolio/bookitnow' },
+      { label: 'Data Dashboard', href: '/portfolio/data-dashboard' },
     ],
   },
   {
-    name: "O Nama",
-    href: "/o-nama",
-    sublinks: [ // Added back team members as sublinks
-      { name: "Milan Tošić (Osnivač & CEO)", href: "/o-nama" },
-      { name: "Ana Petrović (Projekt Menadžer)", href: "/o-nama" },
-      { name: "Jelena Marković (Tehnički Lead)", href: "/o-nama" },
-      { name: "Nikola Jovanović (Senior Frontend)", href: "/o-nama" },
-      { name: "Stefan Ilić (UI/UX Dizajn Lead)", href: "/o-nama" },
-      { name: "Marija Đorđević (QA Inženjer)", href: "/o-nama" },
-      { name: "Sofija Simić (Junior Developer)", href: "/o-nama" },
-      { name: "Luka Pavlović (Marketing)", href: "/o-nama" },
+    title: 'Kompanija',
+    links: [
+      { label: 'O nama', href: '/o-nama' },
+      { label: 'Kontakt', href: '/kontakt' },
+      { label: 'Početna', href: '/' },
     ],
   },
-  {
-    name: "Cenovnik",
-    href: "/usluge/cenovnik",
-    sublinks: [ // From cenovnik.astro packages
-      // Column 1
-      { name: "Statički web sajt", href: "/usluge/izrada-web-sajtova" },
-      { name: "Dinamički web sajt", href: "/usluge/dinamicki-web-sajt" },
-      { name: "Dinamički web sajt (Pro)", href: "/usluge/dinamicki-web-sajt-pro" },
-      { name: "Internet prodavnica", href: "/usluge/internet-prodavnica" },
-      { name: "Osnovna SEO Analiza", href: "/usluge/seo-optimizacija" },
-      { name: "Mesečni SEO (Osnovni)", href: "/usluge/seo-optimizacija" },
-      { name: "Mesečni SEO (Napredni)", href: "/usluge/seo-optimizacija" },
-      { name: "Web Aplikacija", href: "/usluge/programiranje" },
-      // Column 2 (starts after 8 items)
-      { name: "Mobilna Aplikacija (Nativna)", href: "/usluge/programiranje" },
-      { name: "Mobilna Aplikacija (Cross-Platform)", href: "/usluge/programiranje" },
-      { name: "Windows Aplikacija", href: "/usluge/programiranje" },
-      { name: "Osnovni Dizajn Paket", href: "/usluge/web-dizajn" },
-      { name: "Pro Dizajn Paket", href: "/usluge/web-dizajn" },
-      { name: "UX/UI Dizajn za Aplikacije", href: "/usluge/web-dizajn" },
-      { name: "Osnovno Održavanje (WP)", href: "/usluge/odrzavanje-sajtova" },
-      { name: "Napredno Održavanje (WP)", href: "/usluge/odrzavanje-sajtova" },
-      { name: "Održavanje Web Aplikacija", href: "/usluge/odrzavanje-sajtova" },
-    ],
-    columns: 2, // Indicate 2 columns for styling
-  },
-  { name: "Kontakt", href: "/kontakt", sublinks: [] },
 ];
 
 const socialLinks = [
- { href: "https://www.youtube.com/@the_serbian_king_mlbb", label: "YouTube", iconPath: "M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" },
- { href: "https://www.tiktok.com/@the_serbian_king_mlbb", label: "TikTok", iconPath: "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" },
- { href: "https://github.com/UnlimitedEdition", label: "GitHub", iconPath: "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" }
+  { href: 'https://www.youtube.com/@the_serbian_king_mlbb', label: 'YouTube', iconPath: 'M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z' },
+  { href: 'https://www.tiktok.com/@the_serbian_king_mlbb', label: 'TikTok', iconPath: 'M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z' },
+  { href: 'https://github.com/UnlimitedEdition', label: 'GitHub', iconPath: 'M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z' },
 ];
 ---
 
-<!-- 100% Transparent footer - Removed absolute positioning -->
-<footer class="w-full pt-16 pb-8 mt-16 text-white bg-transparent backdrop-filter-none z-10">
-  <div class="container mx-auto px-6 relative z-10 bg-transparent">
-    <div class="flex flex-wrap justify-around items-start mb-12 bg-transparent">
-      
-      <!-- Logo sekcija -->
-      <div class="w-full md:w-1/4 mb-10 md:mb-0 bg-transparent">
-        <a href={base + '/'} aria-label="LogicLabs Network Početna" class="hover-card-animation inline-block">
-          <img src={logoImage.src} alt="LogicLabs Network Logo" class="h-10 w-auto filter drop-shadow-[0_0_10px_rgba(255,255,255,0.7)]">
+<footer class="mt-16 border-t border-white/8 bg-slate-950/98 text-white">
+  <div class="container mx-auto px-6 py-14">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_repeat(3,1fr)]">
+      <div class="max-w-sm">
+        <a href={`${base}/`} aria-label="LogicLabs Network početna" class="inline-flex items-center">
+          <img src={logoImage.src} alt="LogicLabs Network logo" class="h-10 w-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.18)]" />
         </a>
-        <p class="mt-4 text-base font-light tracking-wide footer-text adaptive-text">Kreiranje modernih web rešenja <br/>za digitalno doba.</p>
+        <p class="mt-5 text-sm leading-7 text-slate-300">
+          LogicLabs Network dizajnira i razvija moderne web sajtove, online prodavnice i aplikacije sa fokusom na brzinu, kredibilitet i rezultate.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={`${base}/kontakt`} class="inline-flex rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
+            Zatražite ponudu
+          </a>
+          <a href={`${base}/portfolio`} class="inline-flex rounded-full border border-white/12 bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+            Portfolio
+          </a>
+        </div>
       </div>
 
-      <!-- Navigacija sa dropdown menijima -->
-      <nav class="w-full md:w-auto mb-10 md:mb-0 bg-transparent">
-        <ul class="flex flex-wrap justify-center space-x-1 md:space-x-8 bg-transparent">
-          {navItems.map((item, index) => (
-            <li class="relative group py-2 footer-nav-item bg-transparent" data-dropdown-group>
-              <a href={base + item.href} 
-                 class="adaptive-text-nav hover-card-animation flex items-center"
-                 on:click={(e) => {
-                   if (window.innerWidth < 768) {
-                     e.preventDefault();
-                     const groups = document.querySelectorAll('[data-dropdown-group]');
-                     groups.forEach(g => g !== e.currentTarget.parentElement && g.classList.remove('active'));
-                     e.currentTarget.parentElement.classList.toggle('active');
-                   }
-                 }}>
-                {item.name}
-                {item.sublinks.length > 0 && (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
-                )}
-              </a>
-
-              {item.sublinks.length > 0 && (
-                <div data-dropdown-menu 
-                     class={`absolute bottom-full ${index >= navItems.length - 2 ? 'right-0' : 'left-0'} mb-2 ${item.columns === 2 ? 'w-96' : 'w-64'} z-50 hidden group-hover:block lg:group-hover:block bg-transparent transition-all duration-300 opacity-0 lg:opacity-100 lg:pointer-events-auto`}
-                     on:mouseleave={(e) => {
-                       if (window.innerWidth >= 768) {
-                         e.currentTarget.closest('[data-dropdown-group]').classList.remove('group-hover');
-                       }
-                     }}>
-                  <div class={`py-2 border border-white/10 rounded-lg bg-black/30 backdrop-blur-md ${item.columns === 2 ? 'grid grid-cols-2 gap-x-4' : ''}`}>
-                    {item.sublinks.map((sublink, subIndex) => (
-                      <a href={base + sublink.href} 
-                         class={`block px-5 py-2 text-sm adaptive-text hover-card-animation ${item.columns === 2 && subIndex === 0 ? 'col-start-1' : ''} ${item.columns === 2 && subIndex === Math.ceil(item.sublinks.length / 2) ? 'col-start-2' : ''}`}>
-                        {sublink.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {footerColumns.map((column) => (
+        <nav aria-label={column.title}>
+          <h3 class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">{column.title}</h3>
+          <ul class="mt-5 space-y-3">
+            {column.links.map((link) => (
+              <li>
+                <a href={base + link.href} class="text-sm text-slate-300 transition hover:text-white">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))}
     </div>
 
-    <!-- Donji deo futera -->
-    <div class="mt-8 border-t border-white/10 pt-8 flex flex-wrap justify-between items-center bg-transparent">
-      <p class="text-sm text-center md:text-left w-full md:w-auto mb-6 md:mb-0 footer-text adaptive-text">
-        &copy; {currentYear} LogicLabs Network. Sva prava zadržana.
-      </p>
-      
-      <div class="flex justify-center md:justify-end space-x-6 w-full md:w-auto bg-transparent">
+    <div class="mt-12 flex flex-col gap-6 border-t border-white/8 pt-6 md:flex-row md:items-center md:justify-between">
+      <p class="text-sm text-slate-400">© {currentYear} LogicLabs Network. Sva prava zadržana.</p>
+      <div class="flex items-center gap-3">
         {socialLinks.map((link) => (
-          <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label} class="hover-card-animation adaptive-text">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d={link.iconPath}/>
+          <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label} class="inline-flex rounded-full border border-white/10 bg-slate-900 p-3 text-slate-300 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d={link.iconPath} />
             </svg>
           </a>
         ))}
       </div>
     </div>
-
-    <div class="mt-6 text-center text-xs footer-text adaptive-text opacity-60 bg-transparent">
-      <p>Powered by Astro & Tailwind CSS</p>
-    </div>
   </div>
-
-  <!-- Mobile overlay -->
-  <div class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm hidden" 
-       id="dropdown-overlay"
-       on:click={() => {
-         document.querySelectorAll('[data-dropdown-group]').forEach(g => g.classList.remove('active'));
-         document.getElementById('dropdown-overlay').classList.add('hidden');
-       }}></div>
 </footer>
-
-<style is:global>
-  .hover-card-animation {
-    transition: all 300ms ease-in-out;
-    border: 2px solid transparent;
-    overflow: hidden;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hover-card-animation:hover {
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
-    border-color: rgba(99, 102, 241, 0.5);
-    background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.3), rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3));
-    backdrop-filter: blur(3px);
-    z-index: 5;
-  }
-
-  /* Desktop stilovi */
-  @media (min-width: 768px) {
-    [data-dropdown-menu] {
-      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-    }
-
-    [data-dropdown-group]:hover [data-dropdown-menu] {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: translateY(0) !important;
-      display: block !important;
-    }
-
-    [data-dropdown-menu]::before {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 100%;
-      height: 20px;
-    }
-  }
-
-  /* Mobile stilovi */
-  @media (max-width: 767px) {
-    [data-dropdown-menu] {
-      position: static !important;
-      display: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-      width: 100% !important;
-      margin-top: 0.5rem !important;
-    }
-
-    [data-dropdown-group].active [data-dropdown-menu] {
-      display: block !important;
-      animation: dropdownSlide 0.3s ease;
-    }
-
-    @keyframes dropdownSlide {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  }
-
-  .adaptive-text {
-    text-shadow: 
-      0 0 4px rgba(0,0,0,0.8),
-      0 0 8px rgba(0,0,0,0.6),
-      0 0 16px rgba(0,0,0,0.4);
-    mix-blend-mode: difference;
-  }
-
-  .adaptive-text-nav {
-    text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-    mix-blend-mode: difference;
-  }
-</style>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Desktop hover
-    const dropdownGroups = document.querySelectorAll('[data-dropdown-group]');
-    
-    dropdownGroups.forEach(group => {
-      const dropdown = group.querySelector('[data-dropdown-menu]');
-      if (!dropdown) return; // Додата провера
-  
-      group.addEventListener('mouseenter', () => {
-        if (window.innerWidth >= 768) {
-          dropdown.style.opacity = '1';
-          dropdown.style.visibility = 'visible';
-          dropdown.style.transform = 'translateY(0)';
-        }
-      });
-  
-      group.addEventListener('mouseleave', () => {
-        if (window.innerWidth >= 768) {
-          dropdown.style.opacity = '0';
-          dropdown.style.visibility = 'hidden';
-          dropdown.style.transform = 'translateY(10px)';
-        }
-      });
-    });
-  
-    // Mobile touch
-    const overlay = document.getElementById('dropdown-overlay');
-    if (!overlay) return; // Провера за overlay
-  
-    document.querySelectorAll('[data-dropdown-group] a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth < 768) {
-          e.preventDefault();
-          const group = this.parentElement;
-          const isActive = group.classList.contains('active');
-          
-          document.querySelectorAll('[data-dropdown-group]').forEach(g => {
-            if (g !== group) g.classList.remove('active');
-          });
-          
-          group.classList.toggle('active', !isActive);
-          overlay.classList.toggle('hidden', isActive);
-        }
-      });
-    });
-  });
-  </script>

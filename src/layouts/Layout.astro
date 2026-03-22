@@ -1,78 +1,84 @@
 ---
 import '../styles/global.css';
-// AOS CSS i JS se sada učitavaju preko CDN-a
 
-// Define props for the layout
 interface Props {
-	title?: string;
-	description?: string;
+  title?: string;
+  description?: string;
 }
 
-// Set default values if props are not provided
 const {
-	title = "LogicLabs Network - Izrada Modernih Web Sajtova", // Updated Default title
-	description = "Profesionalna izrada web sajtova, web dizajn i programiranje. Nudimo brza, responzivna i SEO optimizovana rešenja." // Default description
+  title = 'LogicLabs Network | Profesionalna izrada web sajtova i aplikacija',
+  description = 'LogicLabs Network kreira brze, moderne i SEO-optimizovane web sajtove, prodavnice i aplikacije za rast vašeg poslovanja.',
 } = Astro.props;
+
+const canonicalUrl = Astro.url;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImageUrl = new URL(`${basePath}/images/hero-background.jpg`, Astro.site).href;
 ---
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<!-- Ponovo ispravljena putanja za favicon -->
-		<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/favicon.svg'} /> 
-		<meta name="generator" content={Astro.generator} />
+<html lang="sr-Latn-RS">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#070b18" />
+    <link rel="canonical" href={canonicalUrl} />
 
-		<!-- SEO Meta Tags (using props) -->
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<!-- Updated keywords -->
-		<meta name="keywords" content="izrada sajtova, web dizajn, programiranje, LogicLabs Network, web development, Astro, Tailwind CSS, Beograd, Srbija" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="izrada sajtova, web dizajn, programiranje, LogicLabs Network, web development, Astro, Tailwind CSS, Beograd, Srbija"
+    />
 
-		<!-- Open Graph Meta Tags (using props) -->
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<!-- Ponovo ispravljena putanja za OG sliku, koristeci Astro.site i base -->
-		<meta property="og:image" content={new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/images/hero-background.jpg', Astro.site).href} /> 
-		<meta property="og:image:alt" content="Moderan web dizajn i razvoj" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="LogicLabs Network - moderan web dizajn i razvoj" />
 
-		<!-- Google Font Import (Inter) - Added weight 800 -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-		<!-- AOS CSS via CDN -->
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	</head>
-	
-	<body>
-		<slot />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
 
-		<!-- AOS JS via CDN and Initialization -->
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script> 
-		<script>
-			// Inicijalizacija AOS-a (sada je AOS globalno dostupan zbog CDN skripte)
-			// @ts-ignore - Govorimo TS-u da ignoriše sledeću liniju jer znamo da će AOS biti globalan
-			document.addEventListener('DOMContentLoaded', function() {
-				if (typeof AOS !== 'undefined') {
-					AOS.init({ 
-						duration: 800, // Animation duration in ms
-						once: true, // Whether animation should happen only once - while scrolling down
-					});
-				}
-			});
-		</script>
-	</body>
+  <body>
+    <div class="theme-background" aria-hidden="true">
+      <div class="theme-orb theme-orb-one"></div>
+      <div class="theme-orb theme-orb-two"></div>
+      <div class="theme-grid"></div>
+      <div class="theme-vignette"></div>
+    </div>
+
+    <a class="skip-link" href="#site-content">Preskoči na glavni sadržaj</a>
+    <div id="site-content" tabindex="-1">
+      <slot />
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            duration: 800,
+            once: true,
+            offset: 32,
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		min-height: 100%; /* Use min-height instead of height */
-		background-color: transparent !important;
-	}
-</style>

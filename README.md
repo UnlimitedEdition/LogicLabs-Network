@@ -1,88 +1,84 @@
-# Astro Starter Kit: Basics
+# LogicLabs Network
 
-```sh
-npm create astro@latest -- --template basics
-```
+Profesionalni marketinški i portfolio sajt za LogicLabs Network, izrađen uz **Astro 5** i **Tailwind CSS 4**. Projekat je optimizovan za statičku isporuku, brz učitavanje stranica i jasan prikaz usluga, portfolija i kontakt kanala.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Tehnologije
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Astro 5** za statički rendering i organizaciju stranica.
+- **Tailwind CSS 4** za dizajn sistem i utility-first stilizovanje.
+- **AOS** za diskretne scroll animacije.
+- **Sentry** integracija za produkcijski monitoring.
+- **GitHub Pages** deploy kroz `gh-pages` skriptu.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Struktura projekta
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/                 # Statički asset-i
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/             # Logo i interni asset-i
+│   ├── components/         # UI sekcije i reusable komponente
+│   ├── layouts/            # Globalni layout i SEO meta podaci
+│   ├── pages/              # Astro i Markdown stranice
+│   └── styles/             # Globalni stilovi
+├── astro.config.mjs        # Astro konfiguracija i base path
+├── stress-test.js          # K6 skripta za load test
+└── package.json            # Skripte i zavisnosti
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Pokretanje lokalno
 
-## 🧞 Commands
+```sh
+npm install
+npm run dev
+```
 
-All commands are run from the root of the project, from a terminal:
+Podrazumevani development server je dostupan na `http://localhost:8080/` zbog konfiguracije u `astro.config.mjs`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Build i preview
 
-## 🧪 Stress Testing (K6)
+```sh
+npm run build
+npm run preview
+```
 
-Ovaj projekat uključuje skriptu za testiranje opterećenja koristeći [K6](https://k6.io/). Skripta simulira opterećenje do 200 istovremenih virtuelnih korisnika kako bi se proverile performanse sajta.
+## Kvalitet i provere
 
-**Skripta:** `stress-test.js`
+Za proveru tipova i Astro validaciju:
 
-**Pokretanje testa:**
+```sh
+npm run astro check
+```
 
-1.  **Build produkcijske verzije sajta:**
-    ```sh
-    npm run build
-    ```
-2.  **Pokretanje preview servera:**
-    *   Ako ste zadržali izmene u `astro.config.mjs` (sa `host: true` i `port: 8080`):
-        ```sh
-        npm run preview
-        ```
-        Server bi trebalo da bude dostupan na `http://<VAŠA-LOKALNA-IP>:8080/`. Proverite izlaz terminala za tačnu adresu.
-    *   Ako ste vratili `astro.config.mjs` na originalno stanje:
-        ```sh
-        npm run preview -- --host <VAŠA-LOKALNA-IP> --port <PORT>
-        ```
-        Zamenite `<VAŠA-LOKALNA-IP>` i `<PORT>` sa adresom na kojoj server radi.
-3.  **Ažuriranje K6 skripte:** Uverite se da `stress-test.js` cilja ispravnu adresu servera (npr. `http://192.168.16.1:8080/`).
-4.  **Pokretanje K6:**
-    ```sh
-    k6 run stress-test.js
-    ```
+Za proveru produkcijskog build-a:
 
-**Rezultati poslednjeg testa (200 VU):**
+```sh
+npm run build
+```
 
-Test je uspešno završen na adresi `http://192.168.16.1:8080/` sa sledećim ključnim metrikama:
-*   **Greške (http_req_failed):** 0.00%
-*   **Vreme odgovora (http_req_duration p95):** ~2.54ms (95% zahteva brže od ove vrednosti)
-*   **Provera statusa (checks):** 100% uspešno
+## Deploy
 
-Ovi rezultati pokazuju da sajt odlično podnosi opterećenje od 200 virtuelnih korisnika u testnom okruženju.
+Deploy na GitHub Pages:
 
-## 👀 Want to learn more?
+```sh
+npm run deploy
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Aplikacija koristi sledeće vrednosti:
 
+- `site`: `https://UnlimitedEdition.github.io`
+- `base`: `/LogicLabs-Network`
 
+## Load test
+
+U repozitorijumu postoji `stress-test.js` za K6 testiranje opterećenja.
+
+Primer toka:
+
+```sh
+npm run build
+npm run preview
+k6 run stress-test.js
+```
+
+Po potrebi ažuriraj URL unutar K6 skripte tako da pokazuje na aktivan preview server.
