@@ -1,98 +1,67 @@
----
-// Contact component logic can be added here if needed (Keeping one block)
----
-
-{/* Adapted for dark background */}
-<section id="kontakt" class="py-16 transition-colors duration-300"> {/* Removed bg-gray-100 */}
+<section id="kontakt" class="py-16 md:py-20">
   <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center text-white mb-12" data-aos="fade-up">Kontaktirajte Nas</h2> {/* Changed text-gray-800 to text-white */}
-    <div class="flex flex-wrap -mx-4">
+    <div class="mb-12 text-center" data-aos="fade-up">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-blue-200/80">Kontakt</p>
+      <h2 class="text-3xl font-bold text-white md:text-4xl">Hajde da pričamo o vašem sledećem projektu</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-slate-200">
+        Recite nam šta gradite, a mi ćemo predložiti najbolje rešenje, okvirnu dinamiku i preporuku za naredne korake.
+      </p>
+    </div>
 
-      {/* Contact Info */}
-      <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0" data-aos="fade-left">
-        <h3 class="text-2xl font-semibold text-white mb-6">Kontakt Informacije</h3> {/* Changed text-gray-800 to text-white */}
-        <div class="space-y-4 text-gray-200"> {/* Changed text-gray-700 to text-gray-200 */}
-          <p><strong>Adresa:</strong> Novi Beograd</p> {/* Changed to an attractive fictional address */}
-          <p><strong>Telefon:</strong> <a href="tel:+381677275144" class="hover:text-blue-300"> +381677275144</a></p> {/* Updated phone number and link */}
-          <p><strong>Email:</strong> <a href="mailto:mtosic0450@gmail.com" class="hover:text-blue-300"> mtosic0450@gmail.com</a></p> {/* Updated email and link */}
+    <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="surface-panel rounded-3xl p-8" data-aos="fade-right">
+        <h3 class="text-2xl font-semibold text-white">Kontakt informacije</h3>
+        <div class="mt-6 space-y-4 text-slate-200">
+          <p><strong class="text-white">Lokacija:</strong> Novi Beograd, Srbija</p>
+          <p><strong class="text-white">Telefon:</strong> <a href="tel:+381677275144" class="text-blue-200 hover:text-white">+381 67 727 5144</a></p>
+          <p><strong class="text-white">Email:</strong> <a href="mailto:mtosic0450@gmail.com" class="text-blue-200 hover:text-white">mtosic0450@gmail.com</a></p>
         </div>
+
         <div class="mt-8">
-          <h4 class="text-lg font-semibold text-white mb-3">Pratite nas:</h4> {/* Changed text-gray-800 to text-white */}
-          <div class="flex space-x-4">
-            {/* Updated Social Links */}
-            {/* YouTube */}
-            <a href="https://www.youtube.com/@the_serbian_king_mlbb" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-gray-400 hover:text-blue-300">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-              </svg>
+          <h4 class="text-lg font-semibold text-white">Pratite nas</h4>
+          <div class="mt-4 flex gap-4">
+            <a href="https://www.youtube.com/@the_serbian_king_mlbb" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="rounded-full border border-white/10 bg-slate-900 p-3 text-slate-200 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             </a>
-            {/* TikTok */}
-            <a href="https://www.tiktok.com/@the_serbian_king_mlbb" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-gray-400 hover:text-blue-300">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-              </svg>
+            <a href="https://www.tiktok.com/@the_serbian_king_mlbb" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="rounded-full border border-white/10 bg-slate-900 p-3 text-slate-200 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
             </a>
-            {/* GitHub */}
-             <a href="https://github.com/UnlimitedEdition" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-gray-400 hover:text-blue-300">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.098 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+            <a href="https://github.com/UnlimitedEdition" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="rounded-full border border-white/10 bg-slate-900 p-3 text-slate-200 transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.562 21.8 24 17.302 24 12c0-6.627-5.373-12-12-12z"/></svg>
             </a>
           </div>
         </div>
       </div>
 
-      {/* Column for button and form */}
-      <div class="bg-white/90 p-8 rounded-lg shadow-md border-2 border-transparent hover:border-indigo-500 hover:bg-gradient-to-br hover:from-pink-400 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 group">
-        <h3 class="text-2xl font-semibold text-gray-800 group-hover:text-white mb-6 transition-colors duration-300">Pošaljite nam poruku</h3>
-        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <div class="surface-panel rounded-3xl p-8" data-aos="fade-left">
+        <h3 class="text-2xl font-semibold text-white">Pošaljite upit</h3>
+        <p class="mt-3 text-slate-200">Odgovaramo brzo i fokusiramo se na konkretan poslovni rezultat.</p>
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="mt-8 space-y-5">
           <input type="hidden" name="form-name" value="contact" />
           <p class="hidden">
             <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
           </p>
-          
-          {/* Polja sa solid pozadinom */}
-          <div class="mb-4">
-            <label for="name" class="block text-gray-700 group-hover:text-white font-medium mb-2 transition-colors duration-300">Ime</label>
-            <input type="text" id="name" name="name" required autocomplete="name" 
-                   class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white group-hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary" />
+
+          <div>
+            <label for="name" class="mb-2 block text-sm font-medium text-slate-100">Ime i prezime</label>
+            <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-blue-300/60 focus:bg-slate-900" placeholder="Vaše ime" />
           </div>
-          
-          <div class="mb-4">
-            <label for="email" class="block text-gray-700 group-hover:text-white font-medium mb-2 transition-colors duration-300">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email" 
-                   class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white group-hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary" />
+
+          <div>
+            <label for="email" class="mb-2 block text-sm font-medium text-slate-100">Email adresa</label>
+            <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-blue-300/60 focus:bg-slate-900" placeholder="ime@firma.rs" />
           </div>
-          
-          <div class="mb-6">
-            <label for="message" class="block text-gray-700 group-hover:text-white font-medium mb-2 transition-colors duration-300">Poruka</label>
-            <textarea id="message" name="message" rows="5" required 
-                      class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white group-hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+
+          <div>
+            <label for="message" class="mb-2 block text-sm font-medium text-slate-100">Poruka</label>
+            <textarea id="message" name="message" rows="6" required class="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-blue-300/60 focus:bg-slate-900" placeholder="Opišite projekat, ciljeve i rokove"></textarea>
           </div>
-      
-          {/* Kontakt dugme sa boljim kontrastom */}
-          <button type="submit" 
-                  class="bg-primary text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-all duration-300 group-hover:bg-indigo-700 group-hover:scale-105">
-            Pošalji Poruku
+
+          <button type="submit" class="inline-flex rounded-full bg-blue-600 px-7 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-500">
+            Pošaljite poruku
           </button>
         </form>
       </div>
-      </div>
-
     </div>
   </div>
 </section>
-
-<script is:inline>
-  // Script to reveal the contact form
-  const revealButton = document.getElementById('reveal-form-button');
-  const formWrapper = document.getElementById('contact-form-wrapper');
-  const buttonContainer = document.getElementById('reveal-form-button-container'); // Target container now
-
-  if (revealButton && formWrapper && buttonContainer) {
-    revealButton.addEventListener('click', () => {
-      formWrapper.classList.remove('hidden');
-      buttonContainer.classList.add('hidden'); // Hide the button container
-      // Optional: Scroll to the form smoothly
-      // formWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }
-</script>

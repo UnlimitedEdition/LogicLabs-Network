@@ -5,20 +5,16 @@ import PageTitle from '../components/PageTitle.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 
-// Define page-specific SEO data if needed
-const pageTitleSeo = "Kontakt | LogicLabs Network";
-const pageDescription = "Kontaktirajte nas putem forme ili pronađite naše kontakt informacije.";
-const displayTitle = "Kontaktirajte Nas";
-const base = import.meta.env.BASE_URL || ''; // Dodajemo fallback vrednost
-
-const mainStyle = undefined; // Uklanjam inline stilove za pozadinsku sliku
+const pageTitleSeo = 'Kontakt | LogicLabs Network';
+const pageDescription = 'Kontaktirajte nas putem forme ili pronađite naše kontakt informacije.';
+const displayTitle = 'Kontaktirajte nas';
 ---
 
 <Layout title={pageTitleSeo} description={pageDescription}>
   <Header />
   <PageTitle title={displayTitle} subtitle={pageDescription} />
-  <main class="relative pt-0 pb-12 bg-cover bg-center bg-fixed text-white"> <!-- Koristim Tailwind klase -->
-    <Contact /> 
+  <main class="pb-12 text-white">
+    <Contact />
   </main>
   <Footer />
 </Layout>

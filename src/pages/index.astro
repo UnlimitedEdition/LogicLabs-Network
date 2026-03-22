@@ -2,124 +2,121 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-// Sections moved to their own pages
-// import Services from '../components/Services.astro';
-// import Portfolio from '../components/Portfolio.astro';
-// import AboutUs from '../components/AboutUs.astro';
-// import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-// Import icon components
 import IconWebDev from '../components/icons/IconWebDev.astro';
 import IconWebDesign from '../components/icons/IconWebDesign.astro';
 import IconSeo from '../components/icons/IconSeo.astro';
 
-// Removed duplicate Layout import
-const base = import.meta.env.BASE_URL || ''; // Get base URL once with fallback
+const base = import.meta.env.BASE_URL || '';
 
-// Data for featured services and projects (simplified)
-// Updated to use component references instead of SVG strings
 const featuredServices = [
-  { id: 'web-dev', title: 'Izrada Web Sajtova', description: 'Moderni, brzi i responzivni sajtovi prilagođeni Vašim potrebama.', url: '/usluge/izrada-web-sajtova', IconComponent: IconWebDev },
-  { id: 'web-design', title: 'Web Dizajn', description: 'Kreiramo jedinstvena vizuelna rešenja koja privlače pažnju i ostavljaju utisak.', url: '/usluge/web-dizajn', IconComponent: IconWebDesign },
-  { id: 'seo', title: 'SEO Optimizacija', description: 'Povećavamo vidljivost Vašeg sajta na Google-u i drugim pretraživačima.', url: '/usluge/seo-optimizacija', IconComponent: IconSeo },
+  { id: 'web-dev', title: 'Izrada Web Sajtova', description: 'Moderni, brzi i responzivni sajtovi prilagođeni vašim poslovnim ciljevima.', url: '/usluge/izrada-web-sajtova', IconComponent: IconWebDev },
+  { id: 'web-design', title: 'Web Dizajn', description: 'Vizuelna rešenja koja grade poverenje i ostavljaju profesionalan prvi utisak.', url: '/usluge/web-dizajn', IconComponent: IconWebDesign },
+  { id: 'seo', title: 'SEO Optimizacija', description: 'Jačamo vidljivost sajta i pomažemo da vas pravi klijenti lakše pronađu.', url: '/usluge/seo-optimizacija', IconComponent: IconSeo },
 ];
 
-const featuredProjects = [ // Copied from Portfolio.astro
+const featuredProjects = [
   {
     id: 'inovatech-solutions',
     title: 'Korporativni Sajt "Inovatech Solutions"',
-    description: 'Moderan, responzivan sajt за fiktivnu tehnološku kompaniju...', // Shortened desc
-    imageUrl: '/images/portfolio-project-1.jpg', // Vraćена основна путанја
-    liveUrl: '/portfolio/inovatech-solutions', 
+    description: 'Moderan korporativni sajt za predstavljanje usluga, kredibiliteta i jasnih CTA tačaka.',
+    imageUrl: '/images/portfolio-project-1.jpg',
+    liveUrl: '/portfolio/inovatech-solutions',
   },
   {
     id: 'crafty-corner',
     title: 'E-commerce Platforma "Crafty Corner"',
-    description: 'Fiktivna online prodavnica за ručno rađене proizvode...', // Shortened desc
-    imageUrl: '/images/portfolio-project-2.jpg', // Vraћена основна путанја
-    liveUrl: '/portfolio/crafty-corner', 
+    description: 'Online prodavnica osmišljena da jasno predstavi proizvode i pojednostavi kupovinu.',
+    imageUrl: '/images/portfolio-project-2.jpg',
+    liveUrl: '/portfolio/crafty-corner',
   },
   {
     id: 'bookitnow',
-    title: 'Web Aplikacija за Rezervacije "BookItNow"',
-    description: 'Fiktivni sistem за online zakazivanje termina...', // Shortened desc
-    imageUrl: '/images/portfolio-project-3.jpg', // Vraћена основна путанја
-    liveUrl: '/portfolio/bookitnow', 
+    title: 'Web Aplikacija za Rezervacije "BookItNow"',
+    description: 'Sistem za online rezervacije sa fokusom na brz korisnički tok i preglednost.',
+    imageUrl: '/images/portfolio-project-3.jpg',
+    liveUrl: '/portfolio/bookitnow',
   },
 ];
 ---
 
 <Layout>
   <Header />
-  <!-- Removed inline styles for hero background -->
-  <main class="relative bg-transparent text-white">
-    <Hero /> <!-- Removed isHomepage prop as it's no longer needed -->
-    
-    <!-- Featured Services Section -->
-    <section class="py-16"> <!-- Removed bg-gray-50 -->
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">Naše Ključne Usluge</h2> <!-- Changed text-gray-800 to text-white -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {featuredServices.map(service => {
-            const { IconComponent } = service; // Destructure the component
-            return (
-              <a href={base + service.url} class="block bg-transparent backdrop-blur-sm p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center no-underline group"> <!-- Wrap card in link, add group class -->
-                <IconComponent /> <!-- Use the imported component -->
-                <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">{service.title}</h3> <!-- Adjusted text color, added hover effect -->
-                <p class="text-gray-200 mb-4">{service.description}</p> <!-- Adjusted text color -->
-                <!-- Removed the explicit link text -->
-              </a>
-            );
-          })}
-        </div>
-        <div class="mt-12">
-           <!-- Dodat base prefiks -->
-           <a href={base + '/usluge'} class="bg-transparent border-2 border-blue-400 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-900/20 transition-colors duration-300">
-             Pogledajte Sve Usluge
-           </a>
-        </div>
-      </div>
-    </section>
+  <main class="relative text-white">
+    <Hero />
 
-    <!-- Featured Projects Section -->
-    <section class="py-16"> 
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">Istaknuti Projekti</h2> <!-- Changed text-gray-800 to text-white -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-           {featuredProjects.map((project, index) => (
-            <a href={base + project.liveUrl} class="block bg-transparent backdrop-blur-sm rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 no-underline group" data-aos="fade-up" data-aos-delay={index * 100}> <!-- Wrap card in link, add group class -->
-              <!-- Dodat base prefiks -->
-              <img src={base + project.imageUrl} alt={project.title} class="w-full h-48 object-cover"/> 
-              <div class="p-6 rounded-b-lg"> <!-- Added subtle background to card text area -->
-                <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">{project.title}</h3> <!-- Adjusted text color, added hover effect -->
-                <p class="text-gray-200 text-sm mb-4">{project.description}</p> <!-- Adjusted text color -->
-                <!-- Removed the explicit link text -->
-              </div>
+    <section class="surface-section py-16 md:py-20">
+      <div class="container mx-auto px-6">
+        <div class="rounded-[2rem] border border-white/8 bg-slate-950 px-8 py-12 text-center shadow-2xl shadow-slate-950/25 md:px-10 md:py-14">
+          <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">Naše ključne usluge</h2>
+          <p class="mx-auto mb-10 max-w-2xl text-slate-300">
+            Fokusirani smo na rešenja koja izgledaju ozbiljno, rade brzo i ostavljaju jak utisak na klijente.
+          </p>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {featuredServices.map(service => {
+              const { IconComponent } = service;
+              return (
+                <a href={base + service.url} class="surface-panel group block rounded-2xl p-8 text-left no-underline transition hover:-translate-y-1 hover:shadow-xl">
+                  <IconComponent />
+                  <h3 class="mb-3 mt-5 text-xl font-semibold text-white transition-colors duration-300 group-hover:text-blue-300">{service.title}</h3>
+                  <p class="text-slate-300">{service.description}</p>
+                </a>
+              );
+            })}
+          </div>
+
+          <div class="mt-10">
+            <a href={base + '/usluge'} class="inline-flex rounded-full bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-500">
+              Pogledajte sve usluge
             </a>
-          ))}
-        </div>
-         <div class="mt-12">
-           <!-- Dodat base prefiks -->
-           <a href={base + '/portfolio'} class="bg-transparent border-2 border-gray-400 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-900/20 transition-colors duration-300">
-             Pogledajte Ceo Portfolio
-           </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <section class="py-20"> <!-- Removed background gradient -->
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-white mb-4">Spremni da Započnemo Vaš Projekat?</h2> <!-- Ensured text is white -->
-        <p class="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">Vaše ideje zaslužuju pažnju.
-          Bilo da ste tek na početku ili već imate jasan plan, mi smo tu da vam pomognemo da stignete do cilja. Javite nam se – razgovor je prvi korak ka uspehu.</p> <!-- Adjusted text color -->
-        <!-- Dodat base prefiks -->
-        <a href={base + '/kontakt'} class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white/10 transition-colors duration-300">
-          Zatražite Ponudu
-        </a>
+    <section class="py-16 md:py-20">
+      <div class="container mx-auto px-6">
+        <div class="rounded-[2rem] border border-white/8 bg-slate-950 px-8 py-12 text-center shadow-2xl shadow-slate-950/25 md:px-10 md:py-14">
+          <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">Istaknuti projekti</h2>
+          <p class="mx-auto mb-10 max-w-2xl text-slate-300">
+            Nekoliko primera radova koji pokazuju kako pristupamo dizajnu, strukturi sadržaja i korisničkom iskustvu.
+          </p>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {featuredProjects.map((project, index) => (
+              <a href={base + project.liveUrl} class="surface-panel group block overflow-hidden rounded-2xl text-left no-underline transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay={index * 100}>
+                <img src={base + project.imageUrl} alt={project.title} class="h-48 w-full object-cover" />
+                <div class="border-t border-white/8 p-6">
+                  <h3 class="mb-2 text-lg font-semibold text-white transition-colors duration-300 group-hover:text-blue-300">{project.title}</h3>
+                  <p class="text-sm text-slate-300">{project.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div class="mt-10">
+            <a href={base + '/portfolio'} class="inline-flex rounded-full border border-white/15 bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800">
+              Pogledajte ceo portfolio
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
+    <section class="surface-section py-20">
+      <div class="container mx-auto px-6">
+        <div class="mx-auto max-w-4xl rounded-[2rem] border border-white/8 bg-slate-950 px-8 py-12 text-center shadow-2xl shadow-slate-950/25 md:px-12">
+          <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">Spremni da započnemo vaš projekat?</h2>
+          <p class="mx-auto mb-8 max-w-2xl text-lg text-slate-300">
+            Bilo da vam treba novi sajt, redizajn ili kompletna web aplikacija, možemo da osmislimo rešenje koje izgleda ozbiljno i radi pouzdano.
+          </p>
+          <a href={base + '/kontakt'} class="inline-flex rounded-full bg-white px-8 py-3 text-lg font-bold text-slate-950 transition hover:bg-slate-100">
+            Zatražite ponudu
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>

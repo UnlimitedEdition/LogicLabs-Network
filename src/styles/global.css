@@ -1,91 +1,150 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: 45 93 140; /* RGB values for #2D5D8C */
+  --color-primary: rgb(37 99 235);
+  --color-surface: rgb(10 16 34 / 0.96);
+  --color-surface-soft: rgb(15 23 42 / 0.92);
+  --color-border: rgb(255 255 255 / 0.08);
+  --page-bg: #050816;
 }
 
-/* Essential body styling */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: #121212; /* Dark fallback */
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
   color: white;
-  position: relative;
-  background-image: url('/LogicLabs-Network/images/hero-background.jpg');
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, #050816 0%, #091121 50%, #0f172a 100%);
+  background-color: var(--page-bg);
 }
 
-/* Make all containers and elements transparent */
-div, section, article, aside, header, footer, main, nav, .container, .wrapper,
-[class*="bg-"], [class*="card"], [class*="container"], [class*="wrapper"],
-[class*="section"], [class*="rounded"], [class*="shadow"] {
-  background-color: transparent ;
-  \ackground-image: none ;
+a,
+button,
+input,
+textarea {
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
 }
 
-/* Enhanced text styling with transparent background and better readability */
-p, h1, h2, h3, h4, h5, h6, span, a, li, button, label, input, textarea, select, strong, em, b, i {
-  background-color: transparent ;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 2;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-/* Stronger text emphasis for headings */
-h1, h2, h3, h4, .text-xl, .text-2xl, .text-3xl, .text-4xl {
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7);
-  font-weight: 600;
+::selection {
+  background: rgb(96 165 250 / 0.35);
+  color: white;
 }
 
-/* Анимација за све интерактивне елементе - копирано из ценовника */
-a, button, [role="button"], .link, [class*="btn"], [class*="button"], [type="button"], 
-[type="submit"], input[type="button"], input[type="submit"], .nav-link, .card, 
-.clickable, [class*="hover:"], [class*="focus:"] {
-  transition: all 300ms ease-in-out ;
-  position: relative;
+.theme-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
-  border: 2px solid transparent;
-  background-color: transparent ;
+  pointer-events: none;
 }
 
-/* Хавер ефекти за све интерактивне елементе */
-a:hover, button:hover, [role="button"]:hover, .link:hover, [class*="btn"]:hover, 
-[class*="button"]:hover, [type="button"]:hover, [type="submit"]:hover, 
-input[type="button"]:hover, input[type="submit"]:hover, .nav-link:hover, 
-.card:hover, .clickable:hover, .hover-animate {
-  transform: scale(1.05) translateY(-3px) ;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2) ;
-  border-color: rgba(99, 102, 241, 0.5) ;
-  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.3), rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)) ;
-  z-index: 5;
-  backdrop-filter: blur(3px) ;
+.theme-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.45;
 }
 
-/* Поправка градијента за специфичне елементе са позадином */
-a.bg-blue-600:hover, button.bg-blue-600:hover, 
-a.bg-white:hover, button.bg-white:hover, 
-a.bg-gray-700:hover, button.bg-gray-700:hover {
-  background-image: linear-gradient(to bottom right, rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 0.5), rgba(99, 102, 241, 0.5)) ;
+.theme-orb-one {
+  top: -8rem;
+  left: -6rem;
+  width: 26rem;
+  height: 26rem;
+  background: radial-gradient(circle, rgb(37 99 235 / 0.5), transparent 68%);
 }
 
-/* Exception for buttons that need their background color */
-.bg-blue-600, .bg-white, .bg-gray-700 {
-  background-color: rgba(255, 255, 255, 0.1) ; /* Semi-transparent background */
-  backdrop-filter: blur(3px) ; /* Add slight blur for better text contrast */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+.theme-orb-two {
+  right: -8rem;
+  top: 18rem;
+  width: 30rem;
+  height: 30rem;
+  background: radial-gradient(circle, rgb(14 165 233 / 0.28), transparent 70%);
 }
 
-/* Додатни посебни стилови за истакнуте дугмиће */
-.btn-primary, .btn-cta, .cta, .highlighted {
-  border-color: rgba(12, 15, 238, 0.3) ;
+.theme-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.45), transparent 88%);
 }
 
-/* Basic layer definitions for Tailwind */
-@layer {
-  @layer base {
-    html, body {
-      min-height: 100vh;
-      width: 100%;
-    }
+.theme-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 42%, rgb(3 7 18 / 0.46) 100%);
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  background: #111827;
+  color: white;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.glass-panel,
+.surface-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 18px 40px rgb(15 23 42 / 0.28);
+}
+
+.glass-panel {
+  backdrop-filter: blur(10px);
+}
+
+.surface-section {
+  background: linear-gradient(180deg, rgb(10 16 34 / 0.92), rgb(15 23 42 / 0.9));
+  border-top: 1px solid rgb(255 255 255 / 0.05);
+  border-bottom: 1px solid rgb(255 255 255 / 0.05);
+}
+
+.container {
+  width: min(100%, 80rem);
+}
+
+@layer base {
+  html,
+  body {
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
